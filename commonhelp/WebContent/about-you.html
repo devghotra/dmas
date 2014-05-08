@@ -1,0 +1,267 @@
+<script type="text/javascript" src="js/verify.notify.min.js"></script>
+<h3 class="hl">About You</h3>
+          <p class="text-muted">Please give us some basic information about you</p>
+          <hr>
+          <form role="form" id="aboutYouForm" method="post" action="">
+          <h4 class="hl bottom-15">Information About You<i class="fa fa-chevron-up toggle"></i></h4>
+          <div>
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label for="first-name">First Name</label>
+              		<input type="text" class="form-control" id="firstName" name="firstName" data-validate="required,number">
+				</div>
+				<div class="col-md-2">
+					<label for="middle-initial">Middle Initial</label>
+              		<input type="text" class="form-control" id="miName" name="miName">
+				</div>
+				<div class="col-md-4">
+					<label for="last-name">Last Name</label>
+              		<input type="text" class="form-control" id="lastName" name="lastName">
+				</div>
+				<div class="col-md-2">
+					<label for="suffix">Suffix</label>
+              		<select class="form-control" id="suffix">          
+						 <option value="">Select</option>
+						 <option value="Sr.">Sr./Senior</option>
+						 <option value="Jr.">Jr./Junior</option>
+						 <option value="I">I</option>
+						 <option value="II">II</option>
+						 <option value="III">III</option>
+						 <option value="IV">IV</option>
+						 <option value="V">V</option>
+						 <option value="VI">VI</option>
+              		</select>
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-6">
+					<label for="gender">Gender</label><br/>
+              		<label class="radio-inline" for="radios-0">
+                		<input type="radio" name="radios" id="radios-0" value="male">Male
+              		</label>
+              		<label class="radio-inline" for="radios-1">
+                		<input type="radio" name="radios" id="radios-1" value="female">Female
+              		</label>
+				</div>
+				<div class="col-md-2">
+					<label for="last-name">Date of Birth</label>
+              		<input type="text" class="form-control" id="last-name" placeholder="mm/dd/yyyy">
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label for="suffix">Preferred Spoken Language</label>
+              		<select class="form-control" id="suffix">          
+						 <option value="">Select</option>
+						 <option value="english">English</option>
+						 <option value="english">Chinese - Cantonese</option>
+              		</select>
+				</div>
+				<div class="col-md-4 col-md-offset-2">
+					<label for="suffix">Preferred Reading Language</label>
+              		<select class="form-control" id="suffix">          
+						 <option value="">Select</option>
+						 <option value="">English</option>
+						 <option value="">Chinese - Cantonese</option>
+              		</select>
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label for="suffix">What County/City do you live in?</label>
+              		<select class="form-control" id="suffix">          
+						 <option value="">Select</option>
+						 <option value="">Accomack County</option>
+						 <option value="">Bath County</option>
+              		</select>
+				</div>
+				<div class="col-md-4 col-md-offset-2">
+					<label for="suffix">Are you a resident of Virginia?</label><br/>
+              		<label class="radio-inline" for="radios-0">
+                		<input type="radio" name="radios" id="radios-0" value="yes">Yes
+              		</label>
+              		<label class="radio-inline" for="radios-1">
+                		<input type="radio" name="radios" id="radios-1" value="no">No
+              		</label>
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label for="suffix">What is your marital status?</label>
+              		<select class="form-control" id="suffix">          
+						 <option value="">Select</option>
+						 <option value="">Single</option>
+						 <option value="">Married</option>
+              		</select>
+				</div>
+				<div class="col-md-6 col-md-offset-2">
+					<label for="suffix">Do you require any special accommodation?</label><br/>
+                	<label class="checkbox-inline">
+                  		<input type="checkbox"> Language
+                	</label>
+                	<label class="checkbox-inline">
+                  		<input type="checkbox"> Transportation
+                	</label>
+                	<label class="checkbox-inline">
+                  		<input type="checkbox"> Disablility
+                	</label>
+				</div>
+			</div>
+			<br/>
+		</div>
+          
+          <h4 class="hl bottom-15">Where You Live?<i class="fa fa-chevron-up toggle"></i></h4>
+          <div>
+          <p class="text-muted">
+          	Please tell us where you live. If you are homeless right now, please select the "Homeless" option for living arrangement.<br/>
+			If you are homeless but you have a mailing address, please type your mailing address in the next section.</p>
+           	<div class="row form-row">
+				<div class="col-md-4">
+					<label for="suffix">Street Address</label>
+             		<input type="text" class="form-control" id="first-name" placeholder="Address Line 1">
+				</div>
+				<div class="col-md-4">
+					<label for="suffix">&nbsp;</label>
+             		<input type="text" class="form-control" id="first-name" placeholder="Address Line 2">
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-3">
+					<label for="suffix">City</label>
+             		<input type="text" class="form-control" id="first-name" placeholder="">
+				</div>
+				<div class="col-md-4 col-md-offset-1">
+					<label for="suffix">State</label>
+             		<select class="form-control" id="suffix">          
+						 <option value="">Select</option>
+						 <option value="">California</option>
+						 <option value="">Illinois</option>
+						 <option value="">Federated States of Micronesia</option>
+              		</select>
+				</div>
+				<div class="col-md-2">
+					<label for="suffix">Zip</label>
+             		<input type="text" class="form-control" id="first-name" placeholder="">
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label for="suffix">What is your living arrangement?</label>
+             		<select class="form-control" id="suffix">
+             			<option value="">Select</option>
+						 <option value="">Medicaid-Covered Community-Based Care in Private Residence</option>
+              		</select>
+				</div>
+			</div>
+          <br/>
+          </div>
+          
+          <h4 class="hl bottom-15">Mailing Address<i class="fa fa-chevron-up toggle"></i></h4>
+          <div>
+          <p class="text-muted">
+          	If you are homeless or if you don't want us to send any letters about your benefits to the address you've given above, please give us the mailing address where we can send your mail.<br/>
+			If it's ok to send mail to the address where you live, please leave this section blank.</p>
+		  	<div class="row form-row">
+				<div class="col-md-4">
+					<label for="">Street Address</label>
+             		<input type="text" class="form-control" id="" placeholder="Address Line 1">
+				</div>
+				<div class="col-md-4">
+					<label for="">&nbsp;</label>
+             		<input type="text" class="form-control" id="" placeholder="Address Line 2">
+				</div>
+			</div>
+	  		<div class="row form-row">
+				<div class="col-md-3">
+					<label for="">City</label>
+	            		<input type="text" class="form-control" id="" placeholder="">
+				</div>
+				<div class="col-md-4 col-md-offset-1">
+					<label for="">State</label>
+            		<select class="form-control" id="">          
+					 <option value="">Select</option>
+					 <option value="">California</option>
+					 <option value="">Illinois</option>
+					 <option value="">Federated States of Micronesia</option>
+             		</select>
+				</div>
+				<div class="col-md-2">
+					<label for="suffix">Zip</label>
+	            		<input type="text" class="form-control" id="first-name" placeholder="">
+				</div>
+			</div>
+		  <br/>
+		  </div>
+		  
+		  <h4 class="hl bottom-15">Contact Information<i class="fa fa-chevron-up toggle"></i></h4>
+		  <div>
+          <p class="text-muted">
+          	Please tell us how we can get in touch with you. For the phone numbers, please be sure to include area codes. <br/>
+          	If you don't have information we ask for, just leave it blank.</p>
+		  	<div class="row form-row">
+		  		<div class="col-md-4">
+		  			<label for="">Home Phone</label>
+             		<input type="text" class="form-control" id="" placeholder="xxxxxxxxxx">
+		  		</div>
+		  		<div class="col-md-4">
+		  			<label for="">Work Phone</label>
+             		<input type="text" class="form-control" id="" placeholder="xxxxxxxxxx">
+		  		</div>
+		  		<div class="col-md-4">
+		  			<label for="">Cell/Message Phone</label>
+             		<input type="text" class="form-control" id="" placeholder="xxxxxxxxxx">
+		  		</div>
+		  	</div>
+		  	
+		  	<div class="row form-row">
+		  		<div class="col-md-4">
+		  			<label for="">Email Address</label>
+             		<input type="text" class="form-control" id="" placeholder="">
+		  		</div>
+		  		
+		  		<div class="col-md-4">
+		  			<label for="">Preferred Communication Method</label>
+             		<select class="form-control" id="">          
+						 <option value="">Select</option>
+						 <option value="">Phone</option>
+						 <option value="">Email</option>
+	             	</select>
+		  		</div>
+		  	</div>	
+		  <br/>
+		  </div>
+		  
+		  <h4 class="hl bottom-15">Out of Home Spouse<i class="fa fa-chevron-up toggle"></i></h4>
+		  <div>
+          <p class="text-muted">
+          	If your spouse is currently living out of home, please tell us.</p>
+		  	<div class="row form-row">
+				<div class="col-md-6">
+					<label for="gender">Is your spouse living out of home?</label><br/>
+              		<label class="radio-inline" for="radios-0">
+                		<input type="radio" name="radios" id="radios-0" value="">Yes
+              		</label>
+              		<label class="radio-inline" for="radios-1">
+                		<input type="radio" name="radios" id="radios-1" value="">No
+              		</label>
+				</div>
+			</div>
+			<hr>	
+		  </div>
+		  <button id="aboutYouSubmitBtn" type="submit" class="btn btn-green pull-right">Save</button>
+		  </form>
+		  
+		<script>
+		$( "#aboutYouForm" ).submit(function( event ) {
+			$("#applicationForm").load("hh-member-summary.html", function(){
+				sessionStorage.currentScreen = "hh-member-summary.html";
+				$("#aboutYouNavLink").toggleClass("active visited");
+				$("#memberSummaryNavLink").toggleClass("disabled active");
+				$('html, body').animate({ scrollTop: 0 }, 'slow');
+				$(this).setPageEventHandlers();
+			});
+			return false;
+		});
+		</script>		  
+		  
+		  
