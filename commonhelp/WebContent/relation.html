@@ -1,0 +1,72 @@
+ <img BORDER="0" ALIGN="left"src="img/relationship.jpg" width="125" height="125" id="relationshipimg" alt="relationship-img"  />
+		<h3 class="hl">How you are related?</h3>
+		<p class="text-muted">Please tell us how the people in your home are related to each other.</p>
+		<hr />
+		<br />
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/application/about-you">
+	<input type="hidden" id="applicationId" name="applicationId">
+	<h4 class="hl bottom-15">
+		ABC relationship to XYZ<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+			<div>
+				<div class="row form-row">
+					<div class="col-md-4">
+					<img BORDER="0" ALIGN="left" src="img/male.jpg" width="75" height="75" id="maleimg" alt="male-img"/>
+					</div>
+					<div class="col-md-4">
+				 	<select class="form-control" id="suffix">
+					<option value="">Relation 1</option>
+					<option value="">Relation 2</option>
+					<option value="">Relation 3</option>
+					</select>
+					</div>
+					<div class="col-md-4">
+					<img BORDER="0" ALIGN="right" src="img/female.jpg" width="75" height="75" id="femaleimg" alt="female-img"  />
+	   		</div>
+	   		</div>
+			</div>
+			
+			<h4 class="hl bottom-15">
+		ABC relationship to YYY<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+			<div>
+				<div class="row form-row">
+						<div class="col-md-4">
+							<img BORDER="0" ALIGN="left" src="img/male.jpg" width="75" height="75" id="maleimg" alt="male-img"/>
+						</div>
+					<div class="col-md-4">
+				 		<select class="form-control" id="suffix">
+							<option value="">Relation 1</option>
+							<option value="">Relation 2</option>
+							<option value="">Relation 3</option>
+						</select>
+					</div>
+							<div class="col-md-4">
+								<img BORDER="0" ALIGN="right" src="img/boy.jpg" width="75" height="75" id="boyimg" alt="boy-img"  />
+	   						</div>
+	   			</div>
+	   		<hr >
+			</div>
+			<br />
+			<button id="backBtn" type="button" class="btn btn-green pull-left" value="pregnancy.html">Previous</button>
+			<button id="nextBtn" type="submit" class="btn btn-green pull-right">Save</button>
+			<input type="hidden" id="nextPage" value="otherinformation.html">
+</form>
+
+<script>
+	$(document).ready(function(){
+		sessionStorage.currentScreen = "relation.html";
+		$(this).resetLeftNavLinks("#relationNavLink");
+    	if(sessionStorage.applicationId != null){
+    		$.get( "/commonhelp-svcs/services/application/about-you?app-id="+sessionStorage.applicationId, function( data ) {
+    			
+        	});
+    	}
+  	});
+</script>
+
+
+
+
+
+

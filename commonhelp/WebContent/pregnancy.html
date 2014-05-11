@@ -1,0 +1,52 @@
+<hr>
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/application/about-you">
+		<input type="hidden" id="applicationId" name="applicationId">
+		<h4 class="hl bottom-15">
+			Pregnancy Information<i class="fa fa-chevron-up toggle"></i>
+		</h4>
+		<div class="row form-row">
+			<div class="col-md-6"><label for="suffix">Next, we need to know if anyone in your home is pregnant.</label></div>
+		</div>
+		
+		<h4 class="hl bottom-15">
+			Pregnancy <i class="fa fa-chevron-up toggle"></i>
+		</h4>
+		<div>
+		<div class="row form-row">
+			<div class="col-md-12">
+				<label for="suffix">Please check the box for any female in your home who is pregnant. Otherwise, check "No one".</label>
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-4">
+				<input type="checkbox" name="Noone" />  No one
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-4">
+				<input type="checkbox" name="fem-img" />
+				<img src="img/female.jpg" width="75" height="75" id="femaleimg" alt="female-img" /> 
+			</div>
+		</div>		
+		<hr>
+		</div>
+		<br />
+		<button id="backBtn" type="button" class="btn btn-green pull-left" value="householdmember.html">Previous</button>
+				
+		<button id="nextBtn" type="submit" class="btn btn-green pull-right">Save</button>
+		
+		<input type="hidden" id="nextPage" value="relation.html">
+			
+</form>
+
+<script>
+	$(document).ready(function(){
+		sessionStorage.currentScreen = "pregnancy.html";
+		$(this).resetLeftNavLinks("#pregnancyNavLink");
+    	if(sessionStorage.applicationId != null){
+    		$.get( "/commonhelp-svcs/services/application/about-you?app-id="+sessionStorage.applicationId, function( data ) {
+    			
+        	});
+    	}
+  	});
+</script>
