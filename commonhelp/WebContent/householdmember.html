@@ -15,15 +15,15 @@
 			</div>
 			<div class="col-md-2">
 				<label for="middle-initial">Middle Initial</label> <input
-					type="text" class="form-control" id="mi-name">
+					type="text" class="form-control" id="miName" name="miName">
 			</div>
 			<div class="col-md-4">
 				<label for="last-name">Last Name</label> <input type="text"
-					class="form-control" id="last-name">
+					class="form-control" id="lastName" name="lastName">
 			</div>
 			<div class="col-md-2">
 				<label for="suffix">Suffix</label> <select class="form-control"
-					id="suffix">
+					id="suffix" name="suffix">
 					<option value="">Select</option>
 					<option value="Sr.">Sr./Senior</option>
 					<option value="Jr.">Jr./Junior</option>
@@ -39,15 +39,15 @@
 		<div class="row form-row">
 			<div class="col-md-6">
 				<label for="gender">Gender</label><br /> <label class="radio-inline"
-					for="radios-0"> <input type="radio" name="radios1"
-					id="radios-0" value="male">Male
-				</label> <label class="radio-inline" for="radios-1"> <input
-					type="radio" name="radios1" id="radios-1" value="female">Female
+					for="gender-m"> <input type="radio" name="gender"
+					id="gender-m" value="male">Male
+				</label> <label class="radio-inline" for="gender-f"> <input
+					type="radio" name="gender" id="gender-f" value="female">Female
 				</label>
 			</div>
 			<div class="col-md-2">
-				<label for="last-name">Date of Birth</label> <input type="text"
-					class="form-control" id="last-name" placeholder="mm/dd/yyyy">
+				<label for="dob">Date of Birth</label> <input type="text"
+					class="form-control" id="dob" name="dob" placeholder="mm/dd/yyyy">
 			</div>
 		</div>
 		<div class="row form-row">
@@ -55,11 +55,11 @@
 					<label for="suffix">Is this person resident of Virginia?</label>
 				</div>
 				<div class="col-md-4">
-					<label class="radio-inline" for="radios-0"> <input
-					type="radio" name="radios2" id="radios-0" value="yes">Yes
+					<label class="radio-inline" for="virResident-y"> <input
+					type="radio" name="virResident" id="virResident-y" value="yes">Yes
 					</label> 
-					<label class="radio-inline" for="radios-1"> <input
-					type="radio" name="radios2" id="radios-1" value="no">No
+					<label class="radio-inline" for="virResident-n"> <input
+					type="radio" name="virResident" id="virResident-n" value="no">No
 					</label>
 				</div>
 		</div>
@@ -69,7 +69,7 @@
 				</div>
 				<div class="col-md-4">
 				 	<select
-					class="form-control" id="suffix">
+					class="form-control" id="marStatus" name="marStatus">
 					<option value="">Select</option>
 					<option value="">Single</option>
 					<option value="">Married</option>
@@ -81,10 +81,10 @@
 				<label for="suffix">Are you an American Indian or Alaskan
 					Native</label><br /> 
 					</div>
-					<div class="col-md-4"><label class="radio-inline" for="radios-0"> <input
-						type="radio" name="radios3" id="radios-0" value="yes">Yes
-						</label> <label class="radio-inline" for="radios-1"> <input
-							type="radio" name="radios3" id="radios-1" value="no">No
+					<div class="col-md-4"><label class="radio-inline" for="amerIndOrAlasNat-y"> <input
+						type="radio" name="amerIndOrAlasNat" id="amerIndOrAlasNat-y" value="yes">Yes
+						</label> <label class="radio-inline" for="amerIndOrAlasNat-n"> <input
+							type="radio" name="amerIndOrAlasNat" id="amerIndOrAlasNat-n" value="no">No
 						</label>
 					</div>
 		</div>
@@ -94,7 +94,7 @@
 					select the tribe</label>
 				</div>
 					<div class="col-md-4"> 
-					<select class="form-control" id="suffix">
+					<select class="form-control" id="memOfTribe" name="memOfTribe">
 					<option value="">Select the tribe</option>
 					<option value="english">tribe 1</option>
 					<option value="english">tribe 2</option>
@@ -118,10 +118,10 @@
 			</p>
 			<div class="row form-row">
 				<div class="col-md-4">
-					<input type="checkbox" name="childcare" /> Child Care
+					<input type="checkbox" name="childCare" id="childCare"/> Child Care
 				</div>
 				<div class="col-md-4">
-					<input type="checkbox" name="medicalassit" /> Medical Assistance
+					<input type="checkbox" name="medicalAssit" id="medicalAssit" /> Medical Assistance
 				</div>
 			</div>
 				
@@ -150,7 +150,7 @@
 				    <div class="col-md-5"><label for="suffix">If this person does not have a social security<br/>number,please provide a reason: </label>
 				    </div>
 				    <div class="col-md-4 col-md-offset-1">
-				    		<select class="form-control" id="suffix">
+				    		<select class="form-control" id="reasonNoSsn" name="reasonNoSsn">
 								<option value="">Click here to choose</option>
 								<option value="english">reason 1</option>
 								<option value="english">reason 2</option>
@@ -164,7 +164,7 @@
 		    		<label for="suffix">If you do not have a SSN but have applied, please provide the date you submitted your application:</label>
 		    		</div>
 		    		<div class="col-md-2">
-		    		<input type="text" class="form-control" id="Sub-date" placeholder="mm/dd/yyyy">
+		    		<input type="text" class="form-control" id="subDate" name="subDate" placeholder="mm/dd/yyyy">
 		        </div>
 		    </div> 
 		    <br/>
@@ -176,11 +176,11 @@
 		    			<label for="suffix">Is this person a U.S. citizen?</label>
 		    		</div>
 		    		<div class="col-md-4">
-		    			<label class="radio-inline" for="radios-0"> 
-		    				<input type="radio" name="radios4" id="radios-0" value="yes">Yes
+		    			<label class="radio-inline" for="usCitizen-y"> 
+		    				<input type="radio" name="usCitizen" id="usCitizen-y" value="yes">Yes
 						</label> 
-						<label class="radio-inline" for="radios-1">
-						 	<input type="radio" name="radios4" id="radios-1" value="no">No
+						<label class="radio-inline" for="usCitizen-n">
+						 	<input type="radio" name="usCitizen" id="usCitizen-n" value="no">No
 						</label>
 		    			
 		    		</div>
@@ -196,19 +196,19 @@
 				<div class="row form-row">
 				<div class="col-md-12"><label for="">Please check this person etnicity.</label></div>
 				<div class="col-md-6">
-					<input type="checkbox" name="mexican" /> Mexican
+					<input type="checkbox" name="mexican" id="mexican" /> Mexican
 					</div>
 					<div class="col-md-6">
-					<input type="checkbox" name="mexicanAmerican" /> Mexican American
+					<input type="checkbox" name="mexicanAmerican" id="mexicanAmerican" /> Mexican American
 					</div>
 					<div class="col-md-6">
-					<input type="checkbox" name="chicano/a" /> Chicano/a
+					<input type="checkbox" name="chicano/a" id="chicano/a" /> Chicano/a
 					</div>
 					<div class="col-md-6">
-					<input type="checkbox" name="puertoRican" /> Puerto Rican
+					<input type="checkbox" name="puertoRican" id="puertoRican" /> Puerto Rican
 					</div>
 					<div class="col-md-6">
-					<input type="checkbox" name="Cuban" /> Cuban
+					<input type="checkbox" name="cuban" id="cuban" /> Cuban
 					</div>
 				</div>
 			</div>
@@ -222,47 +222,47 @@
 				<div class="row form-row">
 					<div class="col-md-12"><label for="">Please check the box or boxes to tell us this person's race.</label></div>
 					<div class="col-md-6">
-						<input type="checkbox" name="white" /> White
+						<input type="checkbox" name="white" id="white" /> White
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="blackorAfricanAmerican" /> Black or African American
+						<input type="checkbox" name="blackorAfricanAmerican" id="blackorAfricanAmerican" /> Black or African American
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="americanIndianorAlaskanNative" /> American Indian or Alaskan Native
+						<input type="checkbox" name="americanIndianorAlaskanNative" id="americanIndianorAlaskanNative" /> American Indian or Alaskan Native
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="asianIndian" /> Asian Indian
+						<input type="checkbox" name="asianIndian" id="asianIndian" /> Asian Indian
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="chinese" /> Chinese
+						<input type="checkbox" name="chinese" id="chinese" /> Chinese
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="filipino" /> Filipino
+						<input type="checkbox" name="filipino" id="filipino" /> Filipino
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="japanese" /> Japenese
+						<input type="checkbox" name="japanese" id="japanese" /> Japenese
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="korean" /> Korean
+						<input type="checkbox" name="korean" id="korean" /> Korean
 					</div>
 					
 					<div class="col-md-6">
-						<input type="checkbox" name="vietnamese" /> Vietnamese
+						<input type="checkbox" name="vietnamese" id="vietnamese" /> Vietnamese
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="otherAsian" /> Other Asian
+						<input type="checkbox" name="otherAsian" id="otherAsian" /> Other Asian
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="nativeHawaiian" /> Native Hawaiine
+						<input type="checkbox" name="nativeHawaiian" id="nativeHawaiian" /> Native Hawaiine
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="guamanianorChamorro" /> Guamanian or Chamorro
+						<input type="checkbox" name="guamanianorChamorro" id="guamanianorChamorro" /> Guamanian or Chamorro
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="samoan" /> Samoan
+						<input type="checkbox" name="samoan" id="samoan" /> Samoan
 					</div>
 					<div class="col-md-6">
-						<input type="checkbox" name="otherPacificIslander" /> Other Pacific Islander
+						<input type="checkbox" name="otherPacificIslander" id="otherPacificIslander" /> Other Pacific Islander
 					</div>
 				</div>
 			</div>
@@ -277,7 +277,7 @@
 					<label for="suffix">*How does this person file for their taxes?</label>
 				</div>
 					<div class="col-md-4"> 
-					<select class="form-control" id="suffix">
+					<select class="form-control" id="taxes" name="taxes">
 						<option value="">Tax dependent</option>
 						<option value="english">No dependent</option>
 						<option value="english">Self dependent</option>
@@ -291,7 +291,7 @@
 					<label for="suffix">What is your living arrangements?</label>
 				</div>
 					<div class="col-md-6"> 
-					<select class="form-control" id="suffix">
+					<select class="form-control" id="livArrang" name="livArrang">
 						<option value="">click here to choose</option>
 						<option value="english">Renting</option>
 						<option value="english">Owner</option>
@@ -310,11 +310,11 @@
 		    			<label for="suffix">Is this person temporarily away from home?</label>
 		    		</div>
 		    		<div class="col-md-4">
-		    			<label class="radio-inline" for="radios-0"> 
-		    				<input type="radio" name="radios" id="radios-0" value="yes">Yes
+		    			<label class="radio-inline" for="tempAwayHome-y"> 
+		    				<input type="radio" name="tempAwayHome" id="tempAwayHome-y" value="yes">Yes
 						</label> 
-						<label class="radio-inline" for="radios-1">
-						 	<input type="radio" name="radios" id="radios-1" value="no">No
+						<label class="radio-inline" for="tempAwayHome-n">
+						 	<input type="radio" name="tempAwayHome" id="tempAwayHome-n" value="no">No
 						</label>
 		    			
 		    		</div>

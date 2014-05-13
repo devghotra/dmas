@@ -1,8 +1,7 @@
 <h3 class="hl">About You</h3>
 <p class="text-muted">Please give us some basic information about
-	you, testing </p>
+	you</p>
 <hr>
-
 <form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/application/about-you">
 	<input type="hidden" id="applicationId" name="applicationId">
 	<h4 class="hl bottom-15">
@@ -24,7 +23,7 @@
 			</div>
 			<div class="col-md-2">
 				<label for="suffix">Suffix</label> <select class="form-control"
-					id="suffix">
+					id="suffix" name="suffix">
 					<option value="">Select</option>
 					<option value="Sr.">Sr./Senior</option>
 					<option value="Jr.">Jr./Junior</option>
@@ -41,20 +40,20 @@
 			<div class="col-md-6">
 				<label for="gender">Gender</label><br /> <label
 					class="radio-inline" for="radios-0"> <input type="radio"
-					name="radios" id="radios-0" value="male">Male
+					name="gender" id="gender-m" value="male">Male
 				</label> <label class="radio-inline" for="radios-1"> <input
-					type="radio" name="radios" id="radios-1" value="female">Female
+					type="radio" name="gender" id="gender-f" value="female">Female
 				</label>
 			</div>
 			<div class="col-md-2">
 				<label for="last-name">Date of Birth</label> <input type="text"
-					class="form-control" id="last-name" placeholder="mm/dd/yyyy">
+					class="form-control" id="dob" name="dob"placeholder="mm/dd/yyyy">
 			</div>
 		</div>
 		<div class="row form-row">
 			<div class="col-md-4">
 				<label for="suffix">Preferred Spoken Language</label> <select
-					class="form-control" id="suffix">
+					class="form-control" id="prefSpokenLang" name="prefSpokenLang">
 					<option value="">Select</option>
 					<option value="english">English</option>
 					<option value="english">Chinese - Cantonese</option>
@@ -62,7 +61,7 @@
 			</div>
 			<div class="col-md-4 col-md-offset-2">
 				<label for="suffix">Preferred Reading Language</label> <select
-					class="form-control" id="suffix">
+					class="form-control" id="prefReadLang" name="prefReadLang">
 					<option value="">Select</option>
 					<option value="">English</option>
 					<option value="">Chinese - Cantonese</option>
@@ -72,7 +71,7 @@
 		<div class="row form-row">
 			<div class="col-md-4">
 				<label for="suffix">What County/City do you live in?</label> <select
-					class="form-control" id="suffix">
+					class="form-control" id="countryCity" name="countryCity">
 					<option value="">Select</option>
 					<option value="">Accomack County</option>
 					<option value="">Bath County</option>
@@ -81,17 +80,17 @@
 			<div class="col-md-4 col-md-offset-2">
 				<label for="suffix">Are you a resident of Virginia?</label><br />
 				 <label class="radio-inline" for="radios-1"> <input type="radio"
-					name="radios0" id="radios-1" value="yes">Yes
+					name="virResident" id="virResident-y" value="yes">Yes
 				</label>
 				 <label class="radio-inline" for="radios-2"> <input
-					type="radio" name="radios0" id="radios-2" value="no">No
+					type="radio" name="virResident" id="virResident-n" value="no">No
 				</label>
 			</div>
 		</div>
 		<div class="row form-row">
 			<div class="col-md-4">
 				<label for="suffix">What is your martial status?</label> <select
-					class="form-control" id="suffix">
+					class="form-control" id="marStatus" name="marStatus">
 					<option value="">Select</option>
 					<option value="">Single</option>
 					<option value="">Married</option>
@@ -100,10 +99,10 @@
 			<div class="col-md-6 col-md-offset-2">
 				<label for="suffix">Do you require any special
 					accommodation?</label><br /> <label class="checkbox-inline"> <input
-					type="checkbox"> Language
-				</label> <label class="checkbox-inline"> <input type="checkbox">
+					type="checkbox" id="language" name="language"> Language
+				</label> <label class="checkbox-inline"> <input type="checkbox" id="transportation" name="transportation">
 					Transportation
-				</label> <label class="checkbox-inline"> <input type="checkbox">
+				</label> <label class="checkbox-inline"> <input type="checkbox" id="disability" name="disability">
 					Disablility
 				</label>
 			</div>
@@ -124,21 +123,21 @@
 		<div class="row form-row">
 			<div class="col-md-4">
 				<label for="suffix">Street Address</label> <input type="text"
-					class="form-control" id="first-name" placeholder="Address Line 1">
+					class="form-control" id="streetAdd" name="streetAdd" placeholder="Address Line 1">
 			</div>
 			<div class="col-md-4">
 				<label for="suffix">&nbsp;</label> <input type="text"
-					class="form-control" id="first-name" placeholder="Address Line 2">
+					class="form-control" id="streetAdd" name="streetAdd" placeholder="Address Line 2">
 			</div>
 		</div>
 		<div class="row form-row">
 			<div class="col-md-3">
 				<label for="suffix">City</label> <input type="text"
-					class="form-control" id="first-name" placeholder="">
+					class="form-control" id="cityName" name="cityName" placeholder="">
 			</div>
 			<div class="col-md-4 col-md-offset-1">
 				<label for="suffix">State</label> <select class="form-control"
-					id="suffix">
+					id="stateName" name="stateName">
 					<option value="">Select</option>
 					<option value="">California</option>
 					<option value="">Illinois</option>
@@ -147,13 +146,13 @@
 			</div>
 			<div class="col-md-2">
 				<label for="suffix">Zip</label> <input type="text"
-					class="form-control" id="first-name" placeholder="">
+					class="form-control" id="zip" name="zip" placeholder="">
 			</div>
 		</div>
 		<div class="row form-row">
 			<div class="col-md-8">
 				<label for="suffix">What is your living arrangement?</label> <select
-					class="form-control" id="suffix">
+					class="form-control" id="livArran" name="livArran">
 					<option value="">Select</option>
 					<option value="">Medicaid-Covered Community-Based Care in
 						Private Residence</option>
@@ -169,10 +168,10 @@
 <label for="suffix">Is your Mailing address different from your Living address?</label><br />
 </div>
 <div class="col-md-4">
- <label class="radio-inline" for="radios-5"> 
-<input type="radio" name="radios1" id="radios-5" value="yes">Yes
-</label> <label class="radio-inline" for="radios-6"> 
-<input type="radio" name="radios1" id="radios-6" value="no">No
+ <label class="radio-inline" for="mailAddDiffLivAdd-y"> 
+<input type="radio" name="mailAddDiffLivAdd" id="mailAddDiffLivAdd-y" value="yes">Yes
+</label> <label class="radio-inline" for="mailAddDiffLivAdd-n"> 
+<input type="radio" name="mailAddDiffLivAdd" id="mailAddDiffLivAdd-n" value="no">No
 </label>
 </div>
 </div>
@@ -180,7 +179,7 @@
 
 
 
-<div id="mdad" style="display:none">
+<div id="mailAdd" style="display:none">
 	<h4 class="hl bottom-15">
 		Mailing Address<i class="fa fa-chevron-up toggle"></i>
 	</h4>
@@ -195,20 +194,20 @@
 		<div class="row form-row">
 			<div class="col-md-4">
 				<label for="">Street Address</label> <input type="text"
-					class="form-control" id="" placeholder="Address Line 1">
+					class="form-control" id="mailStreetAdd" name="mailStreetAdd" placeholder="Address Line 1">
 			</div>
 			<div class="col-md-4">
 				<label for="">&nbsp;</label> <input type="text" class="form-control"
-					id="" placeholder="Address Line 2">
+					id="mailStreetAdd" name="mailStreetAdd" placeholder="Address Line 2">
 			</div>
 		</div>
 		<div class="row form-row">
 			<div class="col-md-3">
 				<label for="">City</label> <input type="text" class="form-control"
-					id="" placeholder="">
+					id="mailAddCity" name="mailAddCity" placeholder="">
 			</div>
 			<div class="col-md-4 col-md-offset-1">
-				<label for="">State</label> <select class="form-control" id="">
+				<label for="">State</label> <select class="form-control" id="mailAddState">
 					<option value="">Select</option>
 					<option value="">California</option>
 					<option value="">Illinois</option>
@@ -217,7 +216,7 @@
 			</div>
 			<div class="col-md-2">
 				<label for="suffix">Zip</label> <input type="text"
-					class="form-control" id="first-name" placeholder="">
+					class="form-control" id="mailAddZip" name="mailAddZip" placeholder="">
 			</div>
 		</div>
 		<br />
@@ -236,27 +235,27 @@
 		<div class="row form-row">
 			<div class="col-md-4">
 				<label for="">Home Phone</label> <input type="text"
-					class="form-control" id="" placeholder="xxxxxxxxxx">
+					class="form-control" id="homePhone" name="homePhone" placeholder="xxxxxxxxxx">
 			</div>
 			<div class="col-md-4">
 				<label for="">Work Phone</label> <input type="text"
-					class="form-control" id="" placeholder="xxx-xxx-xxxx">
+					class="form-control" id="workPhone" name="workPhone" placeholder="xxx-xxx-xxxx">
 			</div>
 			<div class="col-md-4">
 				<label for="">Cell/Message Phone</label> <input type="text"
-					class="form-control" id="" placeholder="xxxxxxxxxx">
+					class="form-control" id="cellPhone" name="cellPhone" placeholder="xxxxxxxxxx">
 			</div>
 		</div>
 
 		<div class="row form-row">
 			<div class="col-md-4">
 				<label for="">Email Address</label> <input type="text"
-					class="form-control" id="" placeholder="">
+					class="form-control" id="emailAdd" name="emailAdd" placeholder="">
 			</div>
 
 			<div class="col-md-4">
 				<label for="">Preferred Communication Method</label> <select
-					class="form-control" id="">
+					class="form-control" id="prefCommMeth" name="prefCommMeth">
 					<option value="">Select</option>
 					<option value="">Phone</option>
 					<option value="">Email</option>
@@ -275,10 +274,10 @@
 		<div class="row form-row">
 			<div class="col-md-6">
 				<label for="gender">Is your spouse living out of home?</label><br />
-				<label class="radio-inline" for="radios-7"> <input
-					type="radio" name="radios2" id="radios-7" value="">Yes
-				</label> <label class="radio-inline" for="radios-8"> <input
-					type="radio" name="radios2" id="radios-8" value="">No
+				<label class="radio-inline" for="spouseOutHome-y"> <input
+					type="radio" name="spouseOutHome" id="spouseOutHome-y" value="">Yes
+				</label> <label class="radio-inline" for="spouseOutHome-n"> <input
+					type="radio" name="spouseOutHome" id="spouseOutHome-n" value="">No
 				</label>
 			</div>
 		</div>
@@ -301,12 +300,12 @@
         	});
     	}
 
-    	$("#radios-6").click(function(){
-    	    $("#mdad").hide();
+    	$("#mailAddDiffLivAdd-n").click(function(){
+    	    $("#mailAdd").hide();
     	});
 
-	    $("#radios-5").click(function(){
-        		$("#mdad").show();
+	    $("#mailAddDiffLivAdd-y").click(function(){
+        		$("#mailAdd").show();
       	});
   	});
 </script>
