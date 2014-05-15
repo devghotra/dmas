@@ -23,5 +23,9 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven/>
+	
+	<mvc:interceptors>
+		<bean class="gov.virginia.ehhr.commonhelp.CommonHelpInterceptor"/>
+	</mvc:interceptors>
     
 </beans>

@@ -62,15 +62,16 @@ $.fn.setPageEventHandlers = function(){
 		        type    : $(this).attr('method'),
 		        contentType : "application/json; charset=utf-8",
 		        dataType: 'json',
-		        data    : JSON.stringify($(this).serializeObject()),
+		        //data    : JSON.stringify($(this).serializeObject()),
+		        data : JSON.stringify(form2js(this, '.', true)),
 		        success : function( data ) {
 		        	sessionStorage.applicationId = data.applicationId;
 		        	loadPage(nextPage);
 		        },
 		        error   : function( xhr, err, thrownError ) {
-		            //alert('Error in submission '+err+xhr+thrownError);   
+		            alert('Error in submission '+err+xhr+thrownError);   
 		        	console.error("Error in Submission: "+thrownError);
-		        	loadPage(nextPage);
+		        	//loadPage(nextPage);
 		        }
 		    }); 
 			return false;

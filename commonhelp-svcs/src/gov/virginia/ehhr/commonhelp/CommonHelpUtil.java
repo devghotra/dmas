@@ -1,9 +1,12 @@
 package gov.virginia.ehhr.commonhelp;
 
+import gov.virginia.ehhr.commonhelp.domain.Address;
+
 import java.lang.reflect.Method;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 public class CommonHelpUtil {
 	
@@ -51,6 +54,11 @@ public class CommonHelpUtil {
                         }
                         else if(value instanceof Boolean && (Boolean)value){
                             toMethod.invoke(toObj, value);
+                        }
+                        else if(value instanceof Address){
+                            Address fromAddr = (Address) value;
+                            Address toAddr = (Address)fromMethod.invoke(toObj, (Object[])null);
+                            merge(toAddr, fromAddr);
                         }
                         
                         
