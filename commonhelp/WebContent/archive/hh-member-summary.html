@@ -14,7 +14,7 @@
 			bottom of the page.</p></li>
 </ul>
 <hr>
-
+<form role="form" id="applicationForm" method="post" action="">
 <table class="table table-striped table-hover ">
 	<thead>
 		<tr>
@@ -29,18 +29,17 @@
 	<tbody>
 		<tr>
 			<td><i class="fa fa-user fa-4x bg-grey" style="color: #72a53b"></i></td>
-			<td style="vertical-align: middle;">John Doe</td>
-			<td style="vertical-align: middle;">123 Street <br /> Richmond,
-				VA 23294
-			</td>
-			<td style="vertical-align: middle;">xyz/Richmond</td>
-			<td style="vertical-align: middle;">English</td>
+			<td style="vertical-align: middle;"><span id="name"></span></td>
+			<td style="vertical-align: middle;"><span id="address"></span></td>
+			<td style="vertical-align: middle;"><span id="countyCity"></span></td>
+			<td style="vertical-align: middle;"><span id="prefSpokenLanguage"></span></td>
 			<td style="vertical-align: middle;"><i
 				class="fa fa-check-circle fa-4x bg-grey" style="color: #72a53b"></i></td>
 		</tr>
 	</tbody>
 </table>
-<button id="backBtn" type="button" class="btn btn-green pull-left" value="about-you.html">Previous</button>
+</form>
+<button id="backBtn" type="button" class="btn btn-green pull-left" value="about-you.html">Edit</button>
 
 <button id="nextBtn" type="submit" class="btn btn-green pull-right">Next</button>
 
@@ -54,13 +53,25 @@
 			sessionStorage.currentScreen = "hh-member-summary.html";
 			$(this).resetLeftNavLinks("#aboutYouNavLink");
 	    	if(sessionStorage.applicationId != null){
-	    		$.get( "/commonhelp-svcs/services/application/about-you?app-id="+sessionStorage.applicationId, function( data ) {
-	    			$('#firstName').val(data.applicant.firstName);
-	    			$('#lastName').val(data.applicant.lastName);
-	    			$('#applicationId').val(data.applicant.applicationId);
+	    		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
+	        		$("#name").html(data.applicant.firstName + " "+data.applicant.lastName);
+	        		$("#address").html(
+	    	        		data.applicant.residentialAddress.addressLine1+"<br/>"+
+	    	        		setHtmlValue(data.applicant.residentialAddress.addressLine2)+"<br/>"+
+	    	        		data.applicant.residentialAddress.city+" "+
+	    	        		data.applicant.residentialAddress.state+" "+
+	    	        		data.applicant.residentialAddress.zipCode);
+	        		$("#countyCity").html(data.applicant.countyCity);
+	        		$("#prefSpokenLanguage").html(data.applicant.prefSpokenLanguage);
 	        	});
 	    	}
 	  	});
+
+	  	function setHtmlValue(value){
+			if(value != undefined)
+				return value;
+			else return "";
+		}
 		
 </script>
 		

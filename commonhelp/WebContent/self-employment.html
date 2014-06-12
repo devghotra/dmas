@@ -1,0 +1,280 @@
+<h3 class="hl">Self Employed</h3>
+<p class="text-muted">
+	Tell us about self employment for <span class="memberNameSpan"></span><br />
+</p>
+<hr/>
+
+<div class="row form-row">
+	<div class="col-md-6">
+		<label>Is <span class="memberNameSpan"></span> self employed?</label>
+	</div>
+	<div class="col-md-6">
+		<label class="radio-inline"> 
+			<input type="radio" name="selfEmployed" id="selfEmployed-y" value=true>Yes
+		</label> 
+		<label class="radio-inline"> 
+			<input type="radio" name="selfEmployed" id="selfEmployed-n" value=false>No
+		</label>
+	</div>
+</div><br/>
+
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/income" style="display: none;">
+	
+	<input type="hidden" id="incomeId" name="incomeId">
+	<input type="hidden" id="memberId" name="memberId">
+	<input type="hidden" id="incomeType" name="incomeType" value="self-employed">
+	
+	<h4 class="hl bottom-15">
+		Self-Employment Details<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>What type of self-employment does <span class="memberfirstNameSpan"></span> have?</label>
+			</div>
+			<div class="col-md-4">
+				<select class="form-control" id="selfEmployment.type" name="selfEmployment.type">
+					 <OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					 <OPTION VALUE="AS" TITLE="Accounting">Accounting</OPTION>
+					 <OPTION VALUE="AV" TITLE="Cosmetic sales">Cosmetic sales</OPTION>
+					 <OPTION VALUE="BB" TITLE="Bait business">Bait business</OPTION>
+					 <OPTION VALUE="BK" TITLE="Bakery">Bakery</OPTION>
+					 <OPTION VALUE="BO" TITLE="Business Owner or Operator">Business Owner or Operator</OPTION>
+					 <OPTION VALUE="BS" TITLE="Babysitting or Child Care">Babysitting or Child Care</OPTION>
+					 <OPTION VALUE="CC" TITLE="Carpentry or Construction">Carpentry or Construction</OPTION>
+					 <OPTION VALUE="CF" TITLE="Crafts">Crafts</OPTION>
+					 <OPTION VALUE="CL" TITLE="Clamming">Clamming</OPTION>
+					 <OPTION VALUE="CN" TITLE="Child Care Nutrition Payments">Child Care Nutrition Payments</OPTION>
+					 <OPTION VALUE="CO" TITLE="Corporation">Corporation</OPTION>
+					 <OPTION VALUE="CR" TITLE="Car repair or restoration">Car repair or restoration</OPTION>
+					 <OPTION VALUE="CS" TITLE="Computer service">Computer service</OPTION>
+					 <OPTION VALUE="CT" TITLE="Catering">Catering</OPTION>
+					 <OPTION VALUE="CW" TITLE="Contract work">Contract work</OPTION>
+					 <OPTION VALUE="CY" TITLE="Cycle shop">Cycle shop</OPTION>
+					 <OPTION VALUE="EL" TITLE="Electrician">Electrician</OPTION>
+					 <OPTION VALUE="FA" TITLE="Farming">Farming</OPTION>
+					 <OPTION VALUE="FI" TITLE="Fishing">Fishing</OPTION>
+					 <OPTION VALUE="GA" TITLE="Gambling">Gambling</OPTION>
+					 <OPTION VALUE="HM" TITLE="Housekeeping">Housekeeping</OPTION>
+					 <OPTION VALUE="HU" TITLE="Hunting">Hunting</OPTION>
+					 <OPTION VALUE="IA" TITLE="Insurance Agent">Insurance Agent</OPTION>
+					 <OPTION VALUE="JU" TITLE="Junking">Junking</OPTION>
+					 <OPTION VALUE="KE" TITLE="Kennels">Kennels</OPTION>
+					 <OPTION VALUE="LC" TITLE="Lawn care">Lawn care</OPTION>
+					 <OPTION VALUE="LO" TITLE="Logging">Logging</OPTION>
+					 <OPTION VALUE="MF" TITLE="Manufacturing">Manufacturing</OPTION>
+					 <OPTION VALUE="MU" TITLE="Musician">Musician</OPTION>
+					 <OPTION VALUE="OJ" TITLE="Odd jobs">Odd jobs</OPTION>
+					 <OPTION VALUE="OT" TITLE="Other">Other</OPTION>
+					 <OPTION VALUE="PA" TITLE="Painting">Painting</OPTION>
+					 <OPTION VALUE="PD" TITLE="Newspaper delivery">Newspaper delivery</OPTION>
+					 <OPTION VALUE="PH" TITLE="Photography">Photography</OPTION>
+					 <OPTION VALUE="PL" TITLE="Plumbing">Plumbing</OPTION>
+					 <OPTION VALUE="PT" TITLE="Partnership">Partnership</OPTION>
+					 <OPTION VALUE="RE" TITLE="Real estate agent">Real estate agent</OPTION>
+					 <OPTION VALUE="RP" TITLE="Rental property">Rental property</OPTION>
+					 <OPTION VALUE="SB" TITLE="Selling blood">Selling blood</OPTION>
+					 <OPTION VALUE="SM" TITLE="Sawmill">Sawmill</OPTION>
+					 <OPTION VALUE="SP" TITLE="Selling produce">Selling produce</OPTION>
+					 <OPTION VALUE="SW" TITLE="Sewing">Sewing</OPTION>
+					 <OPTION VALUE="TA" TITLE="Tavern">Tavern</OPTION>
+					 <OPTION VALUE="TP" TITLE="Tattoo parlor">Tattoo parlor</OPTION>
+					 <OPTION VALUE="TR" TITLE="Trapping">Trapping</OPTION>
+					 <OPTION VALUE="TX" TITLE="Tax preparation">Tax preparation</OPTION>
+					 <OPTION VALUE="CM" TITLE="Cosmetology">Cosmetology</OPTION>
+				</select>
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>What is the start date of self-employment?</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control datepicker" id="selfEmployment.startDate" name="selfEmployment.startDate" placeholder="">
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>What is the gross monthly income amount from <span class="memberfirstNameSpan"></span>'s self-employment before any expenses ?</label>
+			</div>
+			<div class="col-md-2">
+				<div class="input-group">
+					<span class="input-group-addon">$</span>
+					<input type="text" class="form-control" id="selfEmployment.grossIncome" name="selfEmployment.grossMonthlyIncome" placeholder="">
+				</div>
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>How many hours a month is <span class="memberfirstNameSpan"></span> self-employed? If hours are not regular, please try to estimate the number of hours.</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="selfEmployment.hoursPerMonth" name="selfEmployment.hoursPerMonth" placeholder="">
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>How often does <span class="memberfirstNameSpan"></span> get paid?</label>
+			</div>
+			<div class="col-md-6">
+				<select class="form-control" id="selfEmployment.payFrequency" name="selfEmployment.payFrequency">
+					 <OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					 <OPTION VALUE="AN" TITLE="Annual">Annual</OPTION>
+					 <OPTION VALUE="CO" TITLE="Contractual/Single Payment Covering More than One Month">Contractual/Single Payment Covering More than One Month</OPTION>
+					 <OPTION VALUE="WT" TITLE="Every two weeks">Every two weeks</OPTION>
+					 <OPTION VALUE="IR" TITLE="Irregular">Irregular</OPTION>
+					 <OPTION VALUE="MO" TITLE="Monthly">Monthly</OPTION>
+					 <OPTION VALUE="RA" TITLE="Random">Random</OPTION>
+					 <OPTION VALUE="TW" TITLE="Twice a month">Twice a month</OPTION>
+					 <OPTION VALUE="WK" TITLE="Weekly">Weekly</OPTION>
+				</select>
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>Next Pay Date:</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control datepicker" id="selfEmployment.nextPayDate" name="selfEmployment.nextPayDate" placeholder="">
+			</div>
+		</div>
+	</div><br/>
+	
+	<h4 class="hl bottom-15">
+		Expenses<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-12">
+				<table class="table" id="expenseTable">
+				<thead>
+					<tr>
+						<th style="width: 80%">Expense Type</th>
+						<th style="width: 20%">Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style="border-top: 0px;">
+							<select class="form-control" id="selfEmployment.expenseList[0].expenseType" name="selfEmployment.expenseList[0].expenseType">			
+								 <OPTION VALUE="SEL" TITLE="Select">Select</OPTION>
+								 <OPTION VALUE="AD" TITLE="Advertising">Advertising</OPTION>
+								 <OPTION VALUE="BL" TITLE="Business License/Fees">Business License/Fees</OPTION>
+								 <OPTION VALUE="ES" TITLE="Labor/Commissions">Labor/Commissions</OPTION>
+								 <OPTION VALUE="IC" TITLE="Interest Pymts On Capital Improvements To Real Property">Interest Pymts On Capital Improvements To Real Property</OPTION>
+								 <OPTION VALUE="IN" TITLE="Insurance">Insurance</OPTION>
+								 <OPTION VALUE="MC" TITLE="Materials/Supplies/Goods">Materials/Supplies/Goods</OPTION>
+								 <OPTION VALUE="ML" TITLE="Meals and Lodging">Meals and Lodging</OPTION>
+								 <OPTION VALUE="OI" TITLE="Other Interest Payments">Other Interest Payments</OPTION>
+								 <OPTION VALUE="OR" TITLE="Rent">Rent</OPTION>
+								 <OPTION VALUE="OT" TITLE="Other Allowable Exps (ABD-MC)">Other Allowable Exps (ABD-MC)</OPTION>
+								 <OPTION VALUE="PC" TITLE="Payments On Principal And Capital Improvements">Payments On Principal And Capital Improvements</OPTION>
+								 <OPTION VALUE="TA" TITLE="Taxes On Business Property">Taxes On Business Property</OPTION>
+								 <OPTION VALUE="TM" TITLE="Transportation/Mileage">Transportation/Mileage</OPTION>
+								 <OPTION VALUE="UE" TITLE="Utility/Phone Expense">Utility/Phone Expense</OPTION>
+								 <OPTION VALUE="UR" TITLE="Upkeep and Repairs">Upkeep and Repairs</OPTION>
+							</select>
+						</td>
+						<td style="border-top: 0px;">
+							<div class="input-group">
+								<span class="input-group-addon">$</span>
+								<input type="text" class="form-control" id="selfEmployment.expenseList[0].expenseAmount" name="selfEmployment.expenseList[0].expenseAmount" placeholder="">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+		<div class="row form-row">
+			<button id="addExpenseBtn" type="button" class="btn btn-green pull-right">Add Expense</button>
+		</div>
+		
+		<input type="hidden" id="nextPage" value="self-employment.html">
+		
+	</div>
+</form>
+
+<div class="row form-row">
+	<button id="backBtn" type="button" class="btn btn-green pull-left" value="past-job-summary.html">Previous</button>
+	<button id="nextBtn" type="button" class="btn btn-green pull-right" disabled>Next</button>
+</div>
+
+<script>
+$(document).ready(function(){
+	sessionStorage.currentScreen = "self-employment.html";
+	$(this).resetLeftNavLinks("#incomeNavLink");
+
+	$("#memberId").val(sessionStorage.incomeForMemberId);
+	$(".memberNameSpan").html(sessionStorage.incomeForMemberFirstName +" "+ sessionStorage.incomeForMemberLastName);
+	$(".memberfirstNameSpan").html(sessionStorage.incomeForMemberFirstName);
+    
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+sessionStorage.incomeForMemberId+"&income-type=self-employed", function( data ) {
+		if(data.income != null){
+			$("#selfEmployed-y").click();
+		    
+			var formData = JSON.parse(JSON.stringify(data.income));
+
+			var expenseList = formData.selfEmployment.expenseList;
+
+			for(var i = 1; i < expenseList.length; i++) {
+				$("#addExpenseBtn").click();
+			}
+			
+			js2form(document.getElementById('applicationForm'), formData);
+		}
+	});
+	
+	
+});
+
+var expenseItr = 1;
+$("#addExpenseBtn").click(function(){
+	$('#expenseTable tr').last().after(
+	    	'<tr>'+
+				'<td style="border-top: 0px;">'+
+				'<select class="form-control" id="selfEmployment.expenseList['+expenseItr+'].expenseType" name="selfEmployment.expenseList['+expenseItr+'].expenseType">'+			
+					'<OPTION VALUE="SEL" TITLE="Select">Select</OPTION>'+
+					 '<OPTION VALUE="AD" TITLE="Advertising">Advertising</OPTION>'+
+					 '<OPTION VALUE="BL" TITLE="Business License/Fees">Business License/Fees</OPTION>'+
+					 '<OPTION VALUE="ES" TITLE="Labor/Commissions">Labor/Commissions</OPTION>'+
+					 '<OPTION VALUE="IC" TITLE="Interest Pymts On Capital Improvements To Real Property">Interest Pymts On Capital Improvements To Real Property</OPTION>'+
+					 '<OPTION VALUE="IN" TITLE="Insurance">Insurance</OPTION>'+
+					 '<OPTION VALUE="MC" TITLE="Materials/Supplies/Goods">Materials/Supplies/Goods</OPTION>'+
+					 '<OPTION VALUE="ML" TITLE="Meals and Lodging">Meals and Lodging</OPTION>'+
+					 '<OPTION VALUE="OI" TITLE="Other Interest Payments">Other Interest Payments</OPTION>'+
+					 '<OPTION VALUE="OR" TITLE="Rent">Rent</OPTION>'+
+					 '<OPTION VALUE="OT" TITLE="Other Allowable Exps (ABD-MC)">Other Allowable Exps (ABD-MC)</OPTION>'+
+					 '<OPTION VALUE="PC" TITLE="Payments On Principal And Capital Improvements">Payments On Principal And Capital Improvements</OPTION>'+
+					 '<OPTION VALUE="TA" TITLE="Taxes On Business Property">Taxes On Business Property</OPTION>'+
+					 '<OPTION VALUE="TM" TITLE="Transportation/Mileage">Transportation/Mileage</OPTION>'+
+					 '<OPTION VALUE="UE" TITLE="Utility/Phone Expense">Utility/Phone Expense</OPTION>'+
+					 '<OPTION VALUE="UR" TITLE="Upkeep and Repairs">Upkeep and Repairs</OPTION>'+
+				'</select>'+
+				'</td>'+
+				'<td style="border-top: 0px;"><div class="input-group"><span class="input-group-addon">$</span><input type="text" '+
+					'class="form-control" id="selfEmployment.expenseList['+expenseItr+'].expenseAmount" name="selfEmployment.expenseList['+expenseItr+'].expenseAmount" placeholder=""></div></td>'+
+			'</tr>');
+	expenseItr++;
+});
+
+$("#nextBtn").click(function(){
+	var selection = $('input[name=selfEmployed]:checked').val();
+	alert(selection);
+	if(selection == "true")
+		$("#applicationForm").submit();
+	else
+		alert("next.html");
+});
+
+
+$("#selfEmployed-y").click(function(){
+	$("#applicationForm").show();
+	$("#nextBtn").removeAttr("disabled");
+});
+
+$("#selfEmployed-n").click(function(){
+	$("#applicationForm").hide();
+	$("#nextBtn").removeAttr("disabled");
+});
+</script>

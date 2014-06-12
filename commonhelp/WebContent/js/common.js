@@ -6,7 +6,7 @@ function init(){
 	$("#topMenuBar").load("top-menu.html"); 
 	var currentScreen = sessionStorage.currentScreen;
 	if(currentScreen == null)
-		currentScreen = "about-you.html";
+		currentScreen = "primary-applicant-basic.html";
 	loadPage(currentScreen);
 }
 
@@ -15,6 +15,7 @@ function loadPage(pageUrl){
 	$("#applicationFormDiv").load(pageUrl, function(){
 		$(this).setPageEventHandlers();
 	});
+	$('html, body').animate({ scrollTop: 0 }, 'slow');
 }
 
 $.fn.resetLeftNavLinks = function(activeLink){
@@ -57,6 +58,8 @@ $.fn.setPageEventHandlers = function(){
 	 
 	 $( "#applicationForm" ).submit(function( event ) {
 		 	var nextPage = $('#nextPage').val();
+		 	var jsondata = JSON.stringify(form2js(this, '.', true));
+		 	console.debug("json data: "+jsondata);
 			$.ajax({
 		        url     : $(this).attr('action'),
 		        type    : $(this).attr('method'),
@@ -76,6 +79,13 @@ $.fn.setPageEventHandlers = function(){
 		    }); 
 			return false;
 		});
+	 
+	 $( ".datepicker" ).datepicker({ 
+       	changeMonth: true,
+         changeYear: true,
+         yearRange: "-120:-0",
+         dateFormat: "mm/dd/yy"
+     });
 };
 
 
@@ -94,6 +104,22 @@ $.fn.serializeObject = function(){
         }
     });
     return o;
+};
+
+$.fn.renderHtmlFromJson = function(node, data){
+		$.each(data, function(index) {
+		if(typeof data[index] === 'object')
+			$(this).renderHtmlFromJson(index,data[index]);
+		else{
+			var domId = (node == null ? "#"+index : "#"+node+"."+index);
+			domId  = domId.replace(".", "\\.");
+			//console.debug(domId +"="+data[index]);
+			if(typeof data[index] === 'boolean')
+				$(domId).html(data[index] ? 'Yes' : 'No');
+			else
+				$(domId).html(data[index]);
+		}
+    });
 };
 
 

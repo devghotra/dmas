@@ -1,0 +1,120 @@
+<h3 class="hl">Household Member(s) Summary</h3>
+<p class="text-muted">
+	Add all your household members including the ones not requiring assistance.<br />
+</p>
+
+<form role="form" id="applicationForm" method="post" action="">
+
+	<input type="hidden" id="applicationId" name="applicationId">
+	
+	<table class="table table-striped table-hover " id="hhMemberSummaryTable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Gender</th>
+				<th>DOB</th>
+				<th>Marital<br/>Status</th>
+				<th>Virginia<br/>Resident?</th>
+				<th>Applying<br/>Assistance?</th>
+				<th>Tax<br/>Type</th>
+				<th>Living<br/>Type</th>
+				<th>Away<br/>From Home?</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><span id="suffix"></span> <span id="firstName"></span> <span id="miName"></span> <span id="lastName"></span></td>
+				<td><span id="gender"></span></td>
+				<td><span id="dob"></span></td>
+				<td><span id="maritalStatus"></span></td>
+				<td><span id="virginiaResidentFlag"></span></td>
+				<td>Yes</td>
+				<td><span id="taxFileType"></span></td>
+				<td><span id="livingType"></span></td>
+				<td><span id="tempAwayHomeFlag"></span></td>
+				<td><a href="javascript:editApplicant();">Edit</a></td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+	
+<div class="row form-row">
+	<button id="addDependent" type="button" class="btn btn-green pull-right">Add Dependent</button>
+</div>
+
+<div class="row form-row">
+	<button id="backBtn" type="button" class="btn btn-green pull-left" value="household-member-numbers.html">Back</button>
+	<button id="nextBtn" type="button" class="btn btn-green pull-right">Next</button>
+</div>
+
+<script>
+var memberList = new Array();
+var applicant;
+
+$(document).ready(function(){
+	sessionStorage.currentScreen = "household-members-summary.html";
+	$(this).resetLeftNavLinks("#householdMemberNavLink");
+	
+	if(sessionStorage.applicationId != null){
+		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
+    		var applicantData = JSON.parse(JSON.stringify(data.applicant));
+
+    		applicant = applicantData;
+    		$(this).renderHtmlFromJson(null, applicantData);
+
+    		memberList.push({"id":applicantData.applicantId, "name":applicantData.firstName+" "+applicantData.lastName, "incomeSectionCompleted":false});
+
+    		var i = 0;
+    		if(data.applicant.hhMemberList != null){
+    			var hhMemberList = JSON.parse(JSON.stringify(data.applicant.hhMemberList));
+    			$.each(hhMemberList, function(index) {
+    			    var hhMember = hhMemberList[index];
+    			    //console.debug(hhMember);
+    			    memberList.push({"id":hhMember.hhMemberId, "name":hhMember.firstName+" "+hhMember.lastName, "incomeSectionCompleted":false});
+    			    $('#hhMemberSummaryTable tr').last().after(
+    			    	'<tr>'+
+    						'<td><span id="hhmb'+i+'.firstName"></span> <span id="hhmb'+i+'.lastName"></span></td>'+
+    						'<td><span id="hhmb'+i+'.gender"></span></td>'+
+    						'<td><span id="hhmb'+i+'.dob"></span></td>'+
+    						'<td><span id="hhmb'+i+'.maritalStatus"></span></td>'+
+    						'<td><span id="hhmb'+i+'.virginiaResidentFlag"></span></td>'+
+    						'<td><span id="hhmb'+i+'.applyingAssitanceFlag"></span></td>'+
+    						'<td><span id="hhmb'+i+'.taxFileType"></span></td>'+
+    						'<td><span id="hhmb'+i+'.livingType"></span></td>'+
+    						'<td><span id="hhmb'+i+'.tempAwayHomeFlag"></span></td>'+
+    						'<td><a href="javascript:editHhMember(\''+hhMember.hhMemberId+'\')">Edit</a></td>'+
+    					'</tr>');
+
+    			    $(this).renderHtmlFromJson("hhmb"+i,hhMember);
+    			    i++;
+    			});
+            }
+    		sessionStorage.hhMemberList = JSON.stringify(memberList);
+    	});
+	}
+});
+
+$( "#addDependent" ).click(function( event ) {
+	sessionStorage.removeItem("getHhMemberId");
+	loadPage("household-member.html");
+	return false;
+});
+$( "#nextBtn" ).click(function( event ) {
+	sessionStorage.incomeForMemberId = applicant.applicantId;
+	sessionStorage.incomeForMemberFirstName = applicant.firstName;
+	sessionStorage.incomeForMemberLastName = applicant.lastName;
+	
+	loadPage("present-job.html");
+	return false;
+});
+
+function editHhMember(){
+	sessionStorage.getHhMemberId = hhMemberId;
+	loadPage("household-member.html");
+}
+
+function editApplicant(){
+	loadPage("primary-applicant-basic.html");
+};
+</script>

@@ -34,6 +34,7 @@ public class CommonHelpInterceptor extends HandlerInterceptorAdapter{
                 // Do not fail on unknown properties during deserialization of JSON
                 om.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
                 
+                
                 m.setObjectMapper(om);
 			}
 		}

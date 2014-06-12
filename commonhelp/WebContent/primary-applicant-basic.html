@@ -1,8 +1,7 @@
-<h3 class="hl">About You</h3>
-<p class="text-muted">Please give us some basic information about
-	you</p>
+<h3 class="hl">Primary Applicant - Basic Information</h3>
+<p class="text-muted">Please give us some basic information about you</p>
 <hr>
-<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/application/about-you">
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/basic-info">
 	<input type="hidden" id="applicationId" name="applicationId">
 	<h4 class="hl bottom-15">
 		Information About You<i class="fa fa-chevron-up toggle"></i>
@@ -47,24 +46,24 @@
 			</div>
 			<div class="col-md-2">
 				<label for="last-name">Date of Birth</label> <input type="text"
-					class="form-control" id="dob" name="dob"placeholder="mm/dd/yyyy">
+					class="form-control datepicker" id="dob" name="dob" placeholder="mm/dd/yyyy">
 			</div>
 		</div>
 		<div class="row form-row">
 			<div class="col-md-4">
 				<label for="suffix">Preferred Spoken Language</label> <select
-					class="form-control" id="prefSpokenLang" name="prefSpokenLanguage">
+					class="form-control" id="prefSpokenLanguage" name="prefSpokenLanguage">
 					<option value="">Select</option>
-					<option value="english">English</option>
-					<option value="english">Chinese - Cantonese</option>
+					<option value="English">English</option>
+					<option value="Chinese">Chinese - Cantonese</option>
 				</select>
 			</div>
 			<div class="col-md-4 col-md-offset-2">
 				<label for="suffix">Preferred Reading Language</label> <select
-					class="form-control" id="prefReadLang" name="prefReadLanguage">
+					class="form-control" id="prefReadLanguage" name="prefReadLanguage">
 					<option value="">Select</option>
-					<option value="">English</option>
-					<option value="">Chinese - Cantonese</option>
+					<option value="English">English</option>
+					<option value="Chinese">Chinese - Cantonese</option>
 				</select>
 			</div>
 		</div>
@@ -73,36 +72,59 @@
 				<label for="suffix">What County/City do you live in?</label> <select
 					class="form-control" id="countyCity" name="countyCity">
 					<option value="">Select</option>
-					<option value="">Accomack County</option>
-					<option value="">Bath County</option>
+					<option value="Accomack">Accomack County</option>
+					<option value="Bath">Bath County</option>
 				</select>
 			</div>
 			<div class="col-md-4 col-md-offset-2">
 				<label for="suffix">Are you a resident of Virginia?</label><br />
-				 <label class="radio-inline" for="radios-1"> <input type="radio"
-					name="virginaResidentFlag" id="virResident-y" value="true">Yes
+				 <label class="radio-inline" for="radios-1"> 
+				 	<input type="radio" name="virginiaResidentFlag" id="virResident-y" value="true">
+				 	Yes
 				</label>
-				 <label class="radio-inline" for="radios-2"> <input
-					type="radio" name="virginaResidentFlag" id="virResident-n" value="false">No
+				 <label class="radio-inline" for="radios-2"> 
+				 	<input type="radio" name="virginiaResidentFlag" id="virResident-n" value="false">
+				 	No
 				</label>
 			</div>
 		</div>
+		
 		<div class="row form-row">
 			<div class="col-md-4">
 				<label for="suffix">What is your martial status?</label> <select
 					class="form-control" id="maritalStatus" name="maritalStatus">
 					<option value="">Select</option>
-					<option value="">Single</option>
-					<option value="">Married</option>
+					<option value="Single">Single</option>
+					<option value="Married">Married</option>
 				</select>
 			</div>
 			<div class="col-md-6 col-md-offset-2">
-				<label for="suffix">Do you require any special
-					accommodation?</label><br /> <label class="checkbox-inline"> <input
-					type="checkbox" id="languageFlag" name="languageFlag"> Language
-				</label> <label class="checkbox-inline"> <input type="checkbox" id="transportationFlag" name="transportationFlag">
+				<div id="outOfHomeSpouseDiv" style="display:none;">
+					<label for="gender">Is your spouse living out of home?</label><br />
+					<label class="radio-inline" for="spouseOutHome-y"> <input
+						type="radio" name="spouseOutHomeFlag" id="spouseOutHomeFlag-y" value="true">Yes
+					</label> <label class="radio-inline" for="spouseOutHome-n"> <input
+						type="radio" name="spouseOutHomeFlag" id="spouseOutHomeFlag-n" value="false">No
+				</label>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="suffix">Do you require any special accommodation?</label>
+			</div>
+			<div class="col-md-6">
+				<label class="checkbox-inline"> 
+					<input type="checkbox" id="languageFlag" name="languageFlag" value=true> 
+					Language
+				</label> 
+				<label class="checkbox-inline"> 
+					<input type="checkbox" id="transportationFlag" name="transportationFlag" value=true>
 					Transportation
-				</label> <label class="checkbox-inline"> <input type="checkbox" id="disabilityFlag" name="disabilityFlag">
+				</label> 
+				<label class="checkbox-inline"> 
+					<input type="checkbox" id="disabilityFlag" name="disabilityFlag" value=true>
 					Disablility
 				</label>
 			</div>
@@ -139,9 +161,9 @@
 				<label for="suffix">State</label> <select class="form-control"
 					id="residentialState" name="residentialAddress.state">
 					<option value="">Select</option>
-					<option value="">California</option>
-					<option value="">Illinois</option>
-					<option value="">Federated States of Micronesia</option>
+					<option value="CA">California</option>
+					<option value="IL">Illinois</option>
+					<option value="FSM">Federated States of Micronesia</option>
 				</select>
 			</div>
 			<div class="col-md-2">
@@ -151,11 +173,10 @@
 		</div>
 		<div class="row form-row">
 			<div class="col-md-8">
-				<label for="suffix">What is your living arrangement?</label> <select
-					class="form-control" id="livingArrangement" name="livingArrangement">
+				<label for="suffix">What is your living arrangement?</label> 
+					<select class="form-control" id="livingArrangement" name="livingArrangement">
 					<option value="">Select</option>
-					<option value="">Medicaid-Covered Community-Based Care in
-						Private Residence</option>
+					<option value="Medicaid-Covered Community-Based Care in Private Residence">Medicaid-Covered Community-Based Care in Private Residence</option>
 				</select>
 			</div>
 		</div>
@@ -179,7 +200,7 @@
 
 
 
-<div id="mailAdd" style="display:none">
+<div id="mailAddress" style="display:none">
 	<h4 class="hl bottom-15">
 		Mailing Address<i class="fa fa-chevron-up toggle"></i>
 	</h4>
@@ -209,9 +230,9 @@
 			<div class="col-md-4 col-md-offset-1">
 				<label for="">State</label> <select class="form-control" id="mailAddressState" name="mailingAddress.state">
 					<option value="">Select</option>
-					<option value="">California</option>
-					<option value="">Illinois</option>
-					<option value="">Federated States of Micronesia</option>
+					<option value="CA">California</option>
+					<option value="IL">Illinois</option>
+					<option value="FSM">Federated States of Micronesia</option>
 				</select>
 			</div>
 			<div class="col-md-2">
@@ -257,54 +278,62 @@
 				<label for="">Preferred Communication Method</label> <select
 					class="form-control" id="prefCommunicationMethod" name="prefCommunicationMethod">
 					<option value="">Select</option>
-					<option value="">Phone</option>
-					<option value="">Email</option>
+					<option value="Phone">Phone</option>
+					<option value="Email">Email</option>
 				</select>
 			</div>
 		</div>
 		<br />
 	</div>
 
-	<h4 class="hl bottom-15">
-		Out of Home Spouse<i class="fa fa-chevron-up toggle"></i>
-	</h4>
-	<div>
-		<p class="text-muted">If your spouse is currently living out of
-			home, please tell us.</p>
-		<div class="row form-row">
-			<div class="col-md-6">
-				<label for="gender">Is your spouse living out of home?</label><br />
-				<label class="radio-inline" for="spouseOutHome-y"> <input
-					type="radio" name="spouseOutHomeFlag" id="spouseOutHomeFlag-y" value="true">Yes
-				</label> <label class="radio-inline" for="spouseOutHome-n"> <input
-					type="radio" name="spouseOutHomeFlag" id="spouseOutHomeFlag-n" value="false">No
-				</label>
-			</div>
-		</div>
-		<hr>
-	</div>
 	<button id="nextBtn" type="submit" class="btn btn-green pull-right">Save</button>
 		
-	<input type="hidden" id="nextPage" value="hh-member-summary.html">
+	<input type="hidden" id="nextPage" value="primary-applicant-other.html">
 </form>
 
 <script>
 	$(document).ready(function(){
-		sessionStorage.currentScreen = "about-you.html";
+		sessionStorage.currentScreen = "primary-applicant-basic.html";
 		$(this).resetLeftNavLinks("#aboutYouNavLink");
     	if(sessionStorage.applicationId != null){
-    		$.get( "/commonhelp-svcs/services/application/about-you?app-id="+sessionStorage.applicationId, function( data ) {
+    		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
         		var formData = JSON.parse(JSON.stringify(data.applicant));
+        		if(data.applicant.mailAddressDifferentFlag)
+        			$("#mailAddress").show();
+        		//console.debug(formData);
 				js2form(document.getElementById('applicationForm'), formData);
+				
+				$( "#maritalStatus" ).ready(function() {
+			    	var maritalStatus = $( "#maritalStatus" ).val();
+			    	if(maritalStatus == 'Single'){
+		    			$('#spouseOutHomeFlag-y').prop('checked', false);
+		    			$('#spouseOutHomeFlag-n').prop('checked', false);
+		    			$("#outOfHomeSpouseDiv").hide();
+		        	}else if(maritalStatus == 'Married')
+		            	$("#outOfHomeSpouseDiv").show();
+			    });
         	});
     	}
 
     	$("#mailAddressDifferentFlag-n").click(function(){
-    	    $("#mailAdd").hide();
+    	    $("#mailAddress").hide();
     	});
 
 	    $("#mailAddressDifferentFlag-y").click(function(){
-        		$("#mailAdd").show();
+        	$("#mailAddress").show();
       	});
-  	});
+
+      	$( "#maritalStatus" ).change(function() {
+      	  	var maritalStatus = $( "#maritalStatus" ).val();
+    		if(maritalStatus == 'Single'){
+    			$('#spouseOutHomeFlag-y').prop('checked', false);
+    			$('#spouseOutHomeFlag-n').prop('checked', false);
+    			$("#outOfHomeSpouseDiv").hide();
+        	}else if(maritalStatus == 'Married')
+            	$("#outOfHomeSpouseDiv").show();
+    		
+      	});
+
+
+  });
 </script>

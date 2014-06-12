@@ -1,0 +1,65 @@
+<h3 class="hl">Household Member(s)</h3>
+<p class="text-muted">
+	Enter number of household members and tax dependents<br />
+</p>
+
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/basic-info">
+
+	<input type="hidden" id="applicationId" name="applicationId">
+	<h4 class="hl bottom-15">
+		Household Members<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-10">
+				<label>
+				How many people are in your home? (Remember to count yourself, your spouse, your children under 21 who live with you, 
+				your unmarried partner who needs health coverage, anyone else under 21 who you take care of and lives with you and the 
+				people who are temporarily out of your home!)</label> 
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="totalHouseHoldMembers" name="totalHouseHoldMembers" maxlength=2 style="width: 50px">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-10">
+				<label>
+				How many tax dependents of household members are living outside of the home? (Include anyone on your tax return even if they do not live with you)
+				</label> 
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="totalTaxDependents" name="totalTaxDependents" maxlength=2 style="width: 50px">
+			</div>
+		</div>
+		
+		<br/>
+		
+		<div class="info-board info-board-green"> 
+			Medical Assistance requires information on Tax Dependents outside of the home such as name, gender and income. 
+			You will be asked to provide additional details for each tax dependent outside of your home later in the application.
+		</div>
+	</div>
+	
+	<input type="hidden" id="nextPage" value="household-members-summary.html">
+	
+	<button id="nextBtn" type="submit" class="btn btn-green pull-right">Next</button>
+	
+</form>
+
+
+
+
+<script>
+$(document).ready(function(){
+	sessionStorage.currentScreen = "household-member-numbers.html";
+	$(this).resetLeftNavLinks("#householdMemberNavLink");
+	if(sessionStorage.applicationId != null){
+		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
+    		var formData = JSON.parse(JSON.stringify(data.applicant));
+    		console.debug(formData);
+			js2form(document.getElementById('applicationForm'), formData);
+    	});
+	}
+});
+</script>

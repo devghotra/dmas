@@ -1,6 +1,7 @@
 package gov.virginia.ehhr.commonhelp.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ApplicationServiceResponse implements Serializable{
 
@@ -9,6 +10,9 @@ public class ApplicationServiceResponse implements Serializable{
 	private int responseCode;
 	private String applicationId;
 	private Applicant applicant;
+	private List<HouseholdMember> hhMemberList;
+	private HouseholdMember hhMember;
+	private Income income;
 
 	public int getResponseCode() {
 		return responseCode;
@@ -32,6 +36,30 @@ public class ApplicationServiceResponse implements Serializable{
 
 	public void setApplicationId(String applicationId) {
 		this.applicationId = applicationId;
+	}
+
+	public List<HouseholdMember> getHhMemberList() {
+		return hhMemberList;
+	}
+
+	public void setHhMemberList(List<HouseholdMember> hhMemberList) {
+		this.hhMemberList = hhMemberList;
+	}
+
+	public HouseholdMember getHhMember() {
+		return hhMember;
+	}
+
+	public void setHhMember(HouseholdMember hhMember) {
+		this.hhMember = hhMember;
+	}
+
+	public Income getIncome() {
+		return income;
+	}
+
+	public void setIncome(Income income) {
+		this.income = income;
 	}
 	
 	

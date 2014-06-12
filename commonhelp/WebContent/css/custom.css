@@ -1556,3 +1556,11 @@ li a:hover{
 .sub-section-ui{
 	margin-left: 30px;
 }
+.disabled-input {
+background: transparent;
+border: 0;
+}
+
+.datepicker{
+	width: 130px;
+}

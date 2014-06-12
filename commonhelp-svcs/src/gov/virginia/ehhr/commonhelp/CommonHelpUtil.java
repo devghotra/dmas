@@ -1,6 +1,9 @@
 package gov.virginia.ehhr.commonhelp;
 
 import gov.virginia.ehhr.commonhelp.domain.Address;
+import gov.virginia.ehhr.commonhelp.domain.Income;
+import gov.virginia.ehhr.commonhelp.domain.SelfEmployment;
+import gov.virginia.ehhr.commonhelp.domain.SelfEmploymentExpense;
 
 import java.lang.reflect.Method;
 
@@ -31,40 +34,49 @@ public class CommonHelpUtil {
                 String fromName = fromMethod.getName();
                 String toName ;
                 if(fromName.matches("^get[A-Z].*")){
-                    toName = fromName.replace("get", "set");
+                    toName = fromName.replaceFirst("get", "set");
                 }else{
-                    toName = fromName.replace("is", "set");
+                    toName = fromName.replaceFirst("is", "set");
                 }
-
+                
                 try {
                     Method toMethod = toObj.getClass().getMethod(toName, fromMethod.getReturnType());
                     Object value = fromMethod.invoke(fromObj, (Object[])null);
-                    if(value != null){                      
-                        if(value instanceof String && !value.toString().trim().isEmpty()){
-                            toMethod.invoke(toObj, value);
-                        }
-                        else if(value instanceof Integer && (Integer)value != -1){
-                            toMethod.invoke(toObj, value);
-                        }
-                        else if(value instanceof Long && (Long)value != -1){
-                            toMethod.invoke(toObj, value);
-                        }
-                        else if(value instanceof Double && (Double)value != -1){
-                            toMethod.invoke(toObj, value);
-                        }
-                        else if(value instanceof Boolean && (Boolean)value){
-                            toMethod.invoke(toObj, value);
-                        }
-                        else if(value instanceof Address){
-                            Address fromAddr = (Address) value;
-                            Address toAddr = (Address)fromMethod.invoke(toObj, (Object[])null);
-                            merge(toAddr, fromAddr);
-                        }
-                        
-                        
+                    if(value != null){  
+	                    if(value instanceof Address){
+	                        Address fromAddr = (Address) value;
+	                        Address toAddr = (Address)fromMethod.invoke(toObj, (Object[])null);
+	                        if(toAddr == null)
+	                        	toAddr =  new Address();
+	                        merge(toAddr, fromAddr);
+	                        toMethod.invoke(toObj, toAddr);
+	                    } else if(value instanceof Income){
+	                    	Income fromIncome = (Income) value;
+	                    	Income toIncome = (Income)fromMethod.invoke(toObj, (Object[])null);
+	                        if(toIncome == null)
+	                        	toIncome =  new Income();
+	                        merge(toIncome, fromIncome);
+	                        toMethod.invoke(toObj, toIncome);
+	                    } else if(value instanceof SelfEmployment){
+	                    	SelfEmployment fromSelfEmp = (SelfEmployment) value;
+	                    	SelfEmployment toSelfEmp = (SelfEmployment)fromMethod.invoke(toObj, (Object[])null);
+	                        if(toSelfEmp == null)
+	                        	toSelfEmp =  new SelfEmployment();
+	                        merge(toSelfEmp, fromSelfEmp);
+	                        toMethod.invoke(toObj, toSelfEmp);
+	                    } else if(value instanceof SelfEmploymentExpense){
+	                    	SelfEmploymentExpense fromSelfEmpExp = (SelfEmploymentExpense) value;
+	                    	SelfEmploymentExpense toSelfEmpExp = (SelfEmploymentExpense)fromMethod.invoke(toObj, (Object[])null);
+	                        if(toSelfEmpExp == null)
+	                        	toSelfEmpExp =  new SelfEmploymentExpense();
+	                        merge(toSelfEmpExp, fromSelfEmpExp);
+	                        toMethod.invoke(toObj, toSelfEmpExp);
+	                    }
+	                    else
+	                    	toMethod.invoke(toObj, value);
                     }
                 } catch (Exception e) {                 
-                    LOGGER.debug(CLASS_NAME + "::merge - Merge failed - "+e.getMessage());
+                    LOGGER.error(CLASS_NAME + "::merge - Merge failed - "+e.getMessage());
                 } 
             }
         }

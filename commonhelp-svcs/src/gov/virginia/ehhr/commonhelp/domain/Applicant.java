@@ -1,12 +1,14 @@
 package gov.virginia.ehhr.commonhelp.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Applicant implements Serializable{
 
 	private static final long serialVersionUID = -4068121935349308807L;
 	
 	private String applicationId;
+	private String applicantId;
 	private String firstName;
 	private String miName;
 	private String lastName;
@@ -16,20 +18,37 @@ public class Applicant implements Serializable{
 	private String prefSpokenLanguage;
 	private String prefReadLanguage;
 	private String countyCity;
-	private boolean virginaResidentFlag;
-	private String maritalStatus;
-	private boolean languageFlag;
-	private boolean transportationFlag;
-	private boolean disabilityFlag;
-	private Address residentialAddress;
-	private Address mailingAddress;
-	private boolean mailAddressDifferentFlag;
+	private String maritalStatus;	
 	private String prefCommunicationMethod;
 	private String homePhone;
 	private String workPhone;
 	private String cellPhone;
 	private String emailAddress;
-	private boolean spouseOutHomeFlag;
+	private String livingArrangement;
+	private String livingType;
+	private Address residentialAddress;
+	private Address mailingAddress;
+	private Boolean spouseOutHomeFlag;
+	private Boolean mailAddressDifferentFlag;
+	private Boolean languageFlag;
+	private Boolean transportationFlag;
+	private Boolean disabilityFlag;
+	private Boolean virginiaResidentFlag;
+	private String tribe;
+	private Boolean childCareApplicationFlag;
+	private Boolean medicaidApplicationFlag;
+	private String ssn;
+	private String noSsnReason;
+	private String ssnAppliedDate;
+	private Boolean usCitizenFlag;
+	private Race race;
+	private Ethnicity ethnicity;
+	private String taxFileType;
+	private Boolean tempAwayHomeFlag;
+	private List<HouseholdMember> hhMemberList;
+	private Integer totalHouseHoldMembers;
+	private Integer totalTaxDependents;
+	
 	
 	public String getApplicationId() {
 		return applicationId;
@@ -91,35 +110,11 @@ public class Applicant implements Serializable{
 	public void setCountyCity(String countyCity) {
 		this.countyCity = countyCity;
 	}
-	public boolean isVirginaResidentFlag() {
-		return virginaResidentFlag;
-	}
-	public void setVirginaResidentFlag(boolean virginaResidentFlag) {
-		this.virginaResidentFlag = virginaResidentFlag;
-	}
 	public String getMaritalStatus() {
 		return maritalStatus;
 	}
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
-	}
-	public boolean isLanguageFlag() {
-		return languageFlag;
-	}
-	public void setLanguageFlag(boolean languageFlag) {
-		this.languageFlag = languageFlag;
-	}
-	public boolean isTransportationFlag() {
-		return transportationFlag;
-	}
-	public void setTransportationFlag(boolean transportationFlag) {
-		this.transportationFlag = transportationFlag;
-	}
-	public boolean isDisabilityFlag() {
-		return disabilityFlag;
-	}
-	public void setDisabilityFlag(boolean disabilityFlag) {
-		this.disabilityFlag = disabilityFlag;
 	}
 	public Address getResidentialAddress() {
 		return residentialAddress;
@@ -132,12 +127,6 @@ public class Applicant implements Serializable{
 	}
 	public void setMailingAddress(Address mailingAddress) {
 		this.mailingAddress = mailingAddress;
-	}
-	public boolean isMailAddressDifferentFlag() {
-		return mailAddressDifferentFlag;
-	}
-	public void setMailAddressDifferentFlag(boolean mailAddressDifferentFlag) {
-		this.mailAddressDifferentFlag = mailAddressDifferentFlag;
 	}
 	public String getPrefCommunicationMethod() {
 		return prefCommunicationMethod;
@@ -169,14 +158,145 @@ public class Applicant implements Serializable{
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-	public boolean isSpouseOutHomeFlag() {
+	public Boolean getSpouseOutHomeFlag() {
 		return spouseOutHomeFlag;
 	}
-	public void setSpouseOutHomeFlag(boolean spouseOutHomeFlag) {
+	public void setSpouseOutHomeFlag(Boolean spouseOutHomeFlag) {
 		this.spouseOutHomeFlag = spouseOutHomeFlag;
 	}
-
+	public Boolean getMailAddressDifferentFlag() {
+		return mailAddressDifferentFlag;
+	}
+	public void setMailAddressDifferentFlag(Boolean mailAddressDifferentFlag) {
+		this.mailAddressDifferentFlag = mailAddressDifferentFlag;
+	}
+	public Boolean getLanguageFlag() {
+		return languageFlag;
+	}
+	public void setLanguageFlag(Boolean languageFlag) {
+		this.languageFlag = languageFlag;
+	}
+	public Boolean getTransportationFlag() {
+		return transportationFlag;
+	}
+	public void setTransportationFlag(Boolean transportationFlag) {
+		this.transportationFlag = transportationFlag;
+	}
+	public Boolean getDisabilityFlag() {
+		return disabilityFlag;
+	}
+	public void setDisabilityFlag(Boolean disabilityFlag) {
+		this.disabilityFlag = disabilityFlag;
+	}
+	public Boolean getVirginiaResidentFlag() {
+		return virginiaResidentFlag;
+	}
+	public void setVirginiaResidentFlag(Boolean virginiaResidentFlag) {
+		this.virginiaResidentFlag = virginiaResidentFlag;
+	}
+	public String getLivingArrangement() {
+		return livingArrangement;
+	}
+	public void setLivingArrangement(String livingArrangement) {
+		this.livingArrangement = livingArrangement;
+	}
+	public String getTribe() {
+		return tribe;
+	}
+	public void setTribe(String tribe) {
+		this.tribe = tribe;
+	}
+	public Boolean getChildCareApplicationFlag() {
+		return childCareApplicationFlag;
+	}
+	public void setChildCareApplicationFlag(Boolean childCareApplicationFlag) {
+		this.childCareApplicationFlag = childCareApplicationFlag;
+	}
+	public Boolean getMedicaidApplicationFlag() {
+		return medicaidApplicationFlag;
+	}
+	public void setMedicaidApplicationFlag(Boolean medicaidApplicationFlag) {
+		this.medicaidApplicationFlag = medicaidApplicationFlag;
+	}
+	public String getSsn() {
+		return ssn;
+	}
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
+	public String getNoSsnReason() {
+		return noSsnReason;
+	}
+	public void setNoSsnReason(String noSsnReason) {
+		this.noSsnReason = noSsnReason;
+	}
+	public String getSsnAppliedDate() {
+		return ssnAppliedDate;
+	}
+	public void setSsnAppliedDate(String ssnAppliedDate) {
+		this.ssnAppliedDate = ssnAppliedDate;
+	}
+	public Boolean getUsCitizenFlag() {
+		return usCitizenFlag;
+	}
+	public void setUsCitizenFlag(Boolean usCitizenFlag) {
+		this.usCitizenFlag = usCitizenFlag;
+	}
+	public Race getRace() {
+		return race;
+	}
+	public void setRace(Race race) {
+		this.race = race;
+	}
+	public Ethnicity getEthnicity() {
+		return ethnicity;
+	}
+	public void setEthnicity(Ethnicity ethnicity) {
+		this.ethnicity = ethnicity;
+	}
+	public String getTaxFileType() {
+		return taxFileType;
+	}
+	public void setTaxFileType(String taxFileType) {
+		this.taxFileType = taxFileType;
+	}
+	public Boolean getTempAwayHomeFlag() {
+		return tempAwayHomeFlag;
+	}
+	public void setTempAwayHomeFlag(Boolean tempAwayHomeFlag) {
+		this.tempAwayHomeFlag = tempAwayHomeFlag;
+	}
+	public String getLivingType() {
+		return livingType;
+	}
+	public void setLivingType(String livingType) {
+		this.livingType = livingType;
+	}
+	public List<HouseholdMember> getHhMemberList() {
+		return hhMemberList;
+	}
+	public void setHhMemberList(List<HouseholdMember> hhMemberList) {
+		this.hhMemberList = hhMemberList;
+	}
+	public Integer getTotalHouseHoldMembers() {
+		return totalHouseHoldMembers;
+	}
+	public void setTotalHouseHoldMembers(Integer totalHouseHoldMembers) {
+		this.totalHouseHoldMembers = totalHouseHoldMembers;
+	}
+	public Integer getTotalTaxDependents() {
+		return totalTaxDependents;
+	}
+	public void setTotalTaxDependents(Integer totalTaxDependents) {
+		this.totalTaxDependents = totalTaxDependents;
+	}
+	public String getApplicantId() {
+		return applicantId;
+	}
+	public void setApplicantId(String applicantId) {
+		this.applicantId = applicantId;
+	}
 	
 	
-
+	
 }

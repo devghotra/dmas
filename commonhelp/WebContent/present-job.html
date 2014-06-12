@@ -1,0 +1,385 @@
+<h3 class="hl">Present Job Details</h3>
+<p class="text-muted">
+	Tell us present job details for <span class="memberNameSpan"></span><br />
+</p>
+<hr/>
+
+<div class="row form-row">
+	<div class="col-md-6">
+		<label>Does <span class="memberNameSpan"></span> have present job?</label>
+	</div>
+	<div class="col-md-6">
+		<label class="radio-inline"> 
+			<input type="radio" name="presentJob" id="presentJob-y" value=true>Yes
+		</label> 
+		<label class="radio-inline"> 
+			<input type="radio" name="presentJob" id="presentJob-n" value=false>No
+		</label>
+	</div>
+</div><br/>
+
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/income" style="display: none;">
+	
+	<input type="hidden" id="incomeId" name="incomeId">
+	<input type="hidden" id="memberId" name="memberId">
+	<input type="hidden" id="incomeType" name="incomeType" value="present-job">
+	
+	<h4 class="hl bottom-15">
+		Employer Information<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="first-name">Name of Employer</label> <input type="text"
+					class="form-control" id="employerName" name="employerName">
+			</div>
+			<div class="col-md-6">
+				<label for="middle-initial">Employer Type</label> <select
+					class="form-control" id="employerType" name="employerType">
+					 <OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					 <OPTION VALUE="FT" TITLE="Full Time Job">Full Time Job</OPTION>
+					 <OPTION VALUE="PT" TITLE="Part Time Job">Part Time Job</OPTION>
+					 <OPTION VALUE="CW" TITLE="Contract Work">Contract Work</OPTION>
+					 <OPTION VALUE="HU" TITLE="Hourly Job">Hourly Job</OPTION>
+					 <OPTION VALUE="TP" TITLE="Temporary Job">Temporary Job</OPTION>
+					 <OPTION VALUE="WS" TITLE="Work Study">Work Study</OPTION>
+					 <OPTION VALUE="IN" TITLE="Internship">Internship</OPTION>
+					 <OPTION VALUE="SP" TITLE="Sick Pay">Sick Pay</OPTION>
+					 <OPTION VALUE="VP" TITLE="Vacation Pay">Vacation Pay</OPTION>
+					 <OPTION VALUE="TS" TITLE="TIPS">TIPS</OPTION>
+					 <OPTION VALUE="CO" TITLE="Commissions/Bonus">Commissions/Bonus</OPTION>
+					 <OPTION VALUE="WA" TITLE="Workforce Investment Act (not OJT)">Workforce Investment Act (not OJT)</OPTION>
+					 <OPTION VALUE="WN" TITLE="Wages Inkind">Wages Inkind</OPTION>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-4">
+				<label>Employer Address</label> <input type="text"
+					class="form-control" id="employerAddress.addressLine1" name="employerAddress.addressLine1" placeholder="Address Line 1">
+			</div>
+			<div class="col-md-4">
+				<label for="suffix">&nbsp;</label> <input type="text"
+					class="form-control" id="employerAddress.addressLine2" name="employerAddress.addressLine2" placeholder="Address Line 2">
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-3">
+				<label>City</label> <input type="text"
+					class="form-control" id="employerAddress.city" name="employerAddress.city" placeholder="">
+			</div>
+			<div class="col-md-4 col-md-offset-1">
+				<label>State</label> <select class="form-control"
+					id="employerAddress.state" name="employerAddress.state">
+					<option value="">Select</option>
+					<option value="CA">California</option>
+					<option value="IL">Illinois</option>
+					<option value="FSM">Federated States of Micronesia</option>
+				</select>
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<label for="suffix">Zip</label> <input type="text"
+					class="form-control" id="employerAddress.zipCode" name="employerAddress.zipCode" placeholder="">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-3">
+				<label>Employer Phone</label> <input type="text"
+					class="form-control" id="employerPhone" name="employerPhone" placeholder="">
+			</div>
+			<div class="col-md-3 col-md-offset-1">
+				<label>Employment Start Date</label> <input type="text"
+					class="form-control datepicker" id="employmentStartDate" name="employmentStartDate" placeholder="">
+			</div>
+			<div class="col-md-3 col-md-offset-2" >
+				<label>Date of First Pay</label> <input type="text"
+					class="form-control datepicker" id="employmentFirstPayDate" name="employmentFirstPayDate" placeholder="">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-12">
+			<label>Have <span class="memberfirstNameSpan"></span>'s hours been reduced in the last 60 days?</label><br />
+			<label class="radio-inline"> 
+				<input type="radio" name="hourReducedFlag" id="hourReducedFlag-y" value="true">Yes
+			</label> 
+			<label class="radio-inline"> 
+				<input type="radio" name="hourReducedFlag" id="hourReducedFlag-n" value="false">No
+			</label>
+			</div>
+		</div>	
+	</div><br/>
+	
+	<h4 class="hl bottom-15">
+		Pay Period<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>How often does <span class="memberfirstNameSpan"></span> get paid?</label>
+			</div>
+			<div class="col-md-6">
+				<select class="form-control" id="payFrequency" name="payFrequency">
+					 <OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					 <OPTION VALUE="AN" TITLE="Annual">Annual</OPTION>
+					 <OPTION VALUE="CO" TITLE="Contractual/Single Payment Covering More than One Month">Contractual/Single Payment Covering More than One Month</OPTION>
+					 <OPTION VALUE="WT" TITLE="Every two weeks">Every two weeks</OPTION>
+					 <OPTION VALUE="IR" TITLE="Irregular">Irregular</OPTION>
+					 <OPTION VALUE="MO" TITLE="Monthly">Monthly</OPTION>
+					 <OPTION VALUE="RA" TITLE="Random">Random</OPTION>
+					 <OPTION VALUE="TW" TITLE="Twice a month">Twice a month</OPTION>
+					 <OPTION VALUE="WK" TITLE="Weekly">Weekly</OPTION>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>Which day of the week does <span class="memberfirstNameSpan"></span> get paid?</label>
+			</div>
+			<div class="col-md-3">
+				<select class="form-control" id="payWeekDay" name="payWeekDay">
+					 <OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					 <OPTION VALUE="MO" TITLE="Monday">Monday</OPTION>
+					 <OPTION VALUE="TU" TITLE="Tuesday">Tuesday</OPTION>
+					 <OPTION VALUE="WD" TITLE="Wednesday">Wednesday</OPTION>
+					 <OPTION VALUE="TH" TITLE="Thursday">Thursday</OPTION>
+					 <OPTION VALUE="FR" TITLE="Friday">Friday</OPTION>
+					 <OPTION VALUE="SA" TITLE="Saturday">Saturday</OPTION>
+					 <OPTION VALUE="SU" TITLE="Sunday">Sunday</OPTION>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>Next Pay Date</label>
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control datepicker" id="nextPayDate" name="nextPayDate" placeholder="">
+			</div>
+		</div><br/>
+		
+		<h4 class="hl bottom-15">
+			Pay Type<i class="fa fa-chevron-up toggle"></i>
+		</h4>
+		<div>
+			<div class="row form-row">
+				<div class="col-md-6">
+					<label>How <span class="memberfirstNameSpan"></span> get paid?</label> 
+				</div>
+				<div class="col-md-6">
+					<label class="radio-inline"> 
+						<input type="radio" name="payType" id="hourlyPay" value="hourly">Hourly
+					</label> 
+					<label class="radio-inline"> 
+						<input type="radio" name="payType" id="salariedPay" value="salaried">Salaried
+					</label>
+				</div>
+			</div>
+			<div id="hourlyPayQuestions" style="display: none;">
+				<div class="row form-row">
+					<div class="col-md-6">
+						<label>
+							Tell us the amount that <span class="memberfirstNameSpan"></span> gets paid each hour. <br/>
+							(Give us regular rate of pay, we'll ask about overtime and other kinds of pay below).
+						</label>
+					</div>
+					<div class="col-md-3">
+						<div class="input-group">
+							<span class="input-group-addon">$</span>
+							<input type="text" class="form-control" id="hourlyRate" name="hourlyRate" placeholder="">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row form-row">
+					<div class="col-md-6">
+						<label>
+							Tell us how many hours <span class="memberfirstNameSpan"></span> works each week at this rate. 
+							If <span class="memberfirstNameSpan"></span>'s hours are not regular, try to estimate the number of hours he or she usually works at this hourly rate. 
+						</label>
+					</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="weeklyHours" name="weeklyHours" placeholder="">
+					</div>
+				</div>
+			</div>
+			
+			<div id="SalariedPayQuestions" style="display: none;">
+				<div class="row form-row">
+					<div class="col-md-6">
+						<label>
+							 	Tell us the total gross amount that <span class="memberfirstNameSpan"></span> gets paid each pay period. 
+							 	By gross amount, we mean the amount <span class="memberfirstNameSpan"></span> earns before taxes or anything else is taken out of the paycheck. 
+							 	By pay period, we mean the time between each paycheck. 
+						</label>
+					</div>
+					<div class="col-md-3">
+						<div class="input-group">
+							<span class="input-group-addon">$</span>
+							<input type="text" class="form-control" id="salaryPerPeriod" name="salaryPerPeriod" placeholder="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><br/>
+		
+		<h4 class="hl bottom-15">
+			Bonus or Commission Pay<i class="fa fa-chevron-up toggle"></i>
+		</h4>
+		<div>
+			<div class="row form-row">
+				<div class="col-md-12">
+					<label> 	
+						If <span class="memberfirstNameSpan"></span> gets any other pay, such as bonus or commission pay, please tell us the type of pay <span class="memberfirstNameSpan"></span> earns, 
+						how often it is received and the amount. If the amount is not regular, try to estimate the average amount that <span class="memberfirstNameSpan"></span> gets.</label>
+				</div>
+			</div>
+			
+			<div class="row form-row">
+				<div class="col-md-3">
+					<label>Type of Pay</label>
+				</div>
+				
+				<div class="col-md-6">
+					<label>Frequency</label>
+				</div>
+				
+				<div class="col-md-3">
+					<label>Amount</label>
+				</div>
+			</div>
+			
+			<div class="row form-row">
+				<div class="col-md-3">
+					<select class="form-control" id="extraIncomeList[0].payType" name="extraIncomeList[0].payType">
+						<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+						<OPTION VALUE="BON" TITLE="Bonus">Bonus</OPTION>
+						<OPTION VALUE="COM" TITLE="Commission">Commission</OPTION>
+						<OPTION VALUE="OVR" TITLE="Overtime">Overtime</OPTION>
+					</select>	
+				</div>
+				
+				<div class="col-md-6">
+					<select class="form-control" id="extraIncomeList[0].payFrequency" name="extraIncomeList[0].payFrequency">
+						<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+						 <OPTION VALUE="AN" TITLE="Annual">Annual</OPTION>
+						 <OPTION VALUE="CO" TITLE="Contractual/Single Payment Covering More than One Month">Contractual/Single Payment Covering More than One Month</OPTION>
+						 <OPTION VALUE="WT" TITLE="Every two weeks">Every two weeks</OPTION>
+						 <OPTION VALUE="IR" TITLE="Irregular">Irregular</OPTION>
+						 <OPTION VALUE="MO" TITLE="Monthly">Monthly</OPTION>
+						 <OPTION VALUE="RA" TITLE="Random">Random</OPTION>
+						 <OPTION VALUE="TW" TITLE="Twice a month">Twice a month</OPTION>
+						 <OPTION VALUE="WK" TITLE="Weekly">Weekly</OPTION>
+					</select>
+				</div>
+				
+				<div class="col-md-3">
+					<div class="input-group">
+							<span class="input-group-addon">$</span>
+							<input type="text" class="form-control" id="extraIncomeList[0].payAmount" name="extraIncomeList[0].payAmount" placeholder="">
+						</div>
+				</div>
+			</div>
+			
+			<div class="row form-row">
+				<div class="col-md-3">
+					<select class="form-control" id="extraIncomeList[1].payType" name="extraIncomeList[1].payType">
+						<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+						<OPTION VALUE="BON" TITLE="Bonus">Bonus</OPTION>
+						<OPTION VALUE="COM" TITLE="Commission">Commission</OPTION>
+						<OPTION VALUE="OVR" TITLE="Overtime">Overtime</OPTION>
+					</select>	
+				</div>
+				
+				<div class="col-md-6">
+					<select class="form-control" id="extraIncomeList[1].payFrequency" name="extraIncomeList[1].payFrequency">
+						<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+						 <OPTION VALUE="AN" TITLE="Annual">Annual</OPTION>
+						 <OPTION VALUE="CO" TITLE="Contractual/Single Payment Covering More than One Month">Contractual/Single Payment Covering More than One Month</OPTION>
+						 <OPTION VALUE="WT" TITLE="Every two weeks">Every two weeks</OPTION>
+						 <OPTION VALUE="IR" TITLE="Irregular">Irregular</OPTION>
+						 <OPTION VALUE="MO" TITLE="Monthly">Monthly</OPTION>
+						 <OPTION VALUE="RA" TITLE="Random">Random</OPTION>
+						 <OPTION VALUE="TW" TITLE="Twice a month">Twice a month</OPTION>
+						 <OPTION VALUE="WK" TITLE="Weekly">Weekly</OPTION>
+					</select>
+				</div>
+				
+				<div class="col-md-3">
+					<div class="input-group">
+							<span class="input-group-addon">$</span>
+							<input type="text" class="form-control" id="extraIncomeList[1].payAmount" name="extraIncomeList[1].payAmount" placeholder="">
+						</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<input type="hidden" id="nextPage" value="past-job-summary.html">
+</form>
+
+<div class="row form-row">
+	<button id="backBtn" type="button" class="btn btn-green pull-left" value="household-members-summary.html">Previous</button>
+	<button id="nextBtn" type="button" class="btn btn-green pull-right" disabled>Next</button>
+</div>
+
+
+<script>
+
+$(document).ready(function(){
+	sessionStorage.currentScreen = "present-job.html";
+	$(this).resetLeftNavLinks("#incomeNavLink");
+	$("#memberId").val(sessionStorage.incomeForMemberId);
+	$(".memberNameSpan").html(sessionStorage.incomeForMemberFirstName +" "+ sessionStorage.incomeForMemberLastName);
+	$(".memberfirstNameSpan").html(sessionStorage.incomeForMemberFirstName);
+    
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+sessionStorage.incomeForMemberId+"&income-type=present-job", function( data ) {
+		if(data.income != null){
+			$("#presentJob-y").click();
+		    
+			var formData = JSON.parse(JSON.stringify(data.income));
+
+			if(formData.payType == "hourly")
+				$("#hourlyPay").click();
+			else
+				$("#salariedPay").click();
+			
+			js2form(document.getElementById('applicationForm'), formData);
+		}
+	});
+	
+	
+});
+
+$("#nextBtn").click(function(){
+	var selection = $('input[name=presentJob]:checked').val();
+	if(selection == "true")
+		$("#applicationForm").submit();
+	else
+		loadPage("past-job-summary.html");
+});
+
+$("#hourlyPay").click(function(){
+    $("#hourlyPayQuestions").show();
+    $("#SalariedPayQuestions").hide();
+});
+
+$("#salariedPay").click(function(){
+	$("#hourlyPayQuestions").hide();
+    $("#SalariedPayQuestions").show();
+});
+
+$("#presentJob-y").click(function(){
+	$("#applicationForm").show();
+	$("#nextBtn").removeAttr("disabled");
+});
+
+$("#presentJob-n").click(function(){
+	$("#applicationForm").hide();
+	$("#nextBtn").removeAttr("disabled");
+});
+
+</script>

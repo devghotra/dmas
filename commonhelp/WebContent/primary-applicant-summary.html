@@ -1,0 +1,159 @@
+<h3 class="hl">Primary Applicant Summary</h3>
+<p class="text-muted">
+	Here is a summary of what you've told us. <br />
+</p>
+<hr>
+<form role="form" id="applicationForm" method="post" action="">
+	<input type="hidden" id="applicationId" name="applicationId">
+<table class="table table-striped table-bordered " style="width: 100%">
+  <tbody>
+    <tr>
+      <td style="width: 30%"><label>Name</label></td>
+      <td style="width: 70%">
+      	<span id="suffix"></span> 
+      	<span id="firstName" style="margin-left: 20px"></span> 
+      	<span id="miName" style="margin-left: 20px"></span> 
+      	<span id="lastName" style="margin-left: 20px"></span>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Gender</label></td>
+      <td><span id="gender"></span></td>
+    </tr>
+    <tr>
+      <td><label>Date of Birth</label></td>
+      <td><span id="dob"></span></td>
+    </tr>
+    <tr>
+      <td><label>Preferred Spoken Language</label></td>
+      <td><span id="prefSpokenLanguage"></span></td>
+    </tr>
+    <tr>
+      <td><label>Preferred Reading Language</label></td>
+      <td><span id="prefReadLanguage"></span></td>
+    </tr>
+    <tr>
+      <td><label>County/City you live in</label></td>
+      <td><span id="countyCity"></span></td>
+    </tr>
+	<tr>
+		<td><label>Resident of Virginia</label></td>
+		<td><span id="virginiaResidentFlag"></span></td>
+	</tr>
+	<tr>
+      	<td><label>Martial status</label></td>
+      	<td><span id="maritalStatus"></span></td>
+    </tr>
+    <tr>
+      	<td><label>Spouse living out of home</label></td>
+      	<td id="spouseOutHome"><span id="spouseOutHomeFlag"></span></td>
+    </tr>
+    <tr>
+      <td><label>Special Accommodation</label></td>
+      <td>
+      	<div class="row form-row" style="margin-top : 0">
+			<div class="col-md-4">Language: <span id="languageFlag"></span></div>
+			<div class="col-md-4">Transportation: <span id="transportationFlag"></span></div>
+			<div class="col-md-4">Disability: <span id="disabilityFlag"></span></div>
+		</div>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Residential Address</label></td>
+      <td>
+      		<div class="row form-row" style="margin-top : 0">
+				<div class="col-md-4"><span id="residentialAddress.addressLine1"></span></div>
+				<div class="col-md-8"><span id="residentialAddress.addressLine2"></span></div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-4"><span id="residentialAddress.city"></span></div>
+				<div class="col-md-2"><span id="residentialAddress.state"></span></div>
+				<div class="col-md-6"><span id="residentialAddress.zipCode"></span></div>
+			</div>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Mailing Address</label></td>
+      <td id="mailingAddress">
+      		<div class="row form-row" style="margin-top : 0">
+				<div class="col-md-4"><span id="mailingAddress.addressLine1"></span></div>
+				<div class="col-md-8"><span id="mailingAddress.addressLine2"></span></div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-4"><span id="mailingAddress.city"></span></div>
+				<div class="col-md-2"><span id="mailingAddress.state"></span></div>
+				<div class="col-md-6"><span id="mailingAddress.zipCode"></span></div>
+			</div>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Living Arrangement</label></td>
+      <td><span id="livingArrangement"></span></td>
+    </tr>
+    <tr>
+      <td><label>Contact Information</label></td>
+      <td>
+      		<table>
+      			<tr><td>Home Phone</td><td style="padding: 5px">:</td><td><span id="homePhone"></span></td></tr>
+      			<tr><td>Work Phone</td><td style="padding: 5px">:</td><td><span id="workPhone"></span></td></tr>
+      			<tr><td>Cell/Message Phone</td><td style="padding: 5px">:</td><td><span id="cellPhone"></span></td></tr>
+      			<tr><td>Email Address</td><td style="padding: 5px">:</td><td><span id="emailAddress"></span></td></tr>
+      			<tr><td>Preferred Communication Method</td><td style="padding: 5px">:</td><td><span id="prefCommunicationMethod"></span></td></tr>
+      		</table>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Social Security Number</label></td>
+      <td><span id="ssn"></span></td>
+    </tr>
+    <tr>
+      <td><label>U.S. citizen</label></td>
+      <td><span id="usCitizenFlag"></span></td>
+    </tr>
+    <tr>
+      <td><label>Tax filing type</label></td>
+      <td><span id="taxFileType"></span></td>
+    </tr>
+    <tr>
+      <td><label>Living type</label></td>
+      <td><span id="livingType"></span></td>
+    </tr>
+    <tr>
+      <td><label>Temporarily away from home</label></td>
+      <td><span id="tempAwayHomeFlag"></span></td>
+    </tr>
+    
+  </tbody>
+</table> 
+
+<button id="backBtn" type="button" class="btn btn-green pull-left" value="primary-applicant-basic.html">Edit</button>
+
+<button id="nextBtn" type="submit" class="btn btn-green pull-right">Next</button>
+</form>
+
+<script>
+		$( "#nextBtn" ).click(function( event ) {
+			loadPage("household-member-numbers.html");
+			return false;
+		});
+
+		$(document).ready(function(){
+			sessionStorage.currentScreen = "primary-applicant-summary.html";
+			$(this).resetLeftNavLinks("#aboutYouNavLink");
+	    	if(sessionStorage.applicationId != null){
+	    		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
+	    			var formData = JSON.parse(JSON.stringify(data.applicant));
+	        		
+					$(this).renderHtmlFromJson(null, formData);
+
+					if(typeof formData.mailingAddress !== 'object')
+						$("#mailingAddress").html("Same as residential address");
+
+					if(typeof formData.spouseOutHomeFlag !== 'boolean')
+						$("#spouseOutHome").html("N/A");
+						
+	        	});
+	    	}
+	  	});	
+</script>
+		

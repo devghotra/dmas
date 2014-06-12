@@ -24,28 +24,16 @@
  * Time: 23:40
  */
 
-(function (root, factory)
-{
-	if (typeof define === 'function' && define.amd)
-	{
-		// AMD. Register as an anonymous module.
-		define(factory);
-	}
-	else
-	{
-		// Browser globals
-		root.js2form = factory();
-	}
-}(this, function ()
+var js2form = (function()
 {
 	"use strict";
 
 	var _subArrayRegexp = /^\[\d+?\]/,
-			_subObjectRegexp = /^[a-zA-Z_][a-zA-Z_0-9]*/,
+			_subObjectRegexp = /^[a-zA-Z_][a-zA-Z_0-9]+/,
 			_arrayItemRegexp = /\[[0-9]+?\]$/,
 			_lastIndexedArrayRegexp = /(.*)(\[)([0-9]*)(\])$/,
 			_arrayOfArraysRegexp = /\[([0-9]+)\]\[([0-9]+)\]/g,
-			_inputOrTextareaRegexp = /INPUT|TEXTAREA/i;
+			_inputOrTextareaRegexp = /INPUT|TEXTAREA|SPAN/i;
 
 	/**
 	 *
@@ -54,18 +42,20 @@
 	 * @param delimiter
 	 * @param nodeCallback
 	 * @param useIdIfEmptyName
+	 * @param shouldClean should we empty out fields first?
 	 */
-	function js2form(rootNode, data, delimiter, nodeCallback, useIdIfEmptyName)
+	function js2form(rootNode, data, delimiter, nodeCallback, useIdIfEmptyName, shouldClean)
 	{
 		if (arguments.length < 3) delimiter = '.';
 		if (arguments.length < 4) nodeCallback = null;
 		if (arguments.length < 5) useIdIfEmptyName = false;
+		if (arguments.length < 6) shouldClean = true;
 
 		var fieldValues,
 				formFieldsByName;
 
 		fieldValues = object2array(data);
-		formFieldsByName = getFields(rootNode, useIdIfEmptyName, delimiter, {}, true);
+		formFieldsByName = getFields(rootNode, useIdIfEmptyName, delimiter, {}, shouldClean);
 
 		for (var i = 0; i < fieldValues.length; i++)
 		{
@@ -89,14 +79,25 @@
 
 		if (field instanceof Array)
 		{
-			for(i = 0; i < field.length; i++)
+			for (i = 0; i < field.length; i++)
 			{
-				if (field[i].value == value || value === true) field[i].checked = true;
-			}
+        if (field[i].type == "radio"){
+          field[i].checked = false
+          if (typeof value != "undefined" && value !== null  && field[i].value == value || field[i].value == value.toString() )
+            field[i].checked = true;
+        }
+        else{
+          if (value == 'on' || value == 'true' || value == '1')
+            field[i].checked = true;
+          else
+            field[i].checked = false
+        }
+      }
 		}
 		else if (_inputOrTextareaRegexp.test(field.nodeName))
 		{
-			field.value = value;
+			if (value)
+				field.value = value;
 		}
 		else if (/SELECT/i.test(field.nodeName))
 		{
@@ -318,4 +319,4 @@
 
 	return js2form;
 
-}));
+})();

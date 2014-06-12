@@ -1,0 +1,384 @@
+<h3 class="hl">Add Household Member</h3>
+<p class="text-muted">
+	Add all your household members including the ones not requiring assistance...<br />
+</p>
+
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/household-member">
+	<input type="hidden" id="applicationId" name="applicationId">
+	<input type="hidden" id="hhMemberId" name="hhMemberId">
+	
+	<h4 class="hl bottom-15">
+		Information About household member<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-4">
+				<label for="first-name">First Name</label> <input type="text"
+					class="form-control" id="firstName" name="firstName">
+			</div>
+			<div class="col-md-2">
+				<label for="middle-initial">Middle Initial</label> <input
+					type="text" class="form-control" id="miName" name="miName">
+			</div>
+			<div class="col-md-4">
+				<label for="last-name">Last Name</label> <input type="text"
+					class="form-control" id="lastName" name="lastName">
+			</div>
+			<div class="col-md-2">
+				<label for="suffix">Suffix</label> <select class="form-control"
+					id="suffix" name="suffix">
+					<option value="">Select</option>
+					<option value="Sr.">Sr./Senior</option>
+					<option value="Jr.">Jr./Junior</option>
+					<option value="I">I</option>
+					<option value="II">II</option>
+					<option value="III">III</option>
+					<option value="IV">IV</option>
+					<option value="V">V</option>
+					<option value="VI">VI</option>
+				</select>
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="gender">Gender</label><br /> <label
+					class="radio-inline" for="radios-0"> <input type="radio"
+					name="gender" id="gender-m" value="male">Male
+				</label> <label class="radio-inline" for="radios-1"> <input
+					type="radio" name="gender" id="gender-f" value="female">Female
+				</label>
+			</div>
+			<div class="col-md-2">
+				<label for="last-name">Date of Birth</label> <input type="text"
+					class="form-control datepicker" id="dob" name="dob" placeholder="mm/dd/yyyy">
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-4">
+				<label for="suffix">What is this person's martial status?</label> <select
+					class="form-control" id="maritalStatus" name="maritalStatus">
+					<option value="">Select</option>
+					<option value="Single">Single</option>
+					<option value="Married">Married</option>
+				</select>
+			</div>
+			<div class="col-md-4 col-md-offset-2">
+				<label for="suffix">Is this person a resident of Virginia?</label><br />
+				 <label class="radio-inline" for="radios-1"> 
+				 	<input type="radio" name="virginiaResidentFlag" id="virResident-y" value="true">
+				 	Yes
+				</label>
+				 <label class="radio-inline" for="radios-2"> 
+				 	<input type="radio" name="virginiaResidentFlag" id="virResident-n" value="false">
+				 	No
+				</label>
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-12">
+				<label>Are you applying for assistance for this person</label><br />
+				 <label class="radio-inline" for="radios-1"> 
+				 	<input type="radio" name="applyingAssitanceFlag" id="applyingAssitanceFlag-y" value="true">
+				 	Yes
+				</label>
+				 <label class="radio-inline" for="radios-2"> 
+				 	<input type="radio" name="applyingAssitanceFlag" id="applyingAssitanceFlag-n" value="false">
+				 	No
+				</label>
+			</div>
+		</div>
+		
+		<div id="ssnCitizenshipDiv" style="display:none">
+		<br />
+		<h4 class="hl bottom-15">
+		SSN/Citizenship Information<i class="fa fa-chevron-up toggle"></i>
+		</h4>
+		<div>
+			<div class="row form-row">
+				<div class="col-md-6">
+					<label for="">Social Security Number:</label>
+				</div>
+				<div class="col-md-6">
+					<input type=text name="ssn" id="ssn" maxlength=9 size=9>
+				</div>
+	
+			</div>
+			<div class="row form-row">
+				<div class="col-md-5">
+					<label for="suffix">If this person does not have a social
+						security<br />number,please provide a reason:
+					</label>
+				</div>
+				<div class="col-md-4 col-md-offset-1">
+					<select class="form-control" id="noSsnReason" name="noSsnReason">
+						<option value="">Click here to choose</option>
+						<option value="reason 1">reason 1</option>
+						<option value="reason 2">reason 2</option>
+						<option value="reason 3">reason 3</option>
+						<option value="reason 4">reason 4</option>
+					</select>
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-6">
+					<label for="suffix">If this person do not have a SSN but have
+						applied, please provide the date application was submitted:</label>
+				</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="ssnAppliedDate"
+						name="ssnAppliedDate" placeholder="mm/dd/yyyy">
+				</div>
+			</div>
+			<br />
+		
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="suffix">Is this person a U.S. citizen?</label>
+			</div>
+			<div class="col-md-4">
+				<label class="radio-inline" for="usCitizen-y"> <input
+					type="radio" name="usCitizenFlag" id="usCitizen-y" value="true">Yes
+				</label> <label class="radio-inline" for="usCitizen-n"> <input
+					type="radio" name="usCitizenFlag" id="usCitizen-n" value="false">No
+				</label>
+
+			</div>
+		</div>
+	</div>
+	</div>
+	<br />
+	
+	<h4 class="hl bottom-15">
+		Ethnicity<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+
+		<div class="row form-row">
+			<div class="col-md-12">
+				<label for="">Please check this person ethnicity.</label>
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="ethnicity.mexican"
+					id="ethnicity.mexican" value=true /> Mexican
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="ethnicity.mexicanAmerican"
+					id="ethnicity.mexicanAmerican" value=true /> Mexican American
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="ethnicity.chicano"
+					id="ethnicity.chicano" value=true /> Chicano/a
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="ethnicity.puertoRican"
+					id="ethnicity.puertoRican" value=true /> Puerto Rican
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="ethnicity.cuban" id="ethnicity.cuban"
+					value=true /> Cuban
+			</div>
+		</div>
+
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="suffix">Are you an American Indian or Alaskan
+					Native</label><br />
+			</div>
+			<div class="col-md-4">
+				<label class="radio-inline" for="amerIndOrAlasNat-y"> <input
+					type="radio" name="race.americanIndianAlaskanNative"
+					id="americanIndianAlaskanNative-y" value="true">Yes
+				</label> <label class="radio-inline" for="amerIndOrAlasNat-n"> <input
+					type="radio" name="race.americanIndianAlaskanNative"
+					id="americanIndianAlaskanNative-n" value="false">No
+				</label>
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="suffix">If you are a member of a tribe, please
+					select the tribe</label>
+			</div>
+			<div class="col-md-4">
+				<select class="form-control" id="tribe" name="tribe">
+					<option value="">Select the tribe</option>
+					<option value="tribe 1">tribe 1</option>
+					<option value="tribe 2">tribe 2</option>
+					<option value="tribe 3">tribe 3</option>
+					<option value="tribe 4">tribe 4</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<br />
+
+	<h4 class="hl bottom-15">
+		Race<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+
+		<div class="row form-row">
+			<div class="col-md-12">
+				<label for="">Please check the box or boxes to tell us this
+					person's race.</label>
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.white" id="race.white" value=true />
+				White
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.africanAmerican"
+					id="race.africanAmerican" value=true /> Black or African American
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.americanIndianAlaskanNative"
+					id="race.americanIndianAlaskanNative" value=true /> American
+				Indian or Alaskan Native
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.asianIndian" id="race.asianIndian"
+					value=true /> Asian Indian
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.chinese" id="race.chinese"
+					value=true /> Chinese
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.filipino" id="race.filipino"
+					value=true /> Filipino
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.japanese" id="race.japanese"
+					value=true /> Japenese
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.korean" id="race.korean"
+					value=true /> Korean
+			</div>
+
+			<div class="col-md-6">
+				<input type="checkbox" name="race.vietnamese" id="race.vietnamese"
+					value=true /> Vietnamese
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.otherAsian" id="race.otherAsian"
+					value=true /> Other Asian
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.nativeHawaiian"
+					id="race.nativeHawaiian" value=true /> Native Hawaiine
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.guamanianorChamorro"
+					id="race.guamanianorChamorro" value=true /> Guamanian or Chamorro
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.samoan" id="race.samoan"
+					value=true /> Samoan
+			</div>
+			<div class="col-md-6">
+				<input type="checkbox" name="race.otherPacificIslander"
+					id="race.otherPacificIslander" value=true /> Other Pacific
+				Islander
+			</div>
+		</div>
+	</div>
+	<br />
+	
+	<h4 class="hl bottom-15">
+		Other Information<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="suffix">*How does this person file for their
+					taxes?</label>
+			</div>
+			<div class="col-md-4">
+				<select class="form-control" id="taxFileType" name="taxFileType">
+					<option value="">Tax dependent</option>
+					<option value="No dependent">No dependent</option>
+					<option value="Self dependent">Self dependent</option>
+					<option value="No tax payee">No tax payee</option>
+					<option value="Below poverty level">Below poverty level</option>
+				</select>
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="suffix">What is your living type?</label>
+			</div>
+			<div class="col-md-6">
+				<select class="form-control" id="livingType"
+					name="livingType">
+					<option value="">click here to choose</option>
+					<option value="Renting">Renting</option>
+					<option value="Owner">Owner</option>
+					<option value="Living with parents">Living with parents</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<br />
+	<h4 class="hl bottom-15">
+		Temporarily Away From Home<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="suffix">Is this person temporarily away from
+					home?</label>
+			</div>
+			<div class="col-md-4">
+				<label class="radio-inline" for="tempAwayHome-y"> <input
+					type="radio" name="tempAwayHomeFlag" id="tempAwayHome-y"
+					value="true">Yes
+				</label> <label class="radio-inline" for="tempAwayHome-n"> <input
+					type="radio" name="tempAwayHomeFlag" id="tempAwayHome-n"
+					value="false">No
+				</label>
+
+			</div>
+		</div>
+		<hr>
+	</div>
+
+	<br />
+		
+	</div>
+	<input type="hidden" id="nextPage" value="household-members-summary.html">
+	
+	<button id="cancelBtn" type="button" class="btn btn-green pull-left">Cancel</button>
+	<button id="nextBtn" type="submit" class="btn btn-green pull-right">Add</button>
+</form>
+
+
+<script>
+$(document).ready(function(){
+	sessionStorage.currentScreen = "household-member.html";
+	$(this).resetLeftNavLinks("#householdMemberNavLink");
+	$("#applicationId").val(sessionStorage.applicationId);
+	var hhMemberId = sessionStorage.getHhMemberId;
+	$("#hhMemberId").val(hhMemberId);
+	if(sessionStorage.applicationId != null && hhMemberId != null){
+		$.get( "/commonhelp-svcs/services/medicaid/applicant/household-member?app-id="+sessionStorage.applicationId+"&hh-member-id="+hhMemberId, function( data ) {
+    		var formData = JSON.parse(JSON.stringify(data.hhMember));
+			js2form(document.getElementById('applicationForm'), formData);
+    	});
+	}
+});
+
+$( "#cancelBtn" ).click(function( event ) {
+	loadPage("household-members-summary.html");
+	return false;
+});
+
+$("#applyingAssitanceFlag-n").click(function(){
+    $("#ssnCitizenshipDiv").hide();
+});
+
+$("#applyingAssitanceFlag-y").click(function(){
+	$("#ssnCitizenshipDiv").show();
+	});
+</script>

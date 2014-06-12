@@ -1,0 +1,220 @@
+<h3 class="hl">Past Job Summary</h3>
+<p class="text-muted">
+	Tell us about your past job for <span class="memberNameSpan"></span><br />
+</p>
+<hr/>
+
+<div class="row form-row">
+	<div class="col-md-6">
+		<label>Does <span class="memberNameSpan"></span> had previous job?</label>
+	</div>
+	<div class="col-md-6">
+		<label class="radio-inline"> 
+			<input type="radio" name="previousJob" id="previousJob-y" value=true>Yes
+		</label> 
+		<label class="radio-inline"> 
+			<input type="radio" name="previousJob" id="previousJob-n" value=false>No
+		</label>
+	</div>
+</div><br/>
+
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/income" style="display: none;">
+
+	<input type="hidden" id="incomeId" name="incomeId">
+	<input type="hidden" id="memberId" name="memberId">
+	<input type="hidden" id="incomeType" name="incomeType" value="past-job">
+	
+	<h4 class="hl bottom-15">
+		Employer Information<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="first-name">Name of Employer</label> <input type="text"
+					class="form-control" id="employerName" name="employerName">
+			</div>
+			<div class="col-md-6">
+				<label for="middle-initial">Employer Type</label> <select
+					class="form-control" id="employerType" name="employerType">
+					 <OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					 <OPTION VALUE="FT" TITLE="Full Time Job">Full Time Job</OPTION>
+					 <OPTION VALUE="PT" TITLE="Part Time Job">Part Time Job</OPTION>
+					 <OPTION VALUE="CW" TITLE="Contract Work">Contract Work</OPTION>
+					 <OPTION VALUE="HU" TITLE="Hourly Job">Hourly Job</OPTION>
+					 <OPTION VALUE="TP" TITLE="Temporary Job">Temporary Job</OPTION>
+					 <OPTION VALUE="WS" TITLE="Work Study">Work Study</OPTION>
+					 <OPTION VALUE="IN" TITLE="Internship">Internship</OPTION>
+					 <OPTION VALUE="SP" TITLE="Sick Pay">Sick Pay</OPTION>
+					 <OPTION VALUE="VP" TITLE="Vacation Pay">Vacation Pay</OPTION>
+					 <OPTION VALUE="TS" TITLE="TIPS">TIPS</OPTION>
+					 <OPTION VALUE="CO" TITLE="Commissions/Bonus">Commissions/Bonus</OPTION>
+					 <OPTION VALUE="WA" TITLE="Workforce Investment Act (not OJT)">Workforce Investment Act (not OJT)</OPTION>
+					 <OPTION VALUE="WN" TITLE="Wages Inkind">Wages Inkind</OPTION>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-4">
+				<label>Employer Address</label> <input type="text"
+					class="form-control" id="employerAddress.addressLine1" name="employerAddress.addressLine1" placeholder="Address Line 1">
+			</div>
+			<div class="col-md-4">
+				<label for="suffix">&nbsp;</label> <input type="text"
+					class="form-control" id="employerAddress.addressLine2" name="employerAddress.addressLine2" placeholder="Address Line 2">
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-md-3">
+				<label>City</label> <input type="text"
+					class="form-control" id="employerAddress.city" name="employerAddress.city" placeholder="">
+			</div>
+			<div class="col-md-4 col-md-offset-1">
+				<label>State</label> <select class="form-control"
+					id="employerAddress.state" name="employerAddress.state">
+					<option value="">Select</option>
+					<option value="CA">California</option>
+					<option value="IL">Illinois</option>
+					<option value="FSM">Federated States of Micronesia</option>
+				</select>
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<label for="suffix">Zip</label> <input type="text"
+					class="form-control" id="employerAddress.zipCode" name="employerAddress.zipCode" placeholder="">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-3">
+				<label>Employer Phone</label> <input type="text"
+					class="form-control" id="employerPhone" name="employerPhone" placeholder="">
+			</div>
+			<div class="col-md-6 col-md-offset-1">
+				<label>When did <span class="memberfirstNameSpan"></span> start this job?</label> <input type="text"
+					class="form-control datepicker" id="employmentStartDate" name="employmentStartDate" placeholder="">
+			</div>
+		</div>
+	</div><br/>
+	
+	
+	<h4 class="hl bottom-15">
+		Job End<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>When did this job end?</label>
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control datepicker" id="employmentEndDate" name="employmentEndDate" placeholder="">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>What is the date of <span class="memberfirstNameSpan"></span>'s final paycheck?</label>
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control datepicker" id="finalPayCheckDate" name="finalPayCheckDate" placeholder="">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>What is the amount of <span class="memberfirstNameSpan"></span>'s final paycheck?</label>
+			</div>
+			<div class="col-md-2">
+				<div class="input-group">
+					<span class="input-group-addon">$</span>
+					<input type="text" class="form-control" id="finalPayCheckAmount" name="finalPayCheckAmount" placeholder="">
+				</div>
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>Why did this job ended?</label>
+			</div>
+			<div class="col-md-6">
+				<select class="form-control" id="jobEndedReasonCode" name="jobEndedReasonCode">		
+					 <OPTION VALUE="SEL" TITLE="Select">Select</OPTION>
+					 <OPTION VALUE="EPV" TITLE="Employment Program Violation">Employment Program Violation</OPTION>
+					 <OPTION VALUE="JLS" TITLE="Job Loss - Not Voluntary Quit">Job Loss - Not Voluntary Quit</OPTION>
+					 <OPTION VALUE="DIS" TITLE="Discrimination">Discrimination</OPTION>
+					 <OPTION VALUE="WCD" TITLE="Unreasonable Working Conditions">Unreasonable Working Conditions</OPTION>
+					 <OPTION VALUE="SCH" TITLE="Enrolled In School or Training At Least Half Time">Enrolled In School or Training At Least Half Time</OPTION>
+					 <OPTION VALUE="REQ" TITLE="Moved As Household Member Accepted Job/Training">Moved As Household Member Accepted Job/Training</OPTION>
+					 <OPTION VALUE="RET" TITLE="Resignation Viewed As Retirement">Resignation Viewed As Retirement</OPTION>
+					 <OPTION VALUE="OFR" TITLE="Job Offer Did Not Materialize">Job Offer Did Not Materialize</OPTION>
+					 <OPTION VALUE="EMP" TITLE="Currently Employed/Employment Comparable">Currently Employed/Employment Comparable</OPTION>
+					 <OPTION VALUE="PAT" TITLE="Work Pattern/Workers Move Often">Work Pattern/Workers Move Often</OPTION>
+					 <OPTION VALUE="ILL" TITLE="Illness/Incapacity Of Self/Dependent">Illness/Incapacity Of Self/Dependent</OPTION>
+					 <OPTION VALUE="CRS" TITLE="Household Crisis/Emergency">Household Crisis/Emergency</OPTION>
+					 <OPTION VALUE="TRN" TITLE="Transportation Problems">Transportation Problems</OPTION>
+					 <OPTION VALUE="CCR" TITLE="Child Care Problems">Child Care Problems</OPTION>
+					 <OPTION VALUE="DTT" TITLE="Daily Travel Time Exceeds Two Hours Roundtrip">Daily Travel Time Exceeds Two Hours Roundtrip</OPTION>
+					 <OPTION VALUE="ETQ" TITLE="Employed At Time Of Quit">Employed At Time Of Quit</OPTION>
+					 <OPTION VALUE="UCB" TITLE="Applied For/Receiving Unemployment Benefits">Applied For/Receiving Unemployment Benefits</OPTION>
+					 <OPTION VALUE="CAP" TITLE="Beyond Capacity Of Person">Beyond Capacity Of Person</OPTION>
+					 <OPTION VALUE="HAZ" TITLE="Hazardous Working Conditions">Hazardous Working Conditions</OPTION>
+					 <OPTION VALUE="SLF" TITLE="End Of Self Employment Enterprise">End Of Self Employment Enterprise</OPTION>
+					 <OPTION VALUE="CON" TITLE="Contract Not Renewed">Contract Not Renewed</OPTION>
+					 <OPTION VALUE="CNC" TITLE="Renewal Contract Not Comparable">Renewal Contract Not Comparable</OPTION>
+					 <OPTION VALUE="RED" TITLE="Reduced Work Hours">Reduced Work Hours</OPTION>
+					 <OPTION VALUE="RSN" TITLE="Forced To Resign">Forced To Resign</OPTION>
+					 <OPTION VALUE="OTH" TITLE="Other">Other</OPTION>
+				</select>
+			</div>
+		</div>
+	</div> <br/>
+	
+	<input type="hidden" id="nextPage" value="self-employment.html">
+</form>
+
+<div class="row form-row">
+	<button id="backBtn" type="button" class="btn btn-green pull-left" value="present-job.html">Previous</button>
+	<button id="nextBtn" type="button" class="btn btn-green pull-right" disabled>Next</button>
+</div>
+
+<script>
+
+$(document).ready(function(){
+	sessionStorage.currentScreen = "past-job-summary.html";
+	$(this).resetLeftNavLinks("#incomeNavLink");
+
+	$("#memberId").val(sessionStorage.incomeForMemberId);
+	$(".memberNameSpan").html(sessionStorage.incomeForMemberFirstName +" "+ sessionStorage.incomeForMemberLastName);
+	$(".memberfirstNameSpan").html(sessionStorage.incomeForMemberFirstName);
+    
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+sessionStorage.incomeForMemberId+"&income-type=past-job", function( data ) {
+		if(data.income != null){
+			$("#previousJob-y").click();
+		    
+			var formData = JSON.parse(JSON.stringify(data.income));
+			js2form(document.getElementById('applicationForm'), formData);
+		}
+	});
+	
+	
+});
+
+$("#nextBtn").click(function(){
+	var selection = $('input[name=previousJob]:checked').val();
+	if(selection == "true")
+		$("#applicationForm").submit();
+	else
+		loadPage("self-employment.html");
+});
+
+
+$("#previousJob-y").click(function(){
+	$("#applicationForm").show();
+	$("#nextBtn").removeAttr("disabled");
+});
+
+$("#previousJob-n").click(function(){
+	$("#applicationForm").hide();
+	$("#nextBtn").removeAttr("disabled");
+});
+
+</script>

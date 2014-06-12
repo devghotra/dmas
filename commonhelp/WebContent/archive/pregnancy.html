@@ -1,5 +1,5 @@
 <hr>
-<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/application/about-you">
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/basic-info">
 		<input type="hidden" id="applicationId" name="applicationId">
 		<h4 class="hl bottom-15">
 			Pregnancy Information<i class="fa fa-chevron-up toggle"></i>
@@ -44,7 +44,7 @@
 		sessionStorage.currentScreen = "pregnancy.html";
 		$(this).resetLeftNavLinks("#pregnancyNavLink");
     	if(sessionStorage.applicationId != null){
-    		$.get( "/commonhelp-svcs/services/application/about-you?app-id="+sessionStorage.applicationId, function( data ) {
+    		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
     			
         	});
     	}
