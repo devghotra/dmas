@@ -190,7 +190,7 @@
 			<button id="addExpenseBtn" type="button" class="btn btn-green pull-right">Add Expense</button>
 		</div>
 		
-		<input type="hidden" id="nextPage" value="self-employment.html">
+		<input type="hidden" id="nextPage" value="income-change.html">
 		
 	</div>
 </form>
@@ -260,11 +260,10 @@ $("#addExpenseBtn").click(function(){
 
 $("#nextBtn").click(function(){
 	var selection = $('input[name=selfEmployed]:checked').val();
-	alert(selection);
 	if(selection == "true")
 		$("#applicationForm").submit();
 	else
-		alert("next.html");
+		loadPage("income-change.html");
 });
 
 

@@ -30,6 +30,7 @@ public class Income implements Serializable {
 	private String jobEndedReasonCode;
 	private List<ExtraIncome> extraIncomeList;
 	private SelfEmployment selfEmployment;
+	private Boolean changeInIncomeFlag;
 	
 	
 	public String getIncomeType() {
@@ -214,6 +215,14 @@ public class Income implements Serializable {
 
 	public void setSelfEmployment(SelfEmployment selfEmployment) {
 		this.selfEmployment = selfEmployment;
+	}
+
+	public Boolean getChangeInIncomeFlag() {
+		return changeInIncomeFlag;
+	}
+
+	public void setChangeInIncomeFlag(Boolean changeInIncomeFlag) {
+		this.changeInIncomeFlag = changeInIncomeFlag;
 	}
 	
 	

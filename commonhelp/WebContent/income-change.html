@@ -4,16 +4,65 @@
 </p>
 <hr/>
 
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/income">
+
+<input type="hidden" id="incomeId" name="incomeId">
+	<input type="hidden" id="memberId" name="memberId">
+	<input type="hidden" id="incomeType" name="incomeType" value="present-job">
+
 <div class="row form-row">
 	<div class="col-md-6">
 		<label>Does <span class="memberNameSpan"></span> expects any change in the type of money received, employment or hours worked this month or next month?</label>
 	</div>
 	<div class="col-md-6">
 		<label class="radio-inline"> 
-			<input type="radio" name="incomeChange" id="incomeChange-y" value=true>Yes
+			<input type="radio" name="changeInIncomeFlag" id="incomeChange-y" value=true>Yes
 		</label> 
 		<label class="radio-inline"> 
-			<input type="radio" name="incomeChange" id="incomeChange-n" value=false>No
+			<input type="radio" name="changeInIncomeFlag" id="incomeChange-n" value=false>No
 		</label>
 	</div>
 </div><br/>	
+<input type="hidden" id="nextPage" value="income-change.html">
+
+
+<div class="row form-row">
+	<button id="backBtn" type="button" class="btn btn-green pull-left" value="self-employment.html">Previous</button>
+	<button id="nextBtn" type="submit" class="btn btn-green pull-right" disabled>Next</button>
+</div>
+
+</form>
+
+<script>
+
+$(document).ready(function(){
+	sessionStorage.currentScreen = "income-change.html";
+	$(this).resetLeftNavLinks("#incomeNavLink");
+	$("#memberId").val(sessionStorage.incomeForMemberId);
+	$(".memberNameSpan").html(sessionStorage.incomeForMemberFirstName +" "+ sessionStorage.incomeForMemberLastName);
+    
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+sessionStorage.incomeForMemberId+"&income-type=present-job", function( data ) {
+		if(data.income != null){
+			var formData = JSON.parse(JSON.stringify(data.income));
+
+			if(formData.changeInIncomeFlag == "true")
+				$("#incomeChange-y").click();
+			else
+				$("#incomeChange-n").click();
+			
+			js2form(document.getElementById('applicationForm'), formData);
+		}
+	});
+	
+	
+});
+
+$("#incomeChange-y").click(function(){
+	$("#nextBtn").removeAttr("disabled");
+});
+
+$("#incomeChange-n").click(function(){
+	$("#nextBtn").removeAttr("disabled");
+});
+
+</script>
