@@ -68,7 +68,8 @@ $.fn.setPageEventHandlers = function(){
 		        //data    : JSON.stringify($(this).serializeObject()),
 		        data : JSON.stringify(form2js(this, '.', true)),
 		        success : function( data ) {
-		        	sessionStorage.applicationId = data.applicationId;
+		        	if(data.applicationId != null)
+		        		sessionStorage.applicationId = data.applicationId;
 		        	loadPage(nextPage);
 		        },
 		        error   : function( xhr, err, thrownError ) {
