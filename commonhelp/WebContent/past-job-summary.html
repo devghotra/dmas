@@ -20,6 +20,7 @@
 
 <form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/income" style="display: none;">
 
+	<input type="hidden" id="applicationId" name="applicationId">
 	<input type="hidden" id="incomeId" name="incomeId">
 	<input type="hidden" id="memberId" name="memberId">
 	<input type="hidden" id="incomeType" name="incomeType" value="past-job">
@@ -177,20 +178,27 @@
 </div>
 
 <script>
+var db = TAFFY(sessionStorage.db);
+var activeMember = db({type:"member", incomeSection:"active"}).first();
 
 $(document).ready(function(){
 	sessionStorage.currentScreen = "past-job-summary.html";
 	$(this).resetLeftNavLinks("#incomeNavLink");
 
-	$("#memberId").val(sessionStorage.incomeForMemberId);
-	$(".memberNameSpan").html(sessionStorage.incomeForMemberFirstName +" "+ sessionStorage.incomeForMemberLastName);
-	$(".memberfirstNameSpan").html(sessionStorage.incomeForMemberFirstName);
+	$("#applicationId").val(sessionStorage.applicationId);
+	$("#memberId").val(activeMember.id);
+	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
+	$(".memberfirstNameSpan").html(activeMember.firstName);
+
+	var isEditMode = activeMember.editMode;
+	if(isEditMode)
+		$("#nextPage").val("income-summary.html");
     
-	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+sessionStorage.incomeForMemberId+"&income-type=past-job", function( data ) {
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+activeMember.id+"&income-type=past-job", function( data ) {
 		if(data.income != null){
 			$("#previousJob-y").click();
 		    
-			var formData = JSON.parse(JSON.stringify(data.income));
+			var formData = data.income;
 			js2form(document.getElementById('applicationForm'), formData);
 		}
 	});

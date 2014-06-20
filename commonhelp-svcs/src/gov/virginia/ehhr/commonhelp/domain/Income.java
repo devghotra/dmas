@@ -7,6 +7,7 @@ public class Income implements Serializable {
 
 	private static final long serialVersionUID = 1605911164479533153L;
 	
+	private String applicationId;
 	private String memberId;
 	private String incomeType;
 	private String incomeId;
@@ -28,6 +29,7 @@ public class Income implements Serializable {
 	private String salaryPerPeriod;
 	private String finalPayCheckAmount;
 	private String jobEndedReasonCode;
+	private String totalIncome;
 	private List<ExtraIncome> extraIncomeList;
 	private SelfEmployment selfEmployment;
 	private Boolean changeInIncomeFlag;
@@ -151,6 +153,7 @@ public class Income implements Serializable {
 
 	public void setWeeklyHours(String weeklyHours) {
 		this.weeklyHours = weeklyHours;
+		this.setTotalIncome(null);
 	}
 
 	public String getSalaryPerPeriod() {
@@ -159,6 +162,7 @@ public class Income implements Serializable {
 
 	public void setSalaryPerPeriod(String salaryPerPeriod) {
 		this.salaryPerPeriod = salaryPerPeriod;
+		this.setTotalIncome(null);
 	}
 
 	public List<ExtraIncome> getExtraIncomeList() {
@@ -223,6 +227,27 @@ public class Income implements Serializable {
 
 	public void setChangeInIncomeFlag(Boolean changeInIncomeFlag) {
 		this.changeInIncomeFlag = changeInIncomeFlag;
+	}
+
+	public String getApplicationId() {
+		return applicationId;
+	}
+
+	public void setApplicationId(String applicationId) {
+		this.applicationId = applicationId;
+	}
+
+	public String getTotalIncome() {
+		return totalIncome;
+	}
+
+	public void setTotalIncome(String totalIncome) {
+		int salary = salaryPerPeriod == null ? 0 : Integer.parseInt(salaryPerPeriod);
+		int hrs = weeklyHours == null ? 0 : Integer.parseInt(weeklyHours);
+		int hrRate = hourlyRate == null ? 0 : Integer.parseInt(hourlyRate);
+		
+		
+		this.totalIncome = String.valueOf(salary + hrs*hrRate);
 	}
 	
 	

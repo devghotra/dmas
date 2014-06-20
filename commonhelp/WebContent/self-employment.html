@@ -20,6 +20,7 @@
 
 <form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/income" style="display: none;">
 	
+	<input type="hidden" id="applicationId" name="applicationId">
 	<input type="hidden" id="incomeId" name="incomeId">
 	<input type="hidden" id="memberId" name="memberId">
 	<input type="hidden" id="incomeType" name="incomeType" value="self-employed">
@@ -201,19 +202,27 @@
 </div>
 
 <script>
+var db = TAFFY(sessionStorage.db);
+var activeMember = db({type:"member", incomeSection:"active"}).first();
+
 $(document).ready(function(){
 	sessionStorage.currentScreen = "self-employment.html";
 	$(this).resetLeftNavLinks("#incomeNavLink");
 
-	$("#memberId").val(sessionStorage.incomeForMemberId);
-	$(".memberNameSpan").html(sessionStorage.incomeForMemberFirstName +" "+ sessionStorage.incomeForMemberLastName);
-	$(".memberfirstNameSpan").html(sessionStorage.incomeForMemberFirstName);
+	$("#applicationId").val(sessionStorage.applicationId);
+	$("#memberId").val(activeMember.id);
+	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
+	$(".memberfirstNameSpan").html(activeMember.firstName);
+
+	var isEditMode = activeMember.editMode;
+	if(isEditMode)
+		$("#nextPage").val("income-summary.html");
     
-	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+sessionStorage.incomeForMemberId+"&income-type=self-employed", function( data ) {
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+activeMember.id+"&income-type=self-employed", function( data ) {
 		if(data.income != null){
 			$("#selfEmployed-y").click();
 		    
-			var formData = JSON.parse(JSON.stringify(data.income));
+			var formData = data.income;
 
 			var expenseList = formData.selfEmployment.expenseList;
 

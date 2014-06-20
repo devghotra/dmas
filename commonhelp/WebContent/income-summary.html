@@ -1,0 +1,225 @@
+<style>
+.ui-widget-overlay
+{
+  opacity: .50 !important; /* Make sure to change both of these, as IE only sees the second one */
+  filter: Alpha(Opacity=50) !important;
+  background: rgb(50, 50, 50) !important; /* This will make it darker */
+}
+.ui-widget-header
+{
+	background: #3E7A8C;
+	border-color: #3E7A8C;
+}
+.ui-dialog-title
+{
+	color: #fff;
+}
+</style>
+
+<h3 class="hl">Income Summary</h3>
+<p class="text-muted">
+	Income Summary Screen
+</p>
+<hr/>
+
+<div class="row form-row">
+	<h4 class="hl bottom-15">Present Job Summary<i class="fa fa-chevron-up toggle"></i></h4>
+	<div>
+		<table class="table table-striped table-hover " id="presentJobSummary">
+			<thead>
+				<tr style="background: #ddd">
+					<th>Who</th>
+					<th>Employer</th>
+					<th>Pay Type</th>
+					<th>How Much</th>
+					<th>Hours Per Week</th>
+					<th style="width: 8%">Edit</th>
+					<th style="width: 8%">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="7" id="presentJobSummaryNA">Not Applicable</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row form-row">
+	<h4 class="hl bottom-15">Past Job Summary<i class="fa fa-chevron-up toggle"></i></h4>
+	<div>
+		<table class="table table-striped table-hover " id="pastJobSummary">
+			<thead>
+				<tr style="background: #ddd">
+					<th>Who</th>
+					<th>Employer</th>
+					<th>Job End Date</th>
+					<th>Final Paycheck Date</th>
+					<th>Final Paycheck Amount</th>
+					<th style="width: 8%">Edit</th>
+					<th style="width: 8%">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="7" id="pastJobSummaryNA">Not Applicable</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row form-row">
+	<h4 class="hl bottom-15">Self Employment Summary<i class="fa fa-chevron-up toggle"></i></h4>
+	<div>
+		<table class="table table-striped table-hover " id="selfEmploymentSummary">
+			<thead>
+				<tr style="background: #ddd">
+					<th>Who</th>
+					<th>What Type</th>
+					<th>How Much</th>
+					<th style="width: 8%">Edit</th>
+					<th style="width: 8%">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="5" id="selfEmploymentSummaryNA">Not Applicable</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row form-row">
+	<button id="nextBtn" type="button" class="btn btn-green pull-right">Next</button>
+</div>
+
+<div id="dialog-confirm" title="Delete Income?" style="display: none;">
+  <p>This income will be permanently deleted and cannot be recovered. Are you sure?</p>
+</div>
+
+<script>
+var db = TAFFY(sessionStorage.db);
+$(document).ready(function(){
+	sessionStorage.currentScreen = "income-summary.html";
+	$(this).resetLeftNavLinks("#incomeNavLink");
+	
+	db({type:"member", incomeSection:"active"}).update({incomeSection:"completed", editMode: false});
+	sessionStorage.db = db().stringify();
+
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/income/summary?applicationId="+sessionStorage.applicationId, function( data ) {
+		if(data.incomeList != null){
+			$.each(data.incomeList, function( index, memberIncomeList ) {
+				var memberInfo = db({id:index}).first();
+				$.each(memberIncomeList, function( index, memberIncome ) {
+					if(memberIncome.incomeType == 'present-job'){
+						$("#presentJobSummaryNA").hide();
+						appendPresentJobIncome(memberIncome, memberInfo);
+					} else if(memberIncome.incomeType == 'past-job'){
+						$("#pastJobSummaryNA").hide();
+						appendPastJobIncome(memberIncome, memberInfo);
+					} else if(memberIncome.incomeType == 'self-employed'){
+						$("#selfEmploymentSummaryNA").hide();
+						appendSelfEmploymentIncome(memberIncome, memberInfo);
+					}
+				});
+			});
+		}
+	});
+	
+});
+
+$("#nextBtn").click(function(){
+	var nextPendingMember = db({type:"member", incomeSection:"pending"}).first();
+	if(nextPendingMember){
+		db(nextPendingMember).update({incomeSection:"active"});
+		sessionStorage.db = db().stringify();
+		loadPage("present-job.html");
+	} else
+		alert("Bills page to be build");
+	
+});
+
+function appendPresentJobIncome(income, member){
+	$('#presentJobSummary tr').last().after(
+	    	'<tr style="height: 50px;">'+
+				'<td>'+member.firstName+" "+member.lastName+'</td>'+
+				'<td>'+income.employerName+'</td>'+
+				'<td>'+income.payType+'</td>'+
+				'<td>'+income.totalIncome+'</td>'+
+				'<td>'+income.weeklyHours+'</td>'+
+				'<td><button type="button" class="btn btn-blue" onclick="javascript:editIncome(\''+member.id+'\', \'present-job\')">Edit</button></td>'+
+				'<td><button type="button" class="btn btn-red" onclick="javascript:deleteIncome(\''+member.id+'\', \''+income.incomeId+'\')">Delete</button></td>'+
+			'</tr>');
+
+}
+
+function appendPastJobIncome(income, member){
+	$('#pastJobSummary tr').last().after(
+			'<tr style="height: 50px;">'+
+				'<td>'+member.firstName+" "+member.lastName+'</td>'+
+				'<td>'+income.employerName+'</td>'+
+				'<td>'+income.employmentEndDate+'</td>'+
+				'<td>'+income.finalPayCheckDate+'</td>'+
+				'<td>'+income.finalPayCheckAmount+'</td>'+
+				'<td><button type="button" class="btn btn-blue" onclick="javascript:editIncome(\''+member.id+'\', \'past-job-summary\')">Edit</button></td>'+
+				'<td><button type="button" class="btn btn-red" onclick="javascript:deleteIncome(\''+member.id+'\', \''+income.incomeId+'\')">Delete</button></td>'+
+			'</tr>');
+
+}
+
+function appendSelfEmploymentIncome(income, member){
+	$('#selfEmploymentSummary tr').last().after(
+			'<tr style="height: 50px;">'+
+				'<td>'+member.firstName+" "+member.lastName+'</td>'+
+				'<td>'+income.selfEmployment.type+'</td>'+
+				'<td>'+income.selfEmployment.grossMonthlyIncome+'</td>'+
+				'<td><button type="button" class="btn btn-blue" onclick="javascript:editIncome(\''+member.id+'\', \'self-employment\')">Edit</button></td>'+
+				'<td><button type="button" class="btn btn-red" onclick="javascript:deleteIncome(\''+member.id+'\', \''+income.incomeId+'\')">Delete</button></td>'+
+			'</tr>');
+
+}
+
+
+function editIncome(memberId, type){
+	db({id:memberId}).update({incomeSection:"active", editMode: true});
+	sessionStorage.db = db().stringify();
+	loadPage(type+".html");
+}
+
+function deleteIncome(memberId, incomeId){
+	$( "#dialog-confirm" ).dialog({
+		  modal: true,
+	      resizable: false,
+	      width:400,
+	      height:175,
+	      position: ['center',400],
+	      buttons: {
+	        "Cancel":function() {
+	          		$( this ).dialog( "close" );
+	        	},
+	        "Delete": function() {
+	        	$.ajax({
+	      		  url: '/commonhelp-svcs/services/medicaid/applicant/income?member-id='+memberId+'&income-id='+incomeId,
+	      		  type: 'DELETE',
+	      		  dataType: 'text',
+	      		  data: '',
+	      		  success: function(response) { 
+	      			 	loadPage("income-summary.html");
+	      			}
+	      		  });
+	        	$( this ).dialog( "close" );
+	        }
+	      },
+	      open:function () {
+	    	  $(this).closest(".ui-dialog").find("button:first").html("X");
+	            $(this).closest(".ui-dialog").find("button:last").addClass("btn btn-red");
+	            $(this).closest(".ui-dialog").find("button").eq(1).addClass("btn btn-dark");
+	        }
+	});
+}
+
+
+</script>

@@ -1,6 +1,7 @@
 package gov.virginia.ehhr.commonhelp.domain;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
 public class ApplicationServiceResponse implements Serializable{
@@ -13,6 +14,7 @@ public class ApplicationServiceResponse implements Serializable{
 	private List<HouseholdMember> hhMemberList;
 	private HouseholdMember hhMember;
 	private Income income;
+	private HashMap<String, List<Income>> incomeList;
 
 	public int getResponseCode() {
 		return responseCode;
@@ -61,6 +63,15 @@ public class ApplicationServiceResponse implements Serializable{
 	public void setIncome(Income income) {
 		this.income = income;
 	}
+
+	public HashMap<String, List<Income>> getIncomeList() {
+		return incomeList;
+	}
+
+	public void setIncomeList(HashMap<String, List<Income>> incomeList) {
+		this.incomeList = incomeList;
+	}
+
 	
 	
 

@@ -6,9 +6,10 @@
 
 <form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/income">
 
-<input type="hidden" id="incomeId" name="incomeId">
+	<input type="hidden" id="applicationId" name="applicationId">
+	<input type="hidden" id="incomeId" name="incomeId">
 	<input type="hidden" id="memberId" name="memberId">
-	<input type="hidden" id="incomeType" name="incomeType" value="present-job">
+	<input type="hidden" id="incomeType" name="incomeType" value="income-change">
 
 <div class="row form-row">
 	<div class="col-md-6">
@@ -23,7 +24,7 @@
 		</label>
 	</div>
 </div><br/>	
-<input type="hidden" id="nextPage" value="income-change.html">
+<input type="hidden" id="nextPage" value="income-summary.html">
 
 
 <div class="row form-row">
@@ -34,16 +35,25 @@
 </form>
 
 <script>
+var db = TAFFY(sessionStorage.db);
+var activeMember = db({type:"member", incomeSection:"active"}).first();
 
 $(document).ready(function(){
 	sessionStorage.currentScreen = "income-change.html";
 	$(this).resetLeftNavLinks("#incomeNavLink");
-	$("#memberId").val(sessionStorage.incomeForMemberId);
-	$(".memberNameSpan").html(sessionStorage.incomeForMemberFirstName +" "+ sessionStorage.incomeForMemberLastName);
+
+	$("#applicationId").val(sessionStorage.applicationId);
+	$("#memberId").val(activeMember.id);
+	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
+	$(".memberfirstNameSpan").html(activeMember.firstName);
+
+	var isEditMode = activeMember.editMode;
+	if(isEditMode)
+		$("#nextPage").val("income-summary.html");
     
-	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+sessionStorage.incomeForMemberId+"&income-type=present-job", function( data ) {
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+activeMember.id+"&income-type=income-change", function( data ) {
 		if(data.income != null){
-			var formData = JSON.parse(JSON.stringify(data.income));
+			var formData = data.income;
 
 			if(formData.changeInIncomeFlag == "true")
 				$("#incomeChange-y").click();

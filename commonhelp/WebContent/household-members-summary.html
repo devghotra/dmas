@@ -9,7 +9,7 @@
 	
 	<table class="table table-striped table-hover " id="hhMemberSummaryTable">
 		<thead>
-			<tr>
+			<tr style="background: #ddd">
 				<th>Name</th>
 				<th>Gender</th>
 				<th>DOB</th>
@@ -49,9 +49,7 @@
 </div>
 
 <script>
-var memberList = new Array();
-var applicant;
-
+var db = TAFFY();
 $(document).ready(function(){
 	sessionStorage.currentScreen = "household-members-summary.html";
 	$(this).resetLeftNavLinks("#householdMemberNavLink");
@@ -59,19 +57,16 @@ $(document).ready(function(){
 	if(sessionStorage.applicationId != null){
 		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
     		var applicantData = JSON.parse(JSON.stringify(data.applicant));
-
-    		applicant = applicantData;
     		$(this).renderHtmlFromJson(null, applicantData);
 
-    		memberList.push({"id":applicantData.applicantId, "name":applicantData.firstName+" "+applicantData.lastName, "incomeSectionCompleted":false});
+    		db.insert({type:"member",id:applicantData.applicantId,firstName:applicantData.firstName, lastName:applicantData.lastName, incomeSection:"active"});
 
     		var i = 0;
     		if(data.applicant.hhMemberList != null){
     			var hhMemberList = JSON.parse(JSON.stringify(data.applicant.hhMemberList));
     			$.each(hhMemberList, function(index) {
     			    var hhMember = hhMemberList[index];
-    			    //console.debug(hhMember);
-    			    memberList.push({"id":hhMember.hhMemberId, "name":hhMember.firstName+" "+hhMember.lastName, "incomeSectionCompleted":false});
+    			    db.insert({type:"member",id:hhMember.hhMemberId,firstName:hhMember.firstName, lastName:hhMember.lastName, incomeSection:"pending"});
     			    $('#hhMemberSummaryTable tr').last().after(
     			    	'<tr>'+
     						'<td><span id="hhmb'+i+'.firstName"></span> <span id="hhmb'+i+'.lastName"></span></td>'+
@@ -90,7 +85,7 @@ $(document).ready(function(){
     			    i++;
     			});
             }
-    		sessionStorage.hhMemberList = JSON.stringify(memberList);
+    		sessionStorage.db = db().stringify();
     	});
 	}
 });
@@ -100,11 +95,8 @@ $( "#addDependent" ).click(function( event ) {
 	loadPage("household-member.html");
 	return false;
 });
+
 $( "#nextBtn" ).click(function( event ) {
-	sessionStorage.incomeForMemberId = applicant.applicantId;
-	sessionStorage.incomeForMemberFirstName = applicant.firstName;
-	sessionStorage.incomeForMemberLastName = applicant.lastName;
-	
 	loadPage("present-job.html");
 	return false;
 });

@@ -7,6 +7,7 @@ import gov.virginia.ehhr.commonhelp.domain.Income;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -26,7 +27,7 @@ public class CommonHelpController {
 	
 	static Logger LOGGER = LoggerFactory.getLogger(CommonHelpController.class);
 	HashMap<String, Applicant> store = new HashMap<String, Applicant>();
-	HashMap<String, Income> incomeStore = new HashMap<String, Income>();
+	LinkedHashMap<String, Income> incomeStore = new LinkedHashMap<String, Income>();
 	
 	@RequestMapping(value = "/basic-info", 
     		method = RequestMethod.POST, 
@@ -161,6 +162,55 @@ public class CommonHelpController {
 			}
 		}
 		
+		return svcsResponse;
+	}
+	
+	@RequestMapping(value = "/income", 
+    		method = RequestMethod.DELETE, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse deleteIncome(@RequestParam(value="member-id") String memberId, @RequestParam(value="income-id") String incomeId){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		
+		for (Map.Entry<String, Income> entry : incomeStore.entrySet()) {
+			Income income = entry.getValue();
+			if(income.getMemberId().equalsIgnoreCase(memberId) && income.getIncomeId().equalsIgnoreCase(incomeId)){
+				incomeStore.remove(incomeId);
+				break;
+			}
+		}
+		
+		return svcsResponse;
+	}
+	
+	@RequestMapping(value = "/income/summary", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getIncomeSummary(@RequestParam(value="applicationId") String applicationId){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		
+		LinkedHashMap<String, List<Income>> incomeList = new LinkedHashMap<String, List<Income>>();
+		
+		for (Map.Entry<String, Income> entry : incomeStore.entrySet()) {
+			List<Income> memberIncomeList = null;
+			
+			Income income = entry.getValue();
+			String memberId = income.getMemberId();
+			
+			if(income.getApplicationId().equalsIgnoreCase(applicationId)){
+				if(incomeList.get(memberId) == null){
+					memberIncomeList = new ArrayList<Income>();
+					incomeList.put(memberId, memberIncomeList);
+				}
+				else
+					memberIncomeList = incomeList.get(memberId);
+				
+				memberIncomeList.add(income);
+			}
+		}
+		
+		svcsResponse.setIncomeList(incomeList);
 		return svcsResponse;
 	}
 	
