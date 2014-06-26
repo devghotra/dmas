@@ -33,6 +33,12 @@ public class Income implements Serializable {
 	private List<ExtraIncome> extraIncomeList;
 	private SelfEmployment selfEmployment;
 	private Boolean changeInIncomeFlag;
+	private Boolean childSupportIncomeFlag;
+	private Boolean ssiIncomeFlag;
+	private Boolean ssbIncomeFlag;
+	private List<OtherIncome> childSupportIncome;
+	private List<OtherIncome> ssiIncome;
+	private List<OtherIncome> ssbIncome;
 	
 	
 	public String getIncomeType() {
@@ -249,6 +255,56 @@ public class Income implements Serializable {
 		
 		this.totalIncome = String.valueOf(salary + hrs*hrRate);
 	}
+
+	public Boolean getChildSupportIncomeFlag() {
+		return childSupportIncomeFlag;
+	}
+
+	public void setChildSupportIncomeFlag(Boolean childSupportIncomeFlag) {
+		this.childSupportIncomeFlag = childSupportIncomeFlag;
+	}
+
+	public Boolean getSsiIncomeFlag() {
+		return ssiIncomeFlag;
+	}
+
+	public void setSsiIncomeFlag(Boolean ssiIncomeFlag) {
+		this.ssiIncomeFlag = ssiIncomeFlag;
+	}
+
+	public Boolean getSsbIncomeFlag() {
+		return ssbIncomeFlag;
+	}
+
+	public void setSsbIncomeFlag(Boolean ssbIncomeFlag) {
+		this.ssbIncomeFlag = ssbIncomeFlag;
+	}
+
+	public List<OtherIncome> getChildSupportIncome() {
+		return childSupportIncome;
+	}
+
+	public void setChildSupportIncome(List<OtherIncome> childSupportIncome) {
+		this.childSupportIncome = childSupportIncome;
+	}
+
+	public List<OtherIncome> getSsiIncome() {
+		return ssiIncome;
+	}
+
+	public void setSsiIncome(List<OtherIncome> ssiIncome) {
+		this.ssiIncome = ssiIncome;
+	}
+
+	public List<OtherIncome> getSsbIncome() {
+		return ssbIncome;
+	}
+
+	public void setSsbIncome(List<OtherIncome> ssbIncome) {
+		this.ssbIncome = ssbIncome;
+	}
+	
+	
 	
 	
 }

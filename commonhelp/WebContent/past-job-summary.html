@@ -180,6 +180,8 @@
 <script>
 var db = TAFFY(sessionStorage.db);
 var activeMember = db({type:"member", incomeSection:"active"}).first();
+var isEditMode = activeMember.editMode;
+var isAddMode = activeMember.addMode;
 
 $(document).ready(function(){
 	sessionStorage.currentScreen = "past-job-summary.html";
@@ -189,27 +191,32 @@ $(document).ready(function(){
 	$("#memberId").val(activeMember.id);
 	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
 	$(".memberfirstNameSpan").html(activeMember.firstName);
-
-	var isEditMode = activeMember.editMode;
-	if(isEditMode)
+	
+	if(isEditMode || isAddMode)
 		$("#nextPage").val("income-summary.html");
-    
-	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+activeMember.id+"&income-type=past-job", function( data ) {
-		if(data.income != null){
-			$("#previousJob-y").click();
-		    
-			var formData = data.income;
-			js2form(document.getElementById('applicationForm'), formData);
-		}
-	});
-	
-	
+
+	var incomeId = null;
+	if(isEditMode)
+		incomeId=activeMember.editIncomeId;
+
+    if(!isAddMode){
+    	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+activeMember.id+"&income-id="+incomeId+"&income-type=past-job", function( data ) {
+    		if(data.income != null){
+    			$("#previousJob-y").click();
+    		    
+    			var formData = data.income;
+    			js2form(document.getElementById('applicationForm'), formData);
+    		}
+    	});
+    }
 });
 
 $("#nextBtn").click(function(){
 	var selection = $('input[name=previousJob]:checked').val();
 	if(selection == "true")
 		$("#applicationForm").submit();
+	else if(isAddMode)
+		loadPage("income-summary.html");
 	else
 		loadPage("self-employment.html");
 });

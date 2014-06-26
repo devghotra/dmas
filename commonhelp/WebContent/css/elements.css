@@ -452,6 +452,27 @@ fieldset[disabled] .btn-amethyst.active {
 	border-top: 1px solid #FFF;
 }
 
+/* 8. Panel Light */
+
+.panel-light {
+	border-color: #DDD;
+}
+.panel-light > .panel-heading {
+	color: #333;
+	background-color: #DDD;
+	border-color: #DDD;
+}
+.panel-light > .panel-heading + .panel-collapse .panel-body {
+	border-top-color: #DDD;
+}
+.panel-light > .panel-footer + .panel-collapse .panel-body {
+	border-bottom-color: #DDD;
+}
+.panel-light > .panel-footer {
+	background-color: #DDD;
+	border-top: 1px solid #DDD;
+}
+
 
 /* ===== Info Boards ==== */
 

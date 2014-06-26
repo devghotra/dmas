@@ -151,14 +151,16 @@ public class CommonHelpController {
     		method = RequestMethod.GET, 
     		produces = {"application/json"})
 	@ResponseBody
-	public ApplicationServiceResponse getIncome(@RequestParam(value="member-id") String memberId, @RequestParam(value="income-type") String incomeType){
+	public ApplicationServiceResponse getIncome(@RequestParam(value="member-id") String memberId, @RequestParam(value="income-id", required = false) String incomeId, @RequestParam(value="income-type") String incomeType){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		
 		for (Map.Entry<String, Income> entry : incomeStore.entrySet()) {
 			Income income = entry.getValue();
 			if(income.getMemberId().equalsIgnoreCase(memberId) && income.getIncomeType().equalsIgnoreCase(incomeType)){
-				svcsResponse.setIncome(income); 
-				break;
+				if(incomeId == null || income.getIncomeId().equalsIgnoreCase(incomeId)){
+					svcsResponse.setIncome(income); 
+					break;
+				}
 			}
 		}
 		

@@ -191,7 +191,7 @@
 			<button id="addExpenseBtn" type="button" class="btn btn-green pull-right">Add Expense</button>
 		</div>
 		
-		<input type="hidden" id="nextPage" value="income-change.html">
+		<input type="hidden" id="nextPage" value="other-income.html">
 		
 	</div>
 </form>
@@ -204,6 +204,8 @@
 <script>
 var db = TAFFY(sessionStorage.db);
 var activeMember = db({type:"member", incomeSection:"active"}).first();
+var isEditMode = activeMember.editMode;
+var isAddMode = activeMember.addMode;
 
 $(document).ready(function(){
 	sessionStorage.currentScreen = "self-employment.html";
@@ -214,27 +216,30 @@ $(document).ready(function(){
 	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
 	$(".memberfirstNameSpan").html(activeMember.firstName);
 
-	var isEditMode = activeMember.editMode;
-	if(isEditMode)
+	if(isEditMode || isAddMode)
 		$("#nextPage").val("income-summary.html");
-    
-	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+activeMember.id+"&income-type=self-employed", function( data ) {
-		if(data.income != null){
-			$("#selfEmployed-y").click();
-		    
-			var formData = data.income;
 
-			var expenseList = formData.selfEmployment.expenseList;
+	var incomeId = null;
+	if(isEditMode)
+		incomeId=activeMember.editIncomeId;
 
-			for(var i = 1; i < expenseList.length; i++) {
-				$("#addExpenseBtn").click();
-			}
-			
-			js2form(document.getElementById('applicationForm'), formData);
-		}
-	});
-	
-	
+    if(!isAddMode){
+    	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+activeMember.id+"&income-id="+incomeId+"&income-type=self-employed", function( data ) {
+    		if(data.income != null){
+    			$("#selfEmployed-y").click();
+    		    
+    			var formData = data.income;
+
+    			var expenseList = formData.selfEmployment.expenseList;
+
+    			for(var i = 1; i < expenseList.length; i++) {
+    				$("#addExpenseBtn").click();
+    			}
+    			
+    			js2form(document.getElementById('applicationForm'), formData);
+    		}
+    	});
+    }
 });
 
 var expenseItr = 1;
@@ -271,8 +276,10 @@ $("#nextBtn").click(function(){
 	var selection = $('input[name=selfEmployed]:checked').val();
 	if(selection == "true")
 		$("#applicationForm").submit();
+	else if(isAddMode)
+		loadPage("income-summary.html");
 	else
-		loadPage("income-change.html");
+		loadPage("other-income.html");
 });
 
 

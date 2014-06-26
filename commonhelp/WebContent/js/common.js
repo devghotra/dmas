@@ -58,7 +58,7 @@ $.fn.setPageEventHandlers = function(){
 	 
 	 $( "#applicationForm" ).submit(function( event ) {
 		 	var nextPage = $('#nextPage').val();
-		 	var jsondata = JSON.stringify(form2js(this, '.', true));
+		 	//var jsondata = JSON.stringify(form2js(this, '.', true));
 		 	//console.debug("json data: "+jsondata);
 			$.ajax({
 		        url     : $(this).attr('action'),
@@ -81,15 +81,17 @@ $.fn.setPageEventHandlers = function(){
 			return false;
 		});
 	 
-	 $( ".datepicker" ).datepicker({ 
+	 	$(this).setDatePickerEvent();
+};
+
+$.fn.setDatePickerEvent = function(){
+	$( ".datepicker" ).datepicker({ 
        	changeMonth: true,
          changeYear: true,
          yearRange: "-120:-0",
          dateFormat: "mm/dd/yy"
      });
 };
-
-
 
 $.fn.serializeObject = function(){
     var o = {};

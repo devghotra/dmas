@@ -43,6 +43,24 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<div class="col-md-12">
+			<div class="panel panel-light">
+            	<div class="panel-heading">
+                	<h3 class="panel-title">Add Present Job</h3>
+                </div>
+                 <div class="panel-body">
+                   	<div class="col-md-6">
+                   		<select class="form-control memberNames">
+							<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+						</select>
+                   	</div>
+                   	<div class="col-md-3">
+                   		<button type="button" onclick="javascript:addIncome('present-job');" class="btn btn-green pull-right">Add</button>
+                   	</div>
+                 </div>
+             </div>
+		</div>		
 	</div>
 </div>
 
@@ -67,6 +85,25 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<div class="col-md-12">
+			<div class="panel panel-light">
+            	<div class="panel-heading">
+                	<h3 class="panel-title">Add Past Job</h3>
+                </div>
+                 <div class="panel-body">
+                   	<div class="col-md-6">
+                   		<select class="form-control memberNames">
+							<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+						</select>
+                   	</div>
+                   	<div class="col-md-3">
+                   		<button type="button" onclick="javascript:addIncome('past-job-summary');" class="btn btn-green pull-right">Add</button>
+                   	</div>
+                 </div>
+             </div>
+		</div>
+		
 	</div>
 </div>
 
@@ -89,6 +126,24 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<div class="col-md-12">
+			<div class="panel panel-light">
+            	<div class="panel-heading">
+                	<h3 class="panel-title">Add Self Employment</h3>
+                </div>
+                 <div class="panel-body">
+                   	<div class="col-md-6">
+                   		<select class="form-control memberNames">
+							<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+						</select>
+                   	</div>
+                   	<div class="col-md-3">
+                   		<button type="button" onclick="javascript:addIncome('self-employment');" class="btn btn-green pull-right">Add</button>
+                   	</div>
+                 </div>
+             </div>
+		</div>
 	</div>
 </div>
 
@@ -106,7 +161,7 @@ $(document).ready(function(){
 	sessionStorage.currentScreen = "income-summary.html";
 	$(this).resetLeftNavLinks("#incomeNavLink");
 	
-	db({type:"member", incomeSection:"active"}).update({incomeSection:"completed", editMode: false});
+	db({type:"member", incomeSection:"active"}).update({incomeSection:"completed", editMode: false, addMode: false, editIncomeId: null});
 	sessionStorage.db = db().stringify();
 
 	$.get( "/commonhelp-svcs/services/medicaid/applicant/income/summary?applicationId="+sessionStorage.applicationId, function( data ) {
@@ -150,7 +205,7 @@ function appendPresentJobIncome(income, member){
 				'<td>'+income.payType+'</td>'+
 				'<td>'+income.totalIncome+'</td>'+
 				'<td>'+income.weeklyHours+'</td>'+
-				'<td><button type="button" class="btn btn-blue" onclick="javascript:editIncome(\''+member.id+'\', \'present-job\')">Edit</button></td>'+
+				'<td><button type="button" class="btn btn-blue" onclick="javascript:editIncome(\''+member.id+'\', \''+income.incomeId+'\', \'present-job\')">Edit</button></td>'+
 				'<td><button type="button" class="btn btn-red" onclick="javascript:deleteIncome(\''+member.id+'\', \''+income.incomeId+'\')">Delete</button></td>'+
 			'</tr>');
 
@@ -164,7 +219,7 @@ function appendPastJobIncome(income, member){
 				'<td>'+income.employmentEndDate+'</td>'+
 				'<td>'+income.finalPayCheckDate+'</td>'+
 				'<td>'+income.finalPayCheckAmount+'</td>'+
-				'<td><button type="button" class="btn btn-blue" onclick="javascript:editIncome(\''+member.id+'\', \'past-job-summary\')">Edit</button></td>'+
+				'<td><button type="button" class="btn btn-blue" onclick="javascript:editIncome(\''+member.id+'\', \''+income.incomeId+'\', \'past-job-summary\')">Edit</button></td>'+
 				'<td><button type="button" class="btn btn-red" onclick="javascript:deleteIncome(\''+member.id+'\', \''+income.incomeId+'\')">Delete</button></td>'+
 			'</tr>');
 
@@ -176,15 +231,15 @@ function appendSelfEmploymentIncome(income, member){
 				'<td>'+member.firstName+" "+member.lastName+'</td>'+
 				'<td>'+income.selfEmployment.type+'</td>'+
 				'<td>'+income.selfEmployment.grossMonthlyIncome+'</td>'+
-				'<td><button type="button" class="btn btn-blue" onclick="javascript:editIncome(\''+member.id+'\', \'self-employment\')">Edit</button></td>'+
+				'<td><button type="button" class="btn btn-blue" onclick="javascript:editIncome(\''+member.id+'\', \''+income.incomeId+'\', \'self-employment\')">Edit</button></td>'+
 				'<td><button type="button" class="btn btn-red" onclick="javascript:deleteIncome(\''+member.id+'\', \''+income.incomeId+'\')">Delete</button></td>'+
 			'</tr>');
 
 }
 
 
-function editIncome(memberId, type){
-	db({id:memberId}).update({incomeSection:"active", editMode: true});
+function editIncome(memberId, incomeId, type){
+	db({id:memberId}).update({incomeSection:"active", editMode: true, editIncomeId: incomeId});
 	sessionStorage.db = db().stringify();
 	loadPage(type+".html");
 }
@@ -215,11 +270,26 @@ function deleteIncome(memberId, incomeId){
 	      },
 	      open:function () {
 	    	  $(this).closest(".ui-dialog").find("button:first").html("X");
-	            $(this).closest(".ui-dialog").find("button:last").addClass("btn btn-red");
-	            $(this).closest(".ui-dialog").find("button").eq(1).addClass("btn btn-dark");
+	          $(this).closest(".ui-dialog").find("button:last").addClass("btn btn-red");
+	          $(this).closest(".ui-dialog").find("button").eq(1).addClass("btn btn-dark");
 	        }
 	});
 }
 
+var selectedMemberId;
+$( ".memberNames" ).change(function() {
+	selectedMemberId = $(this).val();
+});
+
+function addIncome(type){
+	db({id:selectedMemberId}).update({incomeSection:"active", addMode: true});
+	sessionStorage.db = db().stringify();
+	loadPage(type+".html");
+}
+
+db({type:"member"}).each(function (record,recordnumber) {
+	var memberName = (record["firstName"]+" "+record["lastName"]);
+	$('.memberNames').append($('<option>', { value : record["id"] }).text(memberName));
+});
 
 </script>

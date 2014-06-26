@@ -1,0 +1,315 @@
+<h3 class="hl">Other Income</h3>
+<p class="text-muted">
+	Tell us about other income for <span class="memberNameSpan"></span><br />
+</p>
+<hr/>
+
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/income">
+
+	<input type="hidden" id="applicationId" name="applicationId">
+	<input type="hidden" id="incomeId" name="incomeId">
+	<input type="hidden" id="memberId" name="memberId">
+	<input type="hidden" id="incomeType" name="incomeType" value="other-income">
+	<input type="hidden" id="nextPage" value="income-summary.html">
+	
+	<h4 class="hl bottom-15">
+		Income Change<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>Does <span class="memberfirstNameSpan"></span> expects any change in the type of money received, employment or hours worked this month or next month?</label>
+			</div>
+			<div class="col-md-6">
+				<label class="radio-inline"> 
+					<input type="radio" name="changeInIncomeFlag" id="incomeChange-y" value=true>Yes
+				</label> 
+				<label class="radio-inline"> 
+					<input type="radio" name="changeInIncomeFlag" id="incomeChange-n" value=false>No
+				</label>
+			</div>
+		</div><br/>		
+	</div>
+	
+	<h4 class="hl bottom-15">
+		Child Support Income<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>Does <span class="memberfirstNameSpan"></span> gets Child Support Income?</label>
+			</div>
+			<div class="col-md-6">
+				<label class="radio-inline"> 
+					<input type="radio" id="childSupport-y" name="childSupportIncomeFlag" value=true>Yes
+				</label> 
+				<label class="radio-inline"> 
+					<input type="radio" id="childSupport-n" name="childSupportIncomeFlag" value=false>No
+				</label>
+			</div>
+		</div>
+		<div class="row form-row" id="childSupportDiv" style="display: none;">
+			<div class="col-md-12">
+				<table class="table" id="csIncomeTable">
+				<thead>
+					<tr style="background: #ddd">
+						<th style="width: 40%">Start Date for <br/> Child Support Income</th>
+						<th style="width: 40%">Monthly Payment from <br/> Child Support Income</th>
+						<th style="width: 20%"><button id="addChildSupportBtn" type="button" class="btn btn-green pull-right pull-down">Add More</button></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<input type="text"	class="form-control datepicker" id="childSupportIncome[0].startDate" name="childSupportIncome[0].startDate">
+						</td>
+						<td>
+							<div class="input-group">
+								<span class="input-group-addon">$</span>
+								<input type="text" class="form-control" id="childSupportIncome[0].monthlyIncome" name="childSupportIncome[0].monthlyIncome" style="width: 100px">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+	
+	<br/>
+	
+	<h4 class="hl bottom-15">
+		Supplemental Security Income<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>Does <span class="memberfirstNameSpan"></span> gets Child Supplemental Security Income?</label>
+			</div>
+			<div class="col-md-6">
+				<label class="radio-inline"> 
+					<input type="radio" id="ssiIncome-y" name="ssiIncomeFlag" value=true>Yes
+				</label> 
+				<label class="radio-inline"> 
+					<input type="radio" id="ssiIncome-n" name="ssiIncomeFlag" value=false>No
+				</label>
+			</div>
+		</div>
+		<div class="row form-row" id="ssiDiv" style="display: none;">
+			<div class="col-md-12">
+				<table class="table" id="ssiIncomeTable">
+				<thead>
+					<tr style="background: #ddd">
+						<th style="width: 40%">Start Date for <br/> Supplemental Security Income</th>
+						<th style="width: 40%">Monthly Payment from <br/> Supplemental Security Income</th>
+						<th style="width: 20%"><button id="addSSIBtn" type="button" class="btn btn-green pull-right pull-down">Add More</button></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<input type="text"	class="form-control datepicker" id="ssiIncome[0].startDate" name="ssiIncome[0].startDate">
+						</td>
+						<td>
+							<div class="input-group">
+								<span class="input-group-addon">$</span>
+								<input type="text" class="form-control" id="ssiIncome[0].monthlyIncome" name="ssiIncome[0].monthlyIncome" style="width: 100px">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+	
+	<br/>
+	
+	<h4 class="hl bottom-15">
+		Social Security Benefits<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>Does <span class="memberfirstNameSpan"></span> gets Social Security Benefits?</label>
+			</div>
+			<div class="col-md-6">
+				<label class="radio-inline"> 
+					<input type="radio" id="ssbIncome-y" name="ssbIncomeFlag" value=true>Yes
+				</label> 
+				<label class="radio-inline"> 
+					<input type="radio" id="ssbIncome-n" name="ssbIncomeFlag" value=false>No
+				</label>
+			</div>
+		</div>
+		<div class="row form-row" id="ssbDiv" style="display: none;">
+			<div class="col-md-12">
+				<table class="table" id="ssbIncomeTable">
+				<thead>
+					<tr style="background: #ddd">
+						<th style="width: 40%">Start Date for <br/> Social Security Benefits</th>
+						<th style="width: 40%">Monthly Payment from <br/> Social Security Administration</th>
+						<th style="width: 20%"><button id="addSSBBtn" type="button" class="btn btn-green pull-right pull-down">Add More</button></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<input type="text"	class="form-control datepicker" id="ssbIncome[0].startDate" name="ssbIncome[0].startDate">
+						</td>
+						<td>
+							<div class="input-group">
+								<span class="input-group-addon">$</span>
+								<input type="text" class="form-control" id="ssbIncome[0].monthlyIncome" name="ssbIncome[0].monthlyIncome" style="width: 100px">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="row form-row">
+		<button id="backBtn" type="button" class="btn btn-green pull-left" value="self-employment.html">Previous</button>
+		<button id="nextBtn" type="submit" class="btn btn-green pull-right" disabled>Next</button>
+	</div>
+
+</form>
+
+<script>
+var db = TAFFY(sessionStorage.db);
+var activeMember = db({type:"member", incomeSection:"active"}).first();
+
+$("#incomeChange-y").click(function(){
+	$("#nextBtn").removeAttr("disabled");
+});
+
+$("#incomeChange-n").click(function(){
+	$("#nextBtn").removeAttr("disabled");
+});
+
+$("#childSupport-y").click(function(){
+	$("#childSupportDiv").show();
+});
+
+$("#childSupport-n").click(function(){
+	$("#childSupportDiv").hide();
+});
+
+$("#ssiIncome-y").click(function(){
+	$("#ssiDiv").show();
+});
+
+$("#ssiIncome-n").click(function(){
+	$("#ssiDiv").hide();
+});
+
+$("#ssbIncome-y").click(function(){
+	$("#ssbDiv").show();
+});
+
+$("#ssbIncome-n").click(function(){
+	$("#ssbDiv").hide();
+});
+
+var csIncomeCount = 1;
+$("#addChildSupportBtn").click(function(){
+	$('#csIncomeTable tr').last().after(
+	    	'<tr>'+
+				'<td style="border-top: 0px;"><input type="text" class="form-control datepicker" id="childSupportIncome['+csIncomeCount+'].startDate" name="childSupportIncome['+csIncomeCount+'].startDate"></td>'+
+				'<td style="border-top: 0px;">'+
+					'<div class="input-group">'+
+						'<span class="input-group-addon">$</span>'+
+						'<input type="text" class="form-control" id="childSupportIncome['+csIncomeCount+'].monthlyIncome" name="childSupportIncome['+csIncomeCount+'].monthlyIncome" style="width: 100px">'+
+					'</div>'+
+				'</td>'+
+			'</tr>');
+	$(this).setDatePickerEvent();
+	csIncomeCount++;
+});
+
+var ssiCount = 1;
+$("#addSSIBtn").click(function(){
+	$('#ssiIncomeTable tr').last().after(
+	    	'<tr>'+
+	    		'<td style="border-top: 0px;"><input type="text" class="form-control datepicker" id="ssiIncome['+ssiCount+'].startDate" name="ssiIncome['+ssiCount+'].startDate"></td>'+
+				'<td style="border-top: 0px;">'+
+					'<div class="input-group">'+
+						'<span class="input-group-addon">$</span>'+
+						'<input type="text" class="form-control" id="ssiIncome['+ssiCount+'].monthlyIncome" name="ssiIncome['+ssiCount+'].monthlyIncome" style="width: 100px">'+
+					'</div>'+
+				'</td>'+
+			'</tr>');
+	$(this).setDatePickerEvent();
+	ssiCount++;
+});
+
+var ssbCount = 1;
+$("#addSSBBtn").click(function(){
+	$('#ssbIncomeTable tr').last().after(
+	    	'<tr>'+
+	    		'<td style="border-top: 0px;"><input type="text" class="form-control datepicker" id="ssbIncome['+ssbCount+'].startDate" name="ssbIncome['+ssbCount+'].startDate"></td>'+
+				'<td style="border-top: 0px;">'+
+					'<div class="input-group">'+
+						'<span class="input-group-addon">$</span>'+
+						'<input type="text" class="form-control" id="ssbIncome['+ssbCount+'].monthlyIncome" name="ssbIncome['+ssbCount+'].monthlyIncome" style="width: 100px">'+
+					'</div>'+
+				'</td>'+
+			'</tr>');
+	$(this).setDatePickerEvent();
+	ssbCount++;
+});
+
+$(document).ready(function(){
+	sessionStorage.currentScreen = "other-income.html";
+	$(this).resetLeftNavLinks("#incomeNavLink");
+
+	$("#applicationId").val(sessionStorage.applicationId);
+	$("#memberId").val(activeMember.id);
+	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
+	$(".memberfirstNameSpan").html(activeMember.firstName);
+
+	var isEditMode = activeMember.editMode;
+	if(isEditMode)
+		$("#nextPage").val("income-summary.html");
+    
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+activeMember.id+"&income-type=other-income", function( data ) {
+		if(data.income != null){
+			var formData = data.income;
+
+			$("#nextBtn").removeAttr("disabled");
+
+			if(formData.changeInIncomeFlag == true)
+				$("#incomeChange-y").click();
+			if(formData.childSupportIncomeFlag == true)
+				$("#childSupport-y").click();
+			if(formData.ssiIncomeFlag == true)
+				$("#ssiIncome-y").click();
+			if(formData.ssbIncomeFlag == true)
+				$("#ssbIncome-y").click();
+
+			var csIncomeList = formData.childSupportIncome;
+			for(var i = 1; i < csIncomeList.length; i++) {
+				$("#addChildSupportBtn").click();
+			}
+
+			var ssiIncomeList = formData.ssiIncome;
+			for(var i = 1; i < ssiIncomeList.length; i++) {
+				$("#addSSIBtn").click();
+			}
+
+			var ssbIncomeList = formData.ssbIncome;
+			for(var i = 1; i < ssbIncomeList.length; i++) {
+				$("#addSSBBtn").click();
+			}
+			
+			js2form(document.getElementById('applicationForm'), formData);
+		}
+	});
+	
+	
+});
+
+</script>
