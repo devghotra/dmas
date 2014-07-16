@@ -9,12 +9,14 @@ public class ApplicationServiceResponse implements Serializable{
 	private static final long serialVersionUID = 2899187746194208977L;
 	
 	private int responseCode;
+	private String error;
 	private String applicationId;
 	private Applicant applicant;
 	private List<HouseholdMember> hhMemberList;
 	private HouseholdMember hhMember;
 	private Income income;
 	private HashMap<String, List<Income>> incomeList;
+	private UserProfile userProfile;
 
 	public int getResponseCode() {
 		return responseCode;
@@ -72,7 +74,21 @@ public class ApplicationServiceResponse implements Serializable{
 		this.incomeList = incomeList;
 	}
 
-	
-	
+	public String getError() {
+		return error;
+	}
 
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
+	}
+
+	
 }

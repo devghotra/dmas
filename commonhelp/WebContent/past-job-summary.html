@@ -195,12 +195,13 @@ $(document).ready(function(){
 	if(isEditMode || isAddMode)
 		$("#nextPage").val("income-summary.html");
 
-	var incomeId = null;
+	var reqParams = "member-id="+activeMember.id+"&income-type=past-job";
+
 	if(isEditMode)
-		incomeId=activeMember.editIncomeId;
+		reqParams = reqParams + "&income-id="+activeMember.editIncomeId;
 
     if(!isAddMode){
-    	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?member-id="+activeMember.id+"&income-id="+incomeId+"&income-type=past-job", function( data ) {
+    	$.get( "/commonhelp-svcs/services/medicaid/applicant/income?"+reqParams, function( data ) {
     		if(data.income != null){
     			$("#previousJob-y").click();
     		    

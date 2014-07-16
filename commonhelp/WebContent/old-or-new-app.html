@@ -1,0 +1,43 @@
+<h3 class="hl">Choose Application</h3>
+<p class="text-muted">Please click one of the buttons to tell us what you would like to do.</p>
+<hr>
+
+<label class="radio-inline" > 
+	<input type="radio" name="oldOrNewApp" value="1">Start a new application
+</label><br/><br/>
+<label class="radio-inline" > 
+	<input type="radio" name="oldOrNewApp" value="2">Keep working on an application you have already started
+</label><br/><br/>
+
+<button type="button" class="btn btn-green pull-left" onclick="javascript: loadPage('confidential-agreement.html')">Previous</button>
+<button type="button" class="btn btn-green pull-right" id="backBtn" value="who-is-applying.html">Next</button>
+
+<script>
+	$(document).ready(function(){
+		sessionStorage.currentScreen = "old-or-new-app.html";
+  	});
+
+	var userProfile = JSON.parse(sessionStorage.userProfile);
+	var appId;
+
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/application?userName="+userProfile.userName, function( data ) {
+		appId = data.applicationId;
+		if(appId == undefined)
+			loadPage("who-is-applying.html");
+		else
+			sessionStorage.applicationId = appId;
+			
+	});
+
+	$("input:radio").click(function(){
+		if($("input[name=oldOrNewApp]:checked").val() == 1){
+			sessionStorage.removeItem("applicationId");
+			$("#backBtn").val("who-is-applying.html");
+		}
+		else{
+			sessionStorage.applicationId = appId;
+			$("#backBtn").val("primary-applicant-basic.html");
+		}
+			
+  	 });
+</script>

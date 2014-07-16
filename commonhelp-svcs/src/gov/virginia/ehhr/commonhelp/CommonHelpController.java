@@ -4,6 +4,7 @@ import gov.virginia.ehhr.commonhelp.domain.Applicant;
 import gov.virginia.ehhr.commonhelp.domain.ApplicationServiceResponse;
 import gov.virginia.ehhr.commonhelp.domain.HouseholdMember;
 import gov.virginia.ehhr.commonhelp.domain.Income;
+import gov.virginia.ehhr.commonhelp.domain.UserProfile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,57 @@ public class CommonHelpController {
 	static Logger LOGGER = LoggerFactory.getLogger(CommonHelpController.class);
 	HashMap<String, Applicant> store = new HashMap<String, Applicant>();
 	LinkedHashMap<String, Income> incomeStore = new LinkedHashMap<String, Income>();
+	HashMap<String, UserProfile> profileStore = new HashMap<String, UserProfile>();
+	
+	
+	@RequestMapping(value = "/register", 
+    		method = RequestMethod.POST, 
+    		consumes = {"application/json"}, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse register(@RequestBody UserProfile userProfile){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		String userName = userProfile.getUserName();
+		
+		if(profileStore.get(userName) == null){
+			String authtoken = UUID.randomUUID().toString().replace("-", "");
+			userProfile.setAuthtoken(authtoken);
+			profileStore.put(userName, userProfile);
+			svcsResponse.setUserProfile(userProfile);
+			svcsResponse.setResponseCode(200);
+		} else{
+			svcsResponse.setError("Duplicate Username");
+			svcsResponse.setResponseCode(500);
+		}
+		
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/authorize", 
+    		method = RequestMethod.POST, 
+    		consumes = {"application/json"}, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse authorize(@RequestBody UserProfile userProfile){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		String userName = userProfile.getUserName();
+		
+		if(profileStore.get(userName) != null){
+			UserProfile savedProfile = profileStore.get(userName);
+			if(savedProfile.getPassword().equalsIgnoreCase(userProfile.getPassword())){
+				svcsResponse.setUserProfile(savedProfile);
+				svcsResponse.setResponseCode(200);
+			} else{
+				svcsResponse.setError("Username password do not match");
+				svcsResponse.setResponseCode(500);
+			}
+		} else{
+			svcsResponse.setError("Username password do not match");
+			svcsResponse.setResponseCode(500);
+		}
+		
+		return svcsResponse;	
+	}
 	
 	@RequestMapping(value = "/basic-info", 
     		method = RequestMethod.POST, 
@@ -44,6 +97,10 @@ public class CommonHelpController {
 			applicant.setApplicationId(appId);
 			applicant.setApplicantId(applicantId);
 			store.put(appId, applicant);
+			
+			String userName = applicant.getUserName();
+			profileStore.get(userName).setApplicationId(appId);
+			
 		} else{
 			CommonHelpUtil.merge(store.get(appId), applicant);
 		}
@@ -214,6 +271,16 @@ public class CommonHelpController {
 		
 		svcsResponse.setIncomeList(incomeList);
 		return svcsResponse;
+	}
+	
+	@RequestMapping(value = "/application", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getApplicationId(@RequestParam(value="userName", required = true) String userName){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		svcsResponse.setApplicationId(profileStore.get(userName).getApplicationId());
+		return svcsResponse;	
 	}
 	
 

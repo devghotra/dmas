@@ -33,12 +33,10 @@ public class Income implements Serializable {
 	private List<ExtraIncome> extraIncomeList;
 	private SelfEmployment selfEmployment;
 	private Boolean changeInIncomeFlag;
-	private Boolean childSupportIncomeFlag;
-	private Boolean ssiIncomeFlag;
-	private Boolean ssbIncomeFlag;
-	private List<OtherIncome> childSupportIncome;
-	private List<OtherIncome> ssiIncome;
-	private List<OtherIncome> ssbIncome;
+	private List<OtherIncome> otherIncome;
+	private boolean yearlyIncomeChangeFlag;
+	private String annualIncomePresentYear;
+	private String annualIncomeNextYear;
 	
 	
 	public String getIncomeType() {
@@ -256,52 +254,36 @@ public class Income implements Serializable {
 		this.totalIncome = String.valueOf(salary + hrs*hrRate);
 	}
 
-	public Boolean getChildSupportIncomeFlag() {
-		return childSupportIncomeFlag;
+	public List<OtherIncome> getOtherIncome() {
+		return otherIncome;
 	}
 
-	public void setChildSupportIncomeFlag(Boolean childSupportIncomeFlag) {
-		this.childSupportIncomeFlag = childSupportIncomeFlag;
+	public void setOtherIncome(List<OtherIncome> otherIncome) {
+		this.otherIncome = otherIncome;
 	}
 
-	public Boolean getSsiIncomeFlag() {
-		return ssiIncomeFlag;
+	public boolean isYearlyIncomeChangeFlag() {
+		return yearlyIncomeChangeFlag;
 	}
 
-	public void setSsiIncomeFlag(Boolean ssiIncomeFlag) {
-		this.ssiIncomeFlag = ssiIncomeFlag;
+	public void setYearlyIncomeChangeFlag(boolean yearlyIncomeChangeFlag) {
+		this.yearlyIncomeChangeFlag = yearlyIncomeChangeFlag;
 	}
 
-	public Boolean getSsbIncomeFlag() {
-		return ssbIncomeFlag;
+	public String getAnnualIncomePresentYear() {
+		return annualIncomePresentYear;
 	}
 
-	public void setSsbIncomeFlag(Boolean ssbIncomeFlag) {
-		this.ssbIncomeFlag = ssbIncomeFlag;
+	public void setAnnualIncomePresentYear(String annualIncomePresentYear) {
+		this.annualIncomePresentYear = annualIncomePresentYear;
 	}
 
-	public List<OtherIncome> getChildSupportIncome() {
-		return childSupportIncome;
+	public String getAnnualIncomeNextYear() {
+		return annualIncomeNextYear;
 	}
 
-	public void setChildSupportIncome(List<OtherIncome> childSupportIncome) {
-		this.childSupportIncome = childSupportIncome;
-	}
-
-	public List<OtherIncome> getSsiIncome() {
-		return ssiIncome;
-	}
-
-	public void setSsiIncome(List<OtherIncome> ssiIncome) {
-		this.ssiIncome = ssiIncome;
-	}
-
-	public List<OtherIncome> getSsbIncome() {
-		return ssbIncome;
-	}
-
-	public void setSsbIncome(List<OtherIncome> ssbIncome) {
-		this.ssbIncome = ssbIncome;
+	public void setAnnualIncomeNextYear(String annualIncomeNextYear) {
+		this.annualIncomeNextYear = annualIncomeNextYear;
 	}
 	
 	

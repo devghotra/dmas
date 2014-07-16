@@ -7,6 +7,7 @@ public class Applicant implements Serializable{
 
 	private static final long serialVersionUID = -4068121935349308807L;
 	
+	private String userName;
 	private String applicationId;
 	private String applicantId;
 	private String firstName;
@@ -296,7 +297,12 @@ public class Applicant implements Serializable{
 	public void setApplicantId(String applicantId) {
 		this.applicantId = applicantId;
 	}
-	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	
 	
 }

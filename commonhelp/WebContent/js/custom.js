@@ -7,6 +7,8 @@ Last change:	07/03/2014
 
 // Sign in & sing out nav bar demo. To be removed on an operational website
 // ========================================================================
+
+/*
 $('#sign-in').on('click', function() {
 	$("#sign-up").toggleClass('show hidden');
 	$("#sign-in").toggleClass('show hidden');
@@ -21,6 +23,7 @@ $('#sign-out').on('click', function() {
 	$("#profile-menu").toggleClass('show hidden animated fadeIn');
 	return false;
 });
+*/
 
 // Search box toggle
 // =================

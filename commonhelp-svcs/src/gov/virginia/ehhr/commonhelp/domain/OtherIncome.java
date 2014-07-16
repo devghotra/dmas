@@ -7,6 +7,7 @@ public class OtherIncome implements Serializable {
 	private static final long serialVersionUID = -3479669341278498792L;
 	
 	private String type;
+	private String description;
 	private String startDate;
 	private String monthlyIncome;
 	
@@ -27,6 +28,12 @@ public class OtherIncome implements Serializable {
 	}
 	public void setMonthlyIncome(String monthlyIncome) {
 		this.monthlyIncome = monthlyIncome;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

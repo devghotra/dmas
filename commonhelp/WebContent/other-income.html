@@ -59,17 +59,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<input type="text"	class="form-control datepicker" id="childSupportIncome[0].startDate" name="childSupportIncome[0].startDate">
-						</td>
-						<td>
-							<div class="input-group">
-								<span class="input-group-addon">$</span>
-								<input type="text" class="form-control" id="childSupportIncome[0].monthlyIncome" name="childSupportIncome[0].monthlyIncome" style="width: 100px">
-							</div>
-						</td>
-					</tr>
+					<tr style="display: none;"></tr>
 				</tbody>
 			</table>
 			</div>
@@ -106,17 +96,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<input type="text"	class="form-control datepicker" id="ssiIncome[0].startDate" name="ssiIncome[0].startDate">
-						</td>
-						<td>
-							<div class="input-group">
-								<span class="input-group-addon">$</span>
-								<input type="text" class="form-control" id="ssiIncome[0].monthlyIncome" name="ssiIncome[0].monthlyIncome" style="width: 100px">
-							</div>
-						</td>
-					</tr>
+					<tr style="display: none;"></tr>
 				</tbody>
 			</table>
 			</div>
@@ -153,20 +133,95 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<input type="text"	class="form-control datepicker" id="ssbIncome[0].startDate" name="ssbIncome[0].startDate">
-						</td>
-						<td>
-							<div class="input-group">
-								<span class="input-group-addon">$</span>
-								<input type="text" class="form-control" id="ssbIncome[0].monthlyIncome" name="ssbIncome[0].monthlyIncome" style="width: 100px">
-							</div>
-						</td>
-					</tr>
+					<tr style="display: none;"></tr>
 				</tbody>
 			</table>
 			</div>
+		</div>
+	</div>
+	
+	<h4 class="hl bottom-15">
+		Other Income<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>Does <span class="memberfirstNameSpan"></span> have any other income?</label>
+			</div>
+			<div class="col-md-6">
+				<label class="radio-inline"> 
+					<input type="radio" id="otherIncome-y" name="otherIncomeFlag" value=true>Yes
+				</label> 
+				<label class="radio-inline"> 
+					<input type="radio" id="otherIncome-n" name="otherIncomeFlag" value=false>No
+				</label>
+			</div>
+		</div>
+		<div class="row form-row" id="otherIncomeDiv" style="display: none;">
+			<div class="col-md-12">
+				<table class="table" id="otherIncomeTable">
+				<thead>
+					<tr style="background: #ddd">
+						<th style="width: 60%">Type of <br/> Other Income</th>
+						<th style="width: 20%">Start Date for <br/> Other Income</th>
+						<th style="width: 20%">Monthly Income</th>
+						<th><button id="addOtherIncomeBtn" type="button" class="btn btn-green pull-right pull-down">Add More</button></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="display: none;"></tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+	
+	<h4 class="hl bottom-15">
+		Yearly Income<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<p class="text-muted">
+			If the income you provided is not steady from month to month, please tell us what you expect the yearly income to be. 
+			For example, some people expect their income to change because they only work some months of the year.
+		</p>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label>Does <span class="memberfirstNameSpan"></span> expect changes to monthly income?</label>
+			</div>
+			<div class="col-md-6">
+				<label class="radio-inline"> 
+					<input type="radio" id="yearlyIncomeChange-y" name="yearlyIncomeChangeFlag" value=true>Yes
+				</label> 
+				<label class="radio-inline"> 
+					<input type="radio" id="yearlyIncomeChange-n" name="yearlyIncomeChangeFlag" value=false>No
+				</label>
+			</div>
+		</div>
+		<div id="yearlyIncomeDiv" style="display: none;">
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label>Total Annual Income this Year</label>
+				</div>
+				<div class="col-md-2">
+					<div class="input-group">
+						<span class="input-group-addon">$</span>
+						<input type="text" class="form-control" id="annualIncomePresentYear" name="annualIncomePresentYear">
+					</div>
+				</div>
+			</div>
+			
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label>Total Annual Income Next Year</label>
+				</div>
+				<div class="col-md-2">
+					<div class="input-group">
+						<span class="input-group-addon">$</span>
+						<input type="text" class="form-control" id="annualIncomeNextYear" name="annualIncomeNextYear">
+					</div>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 	
@@ -191,75 +246,194 @@ $("#incomeChange-n").click(function(){
 });
 
 $("#childSupport-y").click(function(){
+	$("#addChildSupportBtn").click();
 	$("#childSupportDiv").show();
 });
 
 $("#childSupport-n").click(function(){
 	$("#childSupportDiv").hide();
+	$(".csIncomeRow").remove();
 });
 
 $("#ssiIncome-y").click(function(){
+	$("#addSSIBtn").click();
 	$("#ssiDiv").show();
 });
 
 $("#ssiIncome-n").click(function(){
 	$("#ssiDiv").hide();
+	$(".ssiIncomeRow").remove();
 });
 
 $("#ssbIncome-y").click(function(){
+	$("#addSSBBtn").click();
 	$("#ssbDiv").show();
 });
 
 $("#ssbIncome-n").click(function(){
 	$("#ssbDiv").hide();
+	$(".ssbIncomeRow").remove();
 });
 
-var csIncomeCount = 1;
+$("#otherIncome-y").click(function(){
+	$("#addOtherIncomeBtn").click();
+	$("#otherIncomeDiv").show();
+});
+
+$("#otherIncome-n").click(function(){
+	$("#otherIncomeDiv").hide();
+	$(".otherIncomeRow").remove();
+});
+
+$("#yearlyIncomeChange-y").click(function(){
+	$("#yearlyIncomeDiv").show();
+});
+
+$("#yearlyIncomeChange-n").click(function(){
+	$("#yearlyIncomeDiv").hide();
+});
+
+var othIncomeCount = 0;
 $("#addChildSupportBtn").click(function(){
 	$('#csIncomeTable tr').last().after(
-	    	'<tr>'+
-				'<td style="border-top: 0px;"><input type="text" class="form-control datepicker" id="childSupportIncome['+csIncomeCount+'].startDate" name="childSupportIncome['+csIncomeCount+'].startDate"></td>'+
+	    	'<tr class="csIncomeRow">'+
+				'<td style="border-top: 0px;">'+
+					'<input type="hidden" id="otherIncome['+othIncomeCount+'].type" name="otherIncome['+othIncomeCount+'].type" value="CS">'+
+					'<input type="text" class="form-control datepicker" id="otherIncome['+othIncomeCount+'].startDate" name="otherIncome['+othIncomeCount+'].startDate">'+
+				'</td>'+
 				'<td style="border-top: 0px;">'+
 					'<div class="input-group">'+
 						'<span class="input-group-addon">$</span>'+
-						'<input type="text" class="form-control" id="childSupportIncome['+csIncomeCount+'].monthlyIncome" name="childSupportIncome['+csIncomeCount+'].monthlyIncome" style="width: 100px">'+
+						'<input type="text" class="form-control" id="otherIncome['+othIncomeCount+'].monthlyIncome" name="otherIncome['+othIncomeCount+'].monthlyIncome" style="width: 100px">'+
 					'</div>'+
-				'</td>'+
+				'</td><td style="border-top: 0px;"></td>'+
 			'</tr>');
 	$(this).setDatePickerEvent();
-	csIncomeCount++;
+	othIncomeCount++;
 });
 
-var ssiCount = 1;
 $("#addSSIBtn").click(function(){
 	$('#ssiIncomeTable tr').last().after(
-	    	'<tr>'+
-	    		'<td style="border-top: 0px;"><input type="text" class="form-control datepicker" id="ssiIncome['+ssiCount+'].startDate" name="ssiIncome['+ssiCount+'].startDate"></td>'+
+	    	'<tr class="ssiIncomeRow">'+
+	    		'<td style="border-top: 0px;">'+
+	    			'<input type="hidden" id="otherIncome['+othIncomeCount+'].type" name="otherIncome['+othIncomeCount+'].type" value="SSI">'+
+	    			'<input type="text" class="form-control datepicker" id="otherIncome['+othIncomeCount+'].startDate" name="otherIncome['+othIncomeCount+'].startDate">'+
+	    		'</td>'+
 				'<td style="border-top: 0px;">'+
 					'<div class="input-group">'+
 						'<span class="input-group-addon">$</span>'+
-						'<input type="text" class="form-control" id="ssiIncome['+ssiCount+'].monthlyIncome" name="ssiIncome['+ssiCount+'].monthlyIncome" style="width: 100px">'+
+						'<input type="text" class="form-control" id="otherIncome['+othIncomeCount+'].monthlyIncome" name="otherIncome['+othIncomeCount+'].monthlyIncome" style="width: 100px">'+
 					'</div>'+
-				'</td>'+
+				'</td><td style="border-top: 0px;"></td>'+
 			'</tr>');
 	$(this).setDatePickerEvent();
-	ssiCount++;
+	othIncomeCount++;
 });
 
-var ssbCount = 1;
 $("#addSSBBtn").click(function(){
 	$('#ssbIncomeTable tr').last().after(
-	    	'<tr>'+
-	    		'<td style="border-top: 0px;"><input type="text" class="form-control datepicker" id="ssbIncome['+ssbCount+'].startDate" name="ssbIncome['+ssbCount+'].startDate"></td>'+
+	    	'<tr class="ssbIncomeRow">'+
+	    		'<td style="border-top: 0px;">'+
+	    			'<input type="hidden" id="otherIncome['+othIncomeCount+'].type" name="otherIncome['+othIncomeCount+'].type" value="SSB">'+
+	    			'<input type="text" class="form-control datepicker" id="otherIncome['+othIncomeCount+'].startDate" name="otherIncome['+othIncomeCount+'].startDate"></td>'+
 				'<td style="border-top: 0px;">'+
 					'<div class="input-group">'+
 						'<span class="input-group-addon">$</span>'+
-						'<input type="text" class="form-control" id="ssbIncome['+ssbCount+'].monthlyIncome" name="ssbIncome['+ssbCount+'].monthlyIncome" style="width: 100px">'+
+						'<input type="text" class="form-control" id="otherIncome['+othIncomeCount+'].monthlyIncome" name="otherIncome['+othIncomeCount+'].monthlyIncome" style="width: 100px">'+
+					'</div>'+
+				'</td><td style="border-top: 0px;"></td>'+
+			'</tr>');
+	$(this).setDatePickerEvent();
+	othIncomeCount++;
+});
+
+$("#addOtherIncomeBtn").click(function(){
+	$('#otherIncomeTable tr').last().after(
+	    	'<tr class="otherIncomeRow">'+
+	    		'<td style="border-top: 0px;">'+
+		    		'<select class="form-control" id="otherIncome['+othIncomeCount+'].type" name="otherIncome['+othIncomeCount+'].type">'+			
+						 '<OPTION VALUE="" TITLE="Select">Select</OPTION>'+
+						 '<OPTION VALUE="AL" TITLE="Alimony">Alimony</OPTION>'+
+						 '<OPTION VALUE="FC" TITLE="All Food, Clothing, Utilities or Rent">All Food, Clothing, Utilities or Rent</OPTION>'+
+						 '<OPTION VALUE="BL" TITLE="Black Lung Benefits">Black Lung Benefits</OPTION>'+
+						 '<OPTION VALUE="CA" TITLE="Cash, Gifts or Contribution">Cash, Gifts or Contribution</OPTION>'+
+						 '<OPTION VALUE="CS" TITLE="Child support">Child support</OPTION>'+
+						 '<OPTION VALUE="DI" TITLE="Disability Benefits">Disability Benefits</OPTION>'+
+						 '<OPTION VALUE="DV" TITLE="Dividends">Dividends</OPTION>'+
+						 '<OPTION VALUE="IH" TITLE="Inheritance">Inheritance</OPTION>'+
+						 '<OPTION VALUE="IS" TITLE="Insurance Settlement">Insurance Settlement</OPTION>'+
+						 '<OPTION VALUE="IN" TITLE="Interest">Interest</OPTION>'+
+						 '<OPTION VALUE="PS" TITLE="Land Contract, Mortgage or Other Notes">Land Contract, Mortgage or Other Notes</OPTION>'+
+						 '<OPTION VALUE="LO" TITLE="Loans">Loans</OPTION>'+
+						 '<OPTION VALUE="MA" TITLE="Military Allotments">Military Allotments</OPTION>'+
+						 '<OPTION VALUE="MO" TITLE="Money from Another Person">Money from Another Person</OPTION>'+
+						 '<OPTION VALUE="OT" TITLE="Other Income">Other Income</OPTION>'+
+						 '<OPTION VALUE="SA" TITLE="Other Social Security Benefits">Other Social Security Benefits</OPTION>'+
+						 '<OPTION VALUE="PE" TITLE="Pension or Retirement">Pension or Retirement</OPTION>'+
+						 '<OPTION VALUE="PR" TITLE="Prize Winning">Prize Winning</OPTION>'+
+						 '<OPTION VALUE="PA" TITLE="Public Assistance">Public Assistance</OPTION>'+
+						 '<OPTION VALUE="RA" TITLE="Railroad Retirement">Railroad Retirement</OPTION>'+
+						 '<OPTION VALUE="RR" TITLE="Rental Income">Rental Income</OPTION>'+
+						 '<OPTION VALUE="RE" TITLE="Resettlement Income">Resettlement Income</OPTION>'+
+						 '<OPTION VALUE="RM" TITLE="Room /Board Income">Room /Board Income</OPTION>'+
+						 '<OPTION VALUE="SS" TITLE="Social Security">Social Security</OPTION>'+
+						 '<OPTION VALUE="SB" TITLE="Strike Benefits">Strike Benefits</OPTION>'+
+						 '<OPTION VALUE="SF" TITLE="Student Financial Aid">Student Financial Aid</OPTION>'+
+						 '<OPTION VALUE="SI" TITLE="Supplemental Security Income (SSI)">Supplemental Security Income (SSI)</OPTION>'+
+						 '<OPTION VALUE="TR" TITLE="Training Allowances including WIA">Training Allowances including WIA</OPTION>'+
+						 '<OPTION VALUE="UN" TITLE="Unemployment Benefits">Unemployment Benefits</OPTION>'+
+						 '<OPTION VALUE="VE" TITLE="Veteran Benefits">Veteran Benefits</OPTION>'+
+						 '<OPTION VALUE="WC" TITLE="Workers Compensation">Workers Compensation</OPTION>'+
+						 '<OPTION VALUE="BA" TITLE="Any benefits received under Title VII, Nutrition Program for the Elderly, of the Older Americans Act of 1965">Any benefits received under Title VII, Nutrition Program for the Elderly, of the Older Americans Act of 1965</OPTION>'+
+						 '<OPTION VALUE="CE" TITLE="US Civil Service and Federal Employee Retirement">US Civil Service and Federal Employee Retirement</OPTION>'+
+						 '<OPTION VALUE="CG" TITLE="Capital gains">Capital gains</OPTION>'+
+						 '<OPTION VALUE="CN" TITLE="Child Care Nutrition Payments">Child Care Nutrition Payments</OPTION>'+
+						 '<OPTION VALUE="DA" TITLE="Diversionary Assistance payments">Diversionary Assistance payments</OPTION>'+
+						 '<OPTION VALUE="EC" TITLE="Earnings of a child under the age of 18 years">Earnings of a child under the age of 18 years</OPTION>'+
+						 '<OPTION VALUE="EI" TITLE="Earned income tax credit (EITC)">Earned income tax credit (EITC)</OPTION>'+
+						 '<OPTION VALUE="FG" TITLE="Foreign government restitution payments to Holocaust survivors">Foreign government restitution payments to Holocaust survivors</OPTION>'+
+						 '<OPTION VALUE="GH" TITLE="GI Bill benefits - Housing Related">GI Bill benefits - Housing Related</OPTION>'+
+						 '<OPTION VALUE="GL" TITLE="GI Bill benefits - Educational">GI Bill benefits - Educational</OPTION>'+
+						 '<OPTION VALUE="GR" TITLE="General Relief benefits">General Relief benefits</OPTION>'+
+						 '<OPTION VALUE="HV" TITLE="Housing Voucher">Housing Voucher</OPTION>'+
+						 '<OPTION VALUE="JD" TITLE="Jury Duty">Jury Duty</OPTION>'+
+						 '<OPTION VALUE="LI" TITLE="Lump sum insurance payments">Lump sum insurance payments</OPTION>'+
+						 '<OPTION VALUE="LS" TITLE="Lump sum child support payments">Lump sum child support payments</OPTION>'+
+						 '<OPTION VALUE="MD" TITLE="Monetary benefits provided to the children of Vietnam Veterans as described in 38 U.S.C. 1823 c">Monetary benefits provided to the children of Vietnam Veterans as described in 38 U.S.C. 1823 c</OPTION>'+
+						 '<OPTION VALUE="MR" TITLE="Money received from sale of property">Money received from sale of property</OPTION>'+
+						 '<OPTION VALUE="NR" TITLE="Non-recurring monetary gifts">Non-recurring monetary gifts</OPTION>'+
+						 '<OPTION VALUE="PI" TITLE="Payments from Indian trust land">Payments from Indian trust land</OPTION>'+
+						 '<OPTION VALUE="PO" TITLE="Payments from the Agent Orange Settlement Fund or any other fund established for settlement of Agent Orange product liability litigation">Payments from the Agent Orange Settlement Fund or any other fund established for settlement of Agent Orange product liability litigation</OPTION>'+
+						 '<OPTION VALUE="PT" TITLE="Per capita payments from a tribe">Per capita payments from a tribe</OPTION>'+
+						 '<OPTION VALUE="PV" TITLE="Payment to AmeriCorps volunteers">Payment to AmeriCorps volunteers</OPTION>'+
+						 '<OPTION VALUE="RD" TITLE="RSDI (Retirement, Survivors, and Disability Insurance)">RSDI (Retirement, Survivors, and Disability Insurance)</OPTION>'+
+						 '<OPTION VALUE="RT" TITLE="Rehabilitation Services Payments">Rehabilitation Services Payments</OPTION>'+
+						 '<OPTION VALUE="TB" TITLE="TANF benefits, including TANF match payments">TANF benefits, including TANF match payments</OPTION>'+
+						 '<OPTION VALUE="TP" TITLE="Transitional payments of $50.00 per month to former VIEW participants">Transitional payments of $50.00 per month to former VIEW participants</OPTION>'+
+						 '<OPTION VALUE="TX" TITLE="Tax refunds">Tax refunds</OPTION>'+
+						 '<OPTION VALUE="UE" TITLE="Unemployment">Unemployment</OPTION>'+
+						 '<OPTION VALUE="VF" TITLE="Vendor payments made by non-financially responsible persons, unless this payment is made in lieu of wages">Vendor payments made by non-financially responsible persons, unless this payment is made in lieu of wages</OPTION>'+
+						 '<OPTION VALUE="VH" TITLE="Veterans Housebound Allowance">Veterans Housebound Allowance</OPTION>'+
+						 '<OPTION VALUE="VL" TITLE="Value of lunches provided under National School Lunch Act">Value of lunches provided under National School Lunch Act</OPTION>'+
+						 '<OPTION VALUE="VM" TITLE="Military Allotment/Contribution From Absent Member">Military Allotment/Contribution From Absent Member</OPTION>'+
+						 '<OPTION VALUE="VN" TITLE="Value of supplemental food assistance under the Child Nutrition Act of 1966">Value of supplemental food assistance under the Child Nutrition Act of 1966</OPTION>'+
+						 '<OPTION VALUE="VS" TITLE="Value of SNAP benefits">Value of SNAP benefits</OPTION>'+
+						 '<OPTION VALUE="VU" TITLE="Value of USDA donated food">Value of USDA donated food</OPTION>'+
+						 '<OPTION VALUE="RB" TITLE="Reimbursement, such as for mileage">Reimbursement, such as for mileage</OPTION>'+
+						 '<OPTION VALUE="WB" TITLE="Withdrawals of bank deposits">Withdrawals of bank deposits</OPTION>'+
+					'</select>'+
+	    		'</td>'+
+	    		'<td style="border-top: 0px;">'+
+	    			'<input type="text" class="form-control datepicker" id="otherIncome['+othIncomeCount+'].startDate" name="otherIncome['+othIncomeCount+'].startDate"></td>'+
+				'<td style="border-top: 0px;" colspan=2>'+
+					'<div class="input-group">'+
+						'<span class="input-group-addon">$</span>'+
+						'<input type="text" class="form-control" id="otherIncome['+othIncomeCount+'].monthlyIncome" name="otherIncome['+othIncomeCount+'].monthlyIncome" style="width: 100px">'+
 					'</div>'+
 				'</td>'+
 			'</tr>');
 	$(this).setDatePickerEvent();
-	ssbCount++;
+	othIncomeCount++;
 });
 
 $(document).ready(function(){
@@ -281,32 +455,46 @@ $(document).ready(function(){
 
 			$("#nextBtn").removeAttr("disabled");
 
-			if(formData.changeInIncomeFlag == true)
-				$("#incomeChange-y").click();
-			if(formData.childSupportIncomeFlag == true)
-				$("#childSupport-y").click();
-			if(formData.ssiIncomeFlag == true)
-				$("#ssiIncome-y").click();
-			if(formData.ssbIncomeFlag == true)
-				$("#ssbIncome-y").click();
-
-			var csIncomeList = formData.childSupportIncome;
-			for(var i = 1; i < csIncomeList.length; i++) {
-				$("#addChildSupportBtn").click();
+			if(formData.yearlyIncomeChangeFlag == true)
+				$("#yearlyIncomeChange-y").click();
+			
+			var otherIncomeList = formData.otherIncome;
+			if(otherIncomeList != null){
+				var csIncomeFlag = false;
+				var ssiIncomeFlag = false;
+				var ssbIncomeFlag = false;
+				var otherIncomeFlag = false;
+				
+				for(var i = 0; i < otherIncomeList.length; i++) {
+					var income = otherIncomeList[i];
+					if(income.type == 'CS'){
+						csIncomeFlag = true;
+						$("#childSupport-y").click();
+					}
+					else if(income.type == 'SSI'){
+						ssiIncomeFlag = true;
+						$("#ssiIncome-y").click();
+					}
+					else if(income.type == 'SSB'){
+						ssbIncomeFlag = true;
+						$("#ssbIncome-y").click();
+					}
+					else if(income.type){
+						otherIncomeFlag = true;
+						$("#otherIncome-y").click();	
+					}					
+				}
 			}
 
-			var ssiIncomeList = formData.ssiIncome;
-			for(var i = 1; i < ssiIncomeList.length; i++) {
-				$("#addSSIBtn").click();
-			}
-
-			var ssbIncomeList = formData.ssbIncome;
-			for(var i = 1; i < ssbIncomeList.length; i++) {
-				$("#addSSBBtn").click();
-			}
+			
+			formData["childSupportIncomeFlag"] = csIncomeFlag;
+			formData["ssiIncomeFlag"] = ssiIncomeFlag;
+			formData["ssbIncomeFlag"] = ssbIncomeFlag;
+			formData["otherIncomeFlag"] = otherIncomeFlag;
 			
 			js2form(document.getElementById('applicationForm'), formData);
 		}
+		
 	});
 	
 	

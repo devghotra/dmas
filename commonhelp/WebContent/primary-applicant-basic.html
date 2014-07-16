@@ -3,6 +3,8 @@
 <hr>
 <form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/basic-info">
 	<input type="hidden" id="applicationId" name="applicationId">
+	<input type="hidden" id="userName" name="userName">
+	
 	<h4 class="hl bottom-15">
 		Information About You<i class="fa fa-chevron-up toggle"></i>
 	</h4>
@@ -286,6 +288,7 @@
 		<br />
 	</div>
 
+	<button type="button" class="btn btn-green pull-left" onclick="javascript: loadPage('program-selection.html')">Previous</button>
 	<button id="nextBtn" type="submit" class="btn btn-green pull-right">Save</button>
 		
 	<input type="hidden" id="nextPage" value="primary-applicant-other.html">
@@ -295,6 +298,12 @@
 	$(document).ready(function(){
 		sessionStorage.currentScreen = "primary-applicant-basic.html";
 		$(this).resetLeftNavLinks("#aboutYouNavLink");
+		var userProfile = sessionStorage.userProfile;
+		$("#userName").val(JSON.parse(userProfile).userName);
+
+		//console.debug($("#userName").val());
+		//console.debug(sessionStorage.applicationId);
+		
     	if(sessionStorage.applicationId != null){
     		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
         		var formData = JSON.parse(JSON.stringify(data.applicant));

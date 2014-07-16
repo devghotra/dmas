@@ -1,0 +1,60 @@
+<h3 class="hl">Confidentiality Agreement and Acceptable Use</h3>
+<hr/>
+
+<h4 class="hl bottom-15">
+	Confidentiality Agreement<i class="fa fa-chevron-up toggle"></i>
+</h4>
+<div>
+	<div class="row form-row">
+		<div class="col-md-12">
+		<span>The local departments of social services may not release information about you without your written consent except for purposes directly connected with the administration of social service programs or by court order.</span>
+		<br/><br/><span>Your User ID and associated Password should be held confidential by you. Do not share these items with any person, including family, friends, authorized representatives, or Medicaid Navigators. Your online identity should be held private by you.</span>
+		<br/><br/><span>Information you submit on this application will be held in confidence. If you print off any information or write this information down, it is your responsibility to keep this information secured and confidential.</span>
+		<br/><br/><span>By use of this site, you authorize the Virginia Department of Social Services (VDSS) and the Department of Medical Assistance Services (DMAS) to obtain any verification necessary to both determine and review financial or medical assistance eligibility or to give information in your case record to other organizations from which you have or may request assistance.</span>		
+		</div>
+	</div>
+</div>
+
+<h4 class="hl bottom-15">
+	Acceptable Use<i class="fa fa-chevron-up toggle"></i>
+</h4>
+<div>
+	<div class="row form-row">
+		<div class="col-md-12">
+		<span>Unauthorized attempts to modify any information stored on this system, to defeat or circumvent security features or to utilize this system for other than its intended purposes are prohibited and may result in criminal prosecution.</span>
+		<br/><br/><span>It is the policy of VDSS to avoid placing cookies on your computer whenever possible. CommonHelp requires a persistent connection between the server and your computer to process your information and for you to submit your information in a secure manner. This connection is maintained through the use of cookies. VDSS applications do not use these cookies to store or transmit information about you. If your Web browser is not configured to accept cookies, you still will be able to access information on the site, but some features may not be available now or in the future.</span>
+		<br/><br/><span>I understand that the Department of Social Services, DMAS, and DMAS contractors may exchange information relating to my coverage or my child's coverage to assist with application, enrollment, administration, and billing services. I understand that I can revoke the consent to disclose information at any time.</span>
+		</div>
+	</div>
+</div>
+
+<hr/>
+
+<div>
+	<div class="row form-row">
+		<div class="col-md-12">
+		<span>By clicking the "I Accept" button, you are accepting the Confidentiality Agreement and Acceptable Use policies as mandated by the Commonwealth of Virginia. 
+		Also, note that it is your responsibility to protect any items that you print from this website. Click the "I Do Not Accept" button to end this session and log out.</span>
+		<br/><br/>
+		</div>
+		
+		<div class="col-md-2 col-md-offset-8">
+			<button type="button" class="btn btn-green pull-right" onclick="javascript: loadPage('old-or-new-app.html');">I Accept</button>
+		</div>
+		
+		<div class="col-md-2">
+			<button type="button" class="btn btn-green pull-right" onclick="javascript: signOut();">I Do Not Accept</button>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		sessionStorage.currentScreen = "confidential-agreement.html";
+		$( "i.toggle" ).first().parent().nextAll("div").first().slideToggle( "slow" );
+		$( "i.toggle" ).last().parent().nextAll("div").first().slideToggle( "slow" );
+		$( "i.toggle" ).toggleClass("fa-chevron-down");
+  	});
+</script>
+
+

@@ -2,11 +2,12 @@
  * 
  */
 function init(){
-	window.history.forward(1);
+	//window.history.forward(1);
 	$("#topMenuBar").load("top-menu.html"); 
+	$("#footerDiv").load("footer.html"); 
 	var currentScreen = sessionStorage.currentScreen;
-	if(currentScreen == null)
-		currentScreen = "primary-applicant-basic.html";
+	if(currentScreen == null || currentScreen == 'undefined')
+		currentScreen = "confidential-agreement.html";
 	loadPage(currentScreen);
 }
 
@@ -68,9 +69,20 @@ $.fn.setPageEventHandlers = function(){
 		        //data    : JSON.stringify($(this).serializeObject()),
 		        data : JSON.stringify(form2js(this, '.', true)),
 		        success : function( data ) {
-		        	if(data.applicationId != null)
-		        		sessionStorage.applicationId = data.applicationId;
-		        	loadPage(nextPage);
+		        	if(data.responseCode == 200){
+		        		try {
+		        			$(this).formSubmissionSucess(data);
+			        	}
+			        	catch(err) {}
+			        	if(data.applicationId != null)
+			        		sessionStorage.applicationId = data.applicationId;
+			        	loadPage(nextPage);
+		        	} else{
+		        		try {
+		        			$(this).formSubmissionFailed(data);
+			        	}
+			        	catch(err) {}
+		        	}
 		        },
 		        error   : function( xhr, err, thrownError ) {
 		            alert('Error in submission '+err+xhr+thrownError);   

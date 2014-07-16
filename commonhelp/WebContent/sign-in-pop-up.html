@@ -1,0 +1,81 @@
+<div class="form-box">
+  <h4>Sign In</h4>
+  <p class="text-muted">please sign in to your existing account</p>
+  <hr>
+  <div class="alert alert-danger hidden" id="signInErrorDiv"></div>
+  <form role="form" method="post" id="signInForm" action="/commonhelp-svcs/services/medicaid/applicant/authorize">
+    <div class="form-group">
+      <label class="sr-only" for="exampleInputEmail1">Username</label>
+      <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter Username">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"> Remember me
+      </label>
+    </div>
+    <button type="submit" class="btn btn-green">Submit</button>
+  </form>
+  <hr>
+  <p>Not registered? <a href="sign-up.html">Create an Account.</a></p>
+  <div class="pwd-lost">
+    <div class="pwd-lost-q show">Lost your password? <a href="#" id="passwordLostLink">Click here to recover.</a></div>
+    <div class="pwd-lost-f hidden">
+      <p class="text-muted">Enter your email address and we will send you a link to reset your password.</p>
+      <form class="form-inline" role="form">
+        <div class="form-group">
+          <label class="sr-only" for="email-pwd">Email address</label>
+          <input type="email" class="form-control" id="email-pwd" placeholder="Enter email">
+        </div>
+        <button type="submit" class="btn btn-blue">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+
+$("#passwordLostLink").click(function(){
+	$(".pwd-lost > .pwd-lost-q").toggleClass("show hidden");
+	$(".pwd-lost > .pwd-lost-f").toggleClass("hidden show animated fadeIn");
+	return false;
+});
+
+$( "#signInForm" ).submit(function( event ) {
+	var signInLandingPage;
+	if(sessionStorage.signInLandingPage != null)
+		signInLandingPage = sessionStorage.signInLandingPage;
+	else
+		signInLandingPage =  "index.html";
+	
+	$.ajax({
+        url     : $(this).attr('action'),
+        type    : $(this).attr('method'),
+        contentType : "application/json; charset=utf-8",
+        dataType: 'json',
+        data : JSON.stringify(form2js(this, '.', true)),
+        success : function( data ) {
+        	if(data.responseCode == 200){
+        		sessionStorage.userProfile = JSON.stringify(data.userProfile);
+        		updateSignInStatus(data.userProfile);
+        		$("#dialog-form").dialog( "close" );
+        		sessionStorage.removeItem("signInLandingPage");
+        		window.location.href = "/commonhelp/"+signInLandingPage;
+        	}else{
+        		$("#signInErrorDiv").html(data.error);
+        		$("#signInErrorDiv").toggleClass('show hidden');
+        	}
+        },
+        error   : function( xhr, err, thrownError ) {
+            alert('Error in submission '+err+xhr+thrownError);   
+        	console.error("Error in Submission: "+thrownError);
+        }
+    }); 
+	return false;
+});
+</script>
+         
+      
