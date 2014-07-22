@@ -1,6 +1,7 @@
 package gov.virginia.ehhr.commonhelp.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class UserProfile implements Serializable {
 
@@ -13,6 +14,7 @@ public class UserProfile implements Serializable {
 	private String emailAddress;
 	private String authtoken;
 	private String applicationId;
+	List<SecurityQA> securityQAList;
 	
 	
 	public String getPassword() {
@@ -56,6 +58,12 @@ public class UserProfile implements Serializable {
 	}
 	public void setApplicationId(String applicationId) {
 		this.applicationId = applicationId;
+	}
+	public List<SecurityQA> getSecurityQAList() {
+		return securityQAList;
+	}
+	public void setSecurityQAList(List<SecurityQA> securityQAList) {
+		this.securityQAList = securityQAList;
 	}
 	
 	
