@@ -16,6 +16,15 @@ public class UserProfile implements Serializable {
 	private String applicationId;
 	List<SecurityQA> securityQAList;
 	
+	// advanced fields
+	private String ssn;
+	private String dob;
+	private String phone;
+	private Address address;
+	private List<KnowledgeBaseAuthQA> kbaList;
+	private Integer accessLevel = 1;
+	
+	
 	
 	public String getPassword() {
 		return password;
@@ -65,7 +74,44 @@ public class UserProfile implements Serializable {
 	public void setSecurityQAList(List<SecurityQA> securityQAList) {
 		this.securityQAList = securityQAList;
 	}
-	
+	public String getSsn() {
+		return ssn;
+	}
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
+	public String getDob() {
+		return dob;
+	}
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public List<KnowledgeBaseAuthQA> getKbaList() {
+		return kbaList;
+	}
+
+	public void setKbaList(List<KnowledgeBaseAuthQA> kbaList) {
+		this.kbaList = kbaList;
+	}
+	public Integer getAccessLevel() {
+		return accessLevel;
+	}
+	public void setAccessLevel(Integer accessLevel) {
+		this.accessLevel = accessLevel;
+	}
+
 	
 
 }

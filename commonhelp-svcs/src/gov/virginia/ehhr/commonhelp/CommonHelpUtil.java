@@ -1,12 +1,19 @@
 package gov.virginia.ehhr.commonhelp;
 
 import gov.virginia.ehhr.commonhelp.domain.Address;
+import gov.virginia.ehhr.commonhelp.domain.ApplicationServiceResponse;
 import gov.virginia.ehhr.commonhelp.domain.Income;
+import gov.virginia.ehhr.commonhelp.domain.KBAList;
+import gov.virginia.ehhr.commonhelp.domain.KnowledgeBaseAuthQA;
 import gov.virginia.ehhr.commonhelp.domain.SelfEmployment;
 import gov.virginia.ehhr.commonhelp.domain.SelfEmploymentExpense;
+import gov.virginia.ehhr.commonhelp.domain.UserProfile;
 
+import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.util.List;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,6 +87,32 @@ public class CommonHelpUtil {
                 } 
             }
         }
+    }
+    
+    public static List<KnowledgeBaseAuthQA> getKnowledgeBaseQAList(String username){
+    	try {
+    		ObjectMapper mapper = new ObjectMapper();
+    		InputStream in = CommonHelpUtil.class.getClassLoader().getResourceAsStream("kba-list.json");
+    		KBAList kbaUsers = mapper.readValue(in, KBAList.class);
+    		List<UserProfile> userProfileList = kbaUsers.getKba();
+    		
+    		for(UserProfile profile : userProfileList){
+    			if(profile.getUserName().equalsIgnoreCase(username))
+    				return profile.getKbaList();
+    		}
+    		
+    		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+    	return null;
+    }
+    
+    public static void main(String[] args){
+    	List<KnowledgeBaseAuthQA> kbaList = getKnowledgeBaseQAList("devghotra");
+    	for(KnowledgeBaseAuthQA kbaQA : kbaList){
+    		System.out.println(kbaQA.getQuestion());
+    	}
     }
 
 }

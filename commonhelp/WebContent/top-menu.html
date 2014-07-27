@@ -41,7 +41,7 @@ min-width: 200px;
 					<a href="javascript:signIn();">Sign In</a>
 				</li>
 				<li id="sign-up" class="show">
-					<a href="sign-up.html">Sign Up</a>
+					<a href="javascript: signUp();">Sign Up</a>
 				</li>
 				
 				<!-- Signed in. Profile Menu -->
@@ -87,6 +87,11 @@ function signIn(){
 	      position: ['center',100]	      
 	});
 	$(".ui-dialog-titlebar").hide();
+}
+
+function signUp(){
+	sessionStorage.currentScreen = "sign-up-basic.html";
+	window.location.href = "/commonhelp/sign-up.html";
 }
 
 function signOut(){

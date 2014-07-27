@@ -1,0 +1,36 @@
+{
+    "kba": [
+        {
+            "kbaList": [
+                {
+                    "answerOptions": [
+                        "New York", 
+                        "Illinois", 
+                        "Virginia"
+                    ], 
+                    "correctAnswer": "Illinois", 
+                    "question": "Which state you lived in 2012?"
+                }, 
+                {
+                    "answerOptions": [
+                        "Ford", 
+                        "Nissan", 
+                        "Toyota"
+                    ], 
+                    "correctAnswer": "Ford", 
+                    "question": "Which car you owned in the past?"
+                }, 
+                {
+                    "answerOptions": [
+                        "Illinois State", 
+                        "New York State", 
+                        "Virginia State"
+                    ], 
+                    "correctAnswer": "Virginia State", 
+                    "question": "Which college you graduated from?"
+                }
+            ], 
+            "userName": "devghotra"
+        }
+    ]
+}

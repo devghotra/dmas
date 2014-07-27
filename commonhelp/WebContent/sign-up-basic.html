@@ -1,0 +1,144 @@
+<div class="col-md-6 col-md-offset-3 signup" >
+<h3 class="hl top-zero">Registration</h3>
+	          <hr>
+	          <form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/sign-up-basic">
+	            <div class="form-group">
+		           	<div class="row">
+		               <div class="col-sm-6">
+		                  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
+		               </div>
+		               <div class="col-sm-6">
+		                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
+		               </div>
+	              </div>
+	            </div>
+	            <div class="form-group">
+	              <input type="text" class="form-control" id="userName" name="userName" placeholder="Username">
+	            </div>
+	            <div class="form-group">
+	              <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="Enter email">
+	            </div>
+	            <div class="form-group">
+	              <div class="row">
+	                <div class="col-sm-6">
+	                  <input type="password" class="form-control margin-bottom-xs" id="password" name="password" placeholder="Password">
+	                </div>
+	                <div class="col-sm-6">
+	                  <input type="password" class="form-control" id="passwordRepeat" placeholder="Repeat Password">
+	                </div>
+	              </div>
+	            </div>
+	            
+	            <label for="middle-initial">Security Questions</label> 
+	            <div class="form-group">
+	              <div class="row">
+	                <div class="col-sm-8">
+	                	<select class="form-control" id="securityQAList[0].question" name="securityQAList[0].question">
+					 		<option value="">Select</option>
+							<option  value="Which is your favorite restaurant?">Which is your favorite restaurant?</option>
+							<option value="What is your favorite color?">What is your favorite color?</option>
+							<option value="Which city were you born in?">Which city were you born in?</option>
+							<option value="What is your pet's name?">What is your pet's name?</option>
+							<option value="Which is your favorite sports team?">Which is your favorite sports team?</option>	
+							<option value="When is your anniversary?">When is your anniversary?</option>
+							<option value="Who was your childhood hero?">Who was your childhood hero?</option>
+							<option value="Which is your favorite car?">Which is your favorite car?</option>
+							<option value="What was the name of your first school?">What was the name of your first school?</option>
+							<option value="Which is your favorite vacation city?">Which is your favorite vacation city?</option>
+							<option value="Who is your favorite person?">Who is your favorite person?</option>
+							<option value="Where did you first meet your spouse?">Where did you first meet your spouse?</option>
+						</select>
+	                </div>
+	                <div class="col-sm-4">
+	                  <input type="text" class="form-control" id="securityQAList[0].answer" name ="securityQAList[0].answer" placeholder="">
+	                </div><br/><br/>
+	                 <div class="col-sm-8">
+	                	<select class="form-control" id="securityQAList[1].question" name="securityQAList[1].question">
+					 		<option value="">Select</option>
+							<option  value="Which is your favorite restaurant?">Which is your favorite restaurant?</option>
+							<option value="What is your favorite color?">What is your favorite color?</option>
+							<option value="Which city were you born in?">Which city were you born in?</option>
+							<option value="What is your pet's name?">What is your pet's name?</option>
+							<option value="Which is your favorite sports team?">Which is your favorite sports team?</option>	
+							<option value="When is your anniversary?">When is your anniversary?</option>
+							<option value="Who was your childhood hero?">Who was your childhood hero?</option>
+							<option value="Which is your favorite car?">Which is your favorite car?</option>
+							<option value="What was the name of your first school?">What was the name of your first school?</option>
+							<option value="Which is your favorite vacation city?">Which is your favorite vacation city?</option>
+							<option value="Who is your favorite person?">Who is your favorite person?</option>
+							<option value="Where did you first meet your spouse?">Where did you first meet your spouse?</option>
+						</select>
+	                </div>
+	                <div class="col-sm-4">
+	                 	<input type="text" class="form-control" id="securityQAList[1].answer" name ="securityQAList[1].answer" placeholder="">
+	                </div><br/><br/>
+	                <div class="col-sm-8">
+	                	<select class="form-control" id="securityQAList[2].question" name="securityQAList[2].question">
+					 		<option value="">Select</option>
+							<option  value="Which is your favorite restaurant?">Which is your favorite restaurant?</option>
+							<option value="What is your favorite color?">What is your favorite color?</option>
+							<option value="Which city were you born in?">Which city were you born in?</option>
+							<option value="What is your pet's name?">What is your pet's name?</option>
+							<option value="Which is your favorite sports team?">Which is your favorite sports team?</option>	
+							<option value="When is your anniversary?">When is your anniversary?</option>
+							<option value="Who was your childhood hero?">Who was your childhood hero?</option>
+							<option value="Which is your favorite car?">Which is your favorite car?</option>
+							<option value="What was the name of your first school?">What was the name of your first school?</option>
+							<option value="Which is your favorite vacation city?">Which is your favorite vacation city?</option>
+							<option value="Who is your favorite person?">Who is your favorite person?</option>
+							<option value="Where did you first meet your spouse?">Where did you first meet your spouse?</option>
+						</select>
+	                </div>
+	                <div class="col-sm-4">
+	                  <input type="text" class="form-control" id="securityQAList[2].answer" name ="securityQAList[2].answer" placeholder="">
+	                </div>
+	              </div>
+	            </div>
+	            
+	            <div class="checkbox">
+	              <label>
+	                <input type="checkbox" id="acceptTerms"> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+	              </label>
+	            </div>
+	            <button id="submitBtn" type="button" class="btn btn-green" disabled>Create an account</button>
+	            <input type="hidden" id="nextPage" value="sign-up-advanced.html">
+	          </form>
+	   </div>
+	          
+<script>
+var	 toggleBtn = true;
+$("#acceptTerms").click(function(){
+	if(toggleBtn)
+		$("#submitBtn").removeAttr("disabled");
+	else
+		$("#submitBtn").attr("disabled", "disabled");
+
+	toggleBtn = !toggleBtn;
+			
+});
+
+$("#submitBtn").click(function(){
+	var pwd = $("#password").val();
+	var rPwd = $("#passwordRepeat").val();
+
+	if(pwd == rPwd)
+		$("#applicationForm").submit();
+	else{
+		$("#errorDiv").html("Password and repeat password don't match");
+		$("#errorDiv").toggleClass('show hidden');
+	}			
+});
+
+$.fn.formSubmissionFailed = function(data){
+	$("#errorDiv").html(data.error);
+	$("#errorDiv").toggleClass('show hidden');
+};
+
+
+$.fn.formSubmissionSucess = function(data){
+	if(sessionStorage.userProfile == null)
+		sessionStorage.userProfile = JSON.stringify(data.userProfile);
+	//window.location.href = "/commonhelp/index.html";
+};
+
+</script>

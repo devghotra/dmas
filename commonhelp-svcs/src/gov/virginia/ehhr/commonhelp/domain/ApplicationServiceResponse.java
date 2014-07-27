@@ -89,6 +89,5 @@ public class ApplicationServiceResponse implements Serializable{
 	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
 	}
-
 	
 }

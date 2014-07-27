@@ -258,6 +258,7 @@ h4{background: none;}
 	});
 
 	function applyForAssistance(){
+		sessionStorage.currentScreen = "confidential-agreement.html";
 		if(sessionStorage.userProfile == null){
 			sessionStorage.signInLandingPage = "application.html";
 			signIn();

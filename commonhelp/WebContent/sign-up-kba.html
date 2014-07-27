@@ -1,0 +1,130 @@
+<div class="col-md-10 col-md-offset-1 signup" >
+<h3 class="hl">Identity Proofing</h3>
+<p class="text-muted">
+	Please answer below questions related to you to get enhanced account<br />
+</p>
+<hr/>
+
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/sign-up-kba">
+	<h4 class="hl bottom-15">
+		Select your answers below<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<input type="hidden" id="userName" name="userName"/>
+	
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label id="question1"></label>
+			</div>
+			<div class="col-md-2">
+				<label class="radio-inline">
+				  <input type="radio" name="kbaList[0].correctAnswer" id="q1Option1" value=""> <span class="q1Option1"></span>
+				</label>
+			</div>
+			<div class="col-md-2">
+				<label class="radio-inline">
+				  <input type="radio" name="kbaList[0].correctAnswer" id="q1Option2" value=""> <span class="q1Option2"></span>
+				</label>
+			</div>
+			<div class="col-md-2">
+				<label class="radio-inline">
+				  <input type="radio" name="kbaList[0].correctAnswer" id="q1Option3" value=""> <span class="q1Option3"></span>
+				</label>
+			</div>
+		</div>
+		
+		
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label id="question2"></label>
+			</div>
+			<div class="col-md-2">
+				<label class="radio-inline">
+				  <input type="radio" name="kbaList[1].correctAnswer" id="q2Option1" value=""> <span class="q2Option1"></span>
+				</label>
+			</div>
+			<div class="col-md-2">
+				<label class="radio-inline">
+				  <input type="radio" name="kbaList[1].correctAnswer" id="q2Option2" value=""> <span class="q2Option2"></span>
+				</label>
+			</div>
+			<div class="col-md-2">
+				<label class="radio-inline">
+				  <input type="radio" name="kbaList[1].correctAnswer" id="q2Option3" value=""> <span class="q2Option3"></span>
+				</label>
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label id="question3"></label>
+			</div>
+			<div class="col-md-2">
+				<label class="radio-inline">
+				  <input type="radio" name="kbaList[2].correctAnswer" id="q3Option1" value=""> <span class="q3Option1"></span>
+				</label>
+			</div>
+			<div class="col-md-2">
+				<label class="radio-inline">
+				  <input type="radio" name="kbaList[2].correctAnswer" id="q3Option2" value=""> <span class="q3Option2"></span>
+				</label>
+			</div>
+			<div class="col-md-2">
+				<label class="radio-inline">
+				  <input type="radio" name="kbaList[2].correctAnswer" id="q3Option3" value=""> <span class="q3Option3"></span>
+				</label>
+			</div>
+		</div>
+		<br />
+		
+		<button type="button" class="btn btn-green pull-left" onclick="javascript: startApplication();">Skip</button>
+		<button id="submitBtn" type="submit" class="btn btn-green pull-right">Submit</button>
+	     <input type="hidden" id="nextPage" value="sign-up-access-level.html">
+	</div>
+
+</form>
+</div>
+
+<script>
+$(document).ready(function(){
+	var userProfile;
+	sessionStorage.currentScreen = "sign-up-kba.html";
+	if(sessionStorage.userProfile != null){
+		userProfile = JSON.parse(sessionStorage.userProfile);
+		if(userProfile != null && userProfile.authtoken != null){
+			$("#userName").val(userProfile.userName);
+		}
+	}
+
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/sign-up-kba?username="+userProfile.userName, function( data ) {
+		var kbaList = data.userProfile.kbaList;
+
+		if(kbaList != null){
+			$("#question1").html(kbaList[0].question);
+			$("#q1Option1").val(kbaList[0].answerOptions[0]);
+			$(".q1Option1").html(kbaList[0].answerOptions[0]);
+			$("#q1Option2").val(kbaList[0].answerOptions[1]);
+			$(".q1Option2").html(kbaList[0].answerOptions[1]);
+			$("#q1Option3").val(kbaList[0].answerOptions[2]);
+			$(".q1Option3").html(kbaList[0].answerOptions[2]);
+
+			$("#question2").html(kbaList[1].question);
+			$("#q2Option1").val(kbaList[1].answerOptions[0]);
+			$(".q2Option1").html(kbaList[1].answerOptions[0]);
+			$("#q2Option2").val(kbaList[1].answerOptions[1]);
+			$(".q2Option2").html(kbaList[1].answerOptions[1]);
+			$("#q2Option3").val(kbaList[1].answerOptions[2]);
+			$(".q2Option3").html(kbaList[1].answerOptions[2]);
+
+			$("#question3").html(kbaList[2].question);
+			$("#q3Option1").val(kbaList[2].answerOptions[0]);
+			$(".q3Option1").html(kbaList[2].answerOptions[0]);
+			$("#q3Option2").val(kbaList[2].answerOptions[1]);
+			$(".q3Option2").html(kbaList[2].answerOptions[1]);
+			$("#q3Option3").val(kbaList[2].answerOptions[2]);
+			$(".q3Option3").html(kbaList[2].answerOptions[2]);
+		} else
+			loadPage("sign-up-access-level.html");
+	});
+});
+</script>

@@ -4,6 +4,7 @@ import gov.virginia.ehhr.commonhelp.domain.Applicant;
 import gov.virginia.ehhr.commonhelp.domain.ApplicationServiceResponse;
 import gov.virginia.ehhr.commonhelp.domain.HouseholdMember;
 import gov.virginia.ehhr.commonhelp.domain.Income;
+import gov.virginia.ehhr.commonhelp.domain.KnowledgeBaseAuthQA;
 import gov.virginia.ehhr.commonhelp.domain.UserProfile;
 
 import java.util.ArrayList;
@@ -33,12 +34,12 @@ public class CommonHelpController {
 	HashMap<String, UserProfile> profileStore = new HashMap<String, UserProfile>();
 	
 	
-	@RequestMapping(value = "/register", 
+	@RequestMapping(value = "/sign-up-basic", 
     		method = RequestMethod.POST, 
     		consumes = {"application/json"}, 
     		produces = {"application/json"})
 	@ResponseBody
-	public ApplicationServiceResponse register(@RequestBody UserProfile userProfile){
+	public ApplicationServiceResponse signUpBasic(@RequestBody UserProfile userProfile){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		String userName = userProfile.getUserName();
 		
@@ -50,6 +51,80 @@ public class CommonHelpController {
 			svcsResponse.setResponseCode(200);
 		} else{
 			svcsResponse.setError("Duplicate Username");
+			svcsResponse.setResponseCode(500);
+		}
+		
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/sign-up-advanced", 
+    		method = RequestMethod.POST, 
+    		consumes = {"application/json"}, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse signUpAdvanced(@RequestBody UserProfile userProfile){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		String userName = userProfile.getUserName();
+		
+		if(profileStore.get(userName) != null){
+			UserProfile storedProfile = profileStore.get(userName);
+			CommonHelpUtil.merge(storedProfile, userProfile);	
+			svcsResponse.setResponseCode(200);
+		} else{
+			svcsResponse.setError("Invalid Username");
+			svcsResponse.setResponseCode(500);
+		}
+		
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/sign-up-kba", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse signUpKBA(@RequestParam(value="username") String username){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		if(username != null){
+			UserProfile storedProfile = profileStore.get(username);
+			storedProfile.setKbaList(CommonHelpUtil.getKnowledgeBaseQAList(username));
+			svcsResponse.setUserProfile(storedProfile);
+			svcsResponse.setResponseCode(200);
+		} else{
+			svcsResponse.setError("Invalid Username");
+			svcsResponse.setResponseCode(500);
+		}
+		
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/sign-up-kba", 
+    		method = RequestMethod.POST, 
+    				consumes = {"application/json"}, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse verifySignUpKBA(@RequestBody UserProfile userProfile){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		String username = userProfile.getUserName();
+		boolean kbaAnsMismatched = false;
+		UserProfile storedProfile;
+		if(username != null){
+			storedProfile = profileStore.get(username);
+			List<KnowledgeBaseAuthQA> userKbaList = storedProfile.getKbaList();
+			List<KnowledgeBaseAuthQA> submittedKbaList = userProfile.getKbaList();
+			
+			for(int i = 0; i < submittedKbaList.size(); i++){
+				if(!userKbaList.get(i).getCorrectAnswer().equalsIgnoreCase(submittedKbaList.get(i).getCorrectAnswer())){
+					kbaAnsMismatched = true;
+					break;
+				}
+			}
+			
+			if(!kbaAnsMismatched)
+				storedProfile.setAccessLevel(2);
+			
+			svcsResponse.setResponseCode(200);
+		} else{
+			svcsResponse.setError("Invalid Username");
 			svcsResponse.setResponseCode(500);
 		}
 		

@@ -1,0 +1,42 @@
+<div class="col-md-10 col-md-offset-1 signup" >
+<h3 class="hl">Account Type</h3>
+<p class="text-muted">
+	Your account has been created with below type.<br />
+</p>
+<hr/>
+	<h4 class="hl bottom-15">
+		Account Type<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	
+	<div class="col-md-12">
+		<div class="row hide" id="basicLevelAccess">
+			<span><strong>Basic Account</strong> - This account can be used to apply for benefits and services</span>
+		</div>
+		<div class="row hide" id="advLevelAccess">
+			<span>Enhanced Account - This account has the basic features plus it provides a greater level of assurance that you are who you say you are</span>
+		</div>
+		<br />
+		
+		<button type="button" class="btn btn-green pull-right" onclick="javascript: startApplication();">Start Application</button>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+	var userProfile;
+	sessionStorage.currentScreen = "sign-up-access-level.html";
+	if(sessionStorage.userProfile != null){
+		userProfile = JSON.parse(sessionStorage.userProfile);
+	}
+
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/sign-up-kba?username="+userProfile.userName, function( data ) {
+		var accessLevel = data.userProfile.accessLevel;
+		console.debug(accessLevel);
+		if(accessLevel == 1)
+			$("#basicLevelAccess").toggleClass('show hide');
+		else
+			$("#advLevelAccess").toggleClass('show hide');
+	});
+});
+
+</script>
