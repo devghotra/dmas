@@ -28,6 +28,24 @@
                     ], 
                     "correctAnswer": "Virginia State", 
                     "question": "Which college you graduated from?"
+                },
+                {
+                    "answerOptions": [
+                        "2009", 
+                        "2010", 
+                        "2011"
+                    ], 
+                    "correctAnswer": "2010", 
+                    "question": "When did you got married?"
+                },
+                {
+                    "answerOptions": [
+                        "240 S Main St", 
+                        "9 Grove St", 
+                        "15A Hope St"
+                    ], 
+                    "correctAnswer": "15A Hope St", 
+                    "question": "Which of the following streets you lived?"
                 }
             ], 
             "userName": "devghotra"

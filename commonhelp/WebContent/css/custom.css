@@ -40,7 +40,7 @@ h1.hl small, h2.hl small, h3.hl small, h4.hl small, h5.hl small, h6.hl small {
 /* ===== Navbar ===== */
 
 .navbar-inverse {
-	background-color: #515151;
+	background-color: #386F80; /*#515151 */;
 	border: none;
 }
 .navbar-inverse .navbar-nav > .active > a,
@@ -235,7 +235,7 @@ h1.hl small, h2.hl small, h3.hl small, h4.hl small, h5.hl small, h6.hl small {
 }
 .services li:hover {
 	width: 328px!important;
-	background: #69D2E7;
+	background: #b8860b;
 	cursor: pointer;
 	color: #FFF;
 	text-align: left;

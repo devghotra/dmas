@@ -174,8 +174,8 @@ fieldset[disabled] .btn-blue.active {
 
 .btn-dark {
 	color: #ffffff;
-	background-color: #515151;
-	border-color: #515151;
+	background-color: #386F80; /* #515151; */
+	border-color: #386F80 /*#515151; */
 }
 .btn-dark:hover,
 .btn-dark:focus,
@@ -183,8 +183,8 @@ fieldset[disabled] .btn-blue.active {
 .btn-dark.active,
 .open .dropdown-toggle.btn-dark {
 	color: #ffffff;
-	background-color: #444;
-	border-color: #444;
+	background-color: #b8860b; /*#444;*/
+	border-color: #b8860b; /*#444;*/
 }
 .btn-dark:active,
 .btn-dark.active,
