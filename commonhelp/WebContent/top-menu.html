@@ -83,10 +83,11 @@ function signIn(){
 		  modal: true,
 	      resizable: false,
 	      width:400,
-	      height:515,
+	      height:435,
+	      title:"SIGN IN",
 	      position: ['center',100]	      
 	});
-	$(".ui-dialog-titlebar").hide();
+	//$(".ui-dialog-titlebar").hide();
 }
 
 function signUp(){
@@ -94,10 +95,6 @@ function signUp(){
 	window.location.href = "/commonhelp/sign-up.html";
 }
 
-function signOut(){
-	sessionStorage.removeItem("userProfile");
-	window.location.href = "/commonhelp/index.html";
-}
 
 function updateSignInStatus(userProfile){
 	$("#sign-up").toggleClass('show hidden');

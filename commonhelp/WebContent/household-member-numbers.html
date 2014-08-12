@@ -43,7 +43,19 @@
 	
 	<input type="hidden" id="nextPage" value="household-members-summary.html">
 	
-	<button id="nextBtn" type="submit" class="btn btn-green pull-right">Next</button>
+	<div class="row form-row">
+		<div class="col-md-10">
+			<button id="backBtn" type="button" class="btn btn-green pull-left" value="primary-applicant-summary.html">Previous</button>
+		</div>
+		<div class="col-md-2">
+			<button id="nextBtn" type="submit" class="btn btn-green pull-right btn-block">Save & Next</button>
+		</div>
+	</div>
+	<div class="row form-row">
+		<div class="col-md-2 col-md-offset-10">
+			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
+		</div>
+	</div>
 	
 </form>
 

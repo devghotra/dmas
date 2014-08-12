@@ -7,12 +7,42 @@
 <form role="form" id="applicationForm" method="post"
 	action="/commonhelp-svcs/services/medicaid/applicant/basic-info">
 	<input type="hidden" id="applicationId" name="applicationId">
+	
+	<div class="row form-row">
+		<div class="col-md-12">
+			<label>Are you applying for assistance for this person</label><br />
+			 <label class="radio-inline" for="applyingAssitanceFlag-y"> 
+			 	<input type="radio" name="applyingAssitanceFlag" id="applyingAssitanceFlag-y" value="true">
+			 	Yes
+			</label>
+			 <label class="radio-inline" for="applyingAssitanceFlag-n"> 
+			 	<input type="radio" name="applyingAssitanceFlag" id="applyingAssitanceFlag-n" value="false">
+			 	No
+			</label>
+		</div>
+	</div>
+	<br/>
 
+	<div id="applyAssistanceInfoDivs" style="display: none;">
 	<h4 class="hl bottom-15">
 		SSN/Citizenship Information<i class="fa fa-chevron-up toggle"></i>
 	</h4>
 	<div>
+	
 		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="suffix">Do you have SSN?</label>
+			</div>
+			<div class="col-md-4">
+				<label class="radio-inline" for="ssn-y"> <input
+					type="radio" name="ssnFlag" id="ssn-y" value="true">Yes
+				</label> <label class="radio-inline" for="ssn-n"> <input
+					type="radio" name="ssnFlag" id="ssn-n" value="false">No
+				</label>
+
+			</div>
+		</div>
+		<div class="row form-row" id="ssnDiv" style="display: none;">
 			<div class="col-md-6">
 				<label for="">Social Security Number:</label>
 			</div>
@@ -21,6 +51,7 @@
 			</div>
 
 		</div>
+		<div id="noSsnDiv" style="display: none;">
 		<div class="row form-row">
 			<div class="col-md-5">
 				<label for="suffix">If you do not have a social
@@ -30,10 +61,10 @@
 			<div class="col-md-4 col-md-offset-1">
 				<select class="form-control" id="noSsnReason" name="noSsnReason">
 					<option value="">Click here to choose</option>
-					<option value="reason 1">reason 1</option>
-					<option value="reason 2">reason 2</option>
-					<option value="reason 3">reason 3</option>
-					<option value="reason 4">reason 4</option>
+					<OPTION VALUE="CI" TITLE="Circumstances beyond the clients control prevent him from securing proof required to obtain an SSN (FS only)">Circumstances beyond the clients control prevent him from securing proof required to obtain an SSN (FS only)</OPTION>
+ 					<OPTION VALUE="OT" TITLE="Other">Other</OPTION>
+ 					<OPTION VALUE="RO" TITLE="Religious Objection">Religious Objection</OPTION>
+ 					<OPTION VALUE="UN" TITLE="Undocumented alien not required to apply">Undocumented alien not required to apply</OPTION>
 				</select>
 			</div>
 		</div>
@@ -47,11 +78,11 @@
 					name="ssnAppliedDate" placeholder="mm/dd/yyyy">
 			</div>
 		</div>
-		<br />
+		</div>
 		
 		<div class="row form-row">
 			<div class="col-md-6">
-				<label for="suffix">Is you a U.S. citizen?</label>
+				<label for="suffix">Are you a U.S. citizen?</label>
 			</div>
 			<div class="col-md-4">
 				<label class="radio-inline" for="usCitizen-y"> <input
@@ -119,10 +150,18 @@
 			<div class="col-md-4">
 				<select class="form-control" id="tribe" name="tribe">
 					<option value="">Select the tribe</option>
-					<option value="tribe 1">tribe 1</option>
-					<option value="tribe 2">tribe 2</option>
-					<option value="tribe 3">tribe 3</option>
-					<option value="tribe 4">tribe 4</option>
+					<OPTION VALUE="MAT" TITLE="Mattaponi">Mattaponi</OPTION>
+					 <OPTION VALUE="UMT" TITLE="Upper Mattaponi">Upper Mattaponi</OPTION>
+					 <OPTION VALUE="PAM" TITLE="Pamunkey">Pamunkey</OPTION>
+					 <OPTION VALUE="CHI" TITLE="Chickahominy">Chickahominy</OPTION>
+					 <OPTION VALUE="ECY" TITLE="Eastern Chickahominy">Eastern Chickahominy</OPTION>
+					 <OPTION VALUE="MON" TITLE="Monacan">Monacan</OPTION>
+					 <OPTION VALUE="NAN" TITLE="Nansemond">Nansemond</OPTION>
+					 <OPTION VALUE="RAP" TITLE="Rappahannock">Rappahannock</OPTION>
+					 <OPTION VALUE="PAT" TITLE="Patawomeck">Patawomeck</OPTION>
+					 <OPTION VALUE="NOT" TITLE="Nottoway">Nottoway</OPTION>
+					 <OPTION VALUE="CHE" TITLE="Cheroenhaka (Nottoway)">Cheroenhaka (Nottoway)</OPTION>
+					 <OPTION VALUE="OTH" TITLE="Other">Other</OPTION>
 				</select>
 			</div>
 		</div>
@@ -200,6 +239,7 @@
 		</div>
 	</div>
 	<br />
+	</div>
 
 	<h4 class="hl bottom-15">
 		Other Information<i class="fa fa-chevron-up toggle"></i>
@@ -211,11 +251,11 @@
 			</div>
 			<div class="col-md-4">
 				<select class="form-control" id="taxFileType" name="taxFileType">
-					<option value="">Tax dependent</option>
-					<option value="No dependent">No dependent</option>
-					<option value="Self dependent">Self dependent</option>
-					<option value="No tax payee">No tax payee</option>
-					<option value="Below poverty level">Below poverty level</option>
+					<OPTION VALUE="" TITLE="">Select</OPTION>
+					<OPTION VALUE="Non-filer" TITLE="Non-filer">Non-filer</OPTION>
+ 					<OPTION VALUE="Tax dependent" TITLE="Tax dependent">Tax dependent</OPTION>
+ 					<OPTION VALUE="Taxpayer" TITLE="Taxpayer">Taxpayer</OPTION>
+ 					<OPTION VALUE="Joint taxpayer" TITLE="Joint taxpayer">Joint taxpayer</OPTION>
 				</select>
 			</div>
 		</div>
@@ -258,13 +298,22 @@
 	</div>
 
 	<br />
-
-
-	<button id="backBtn" type="button" class="btn btn-green pull-left"
-		value="primary-applicant-basic.html">Previous</button>
-	<button id="nextBtn" type="submit" class="btn btn-green pull-right">Save</button>
-	<input type="hidden" id="nextPage"
-		value="primary-applicant-summary.html">
+	
+	<div class="row form-row">
+		<div class="col-md-10">
+			<button id="backBtn" type="button" class="btn btn-green pull-left" value="primary-applicant-basic.html">Previous</button>
+		</div>
+		<div class="col-md-2">
+			<button id="nextBtn" type="submit" class="btn btn-green pull-right btn-block">Save & Next</button>
+		</div>
+	</div>
+	<div class="row form-row">
+		<div class="col-md-2 col-md-offset-10">
+			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
+		</div>
+	</div>
+	
+	<input type="hidden" id="nextPage" value="primary-applicant-summary.html">
 </form>
 
 <script>
@@ -274,11 +323,37 @@
 		if(sessionStorage.applicationId != null){
     		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
         		var formData = JSON.parse(JSON.stringify(data.applicant));
-        		console.debug(formData);
+        		//console.debug(formData);
 				js2form(document.getElementById('applicationForm'), formData);
 				$(".name").html(data.applicant.firstName + " "+data.applicant.lastName);
+
+				if(data.applicant.applyingAssitanceFlag)
+        			$("#applyAssistanceInfoDivs").show();
+
+				if(data.applicant.ssnFlag)
+        			$("#ssnDiv").show();
+				else if(data.applicant.ssnFlag == false)
+					$("#noSsnDiv").show();
         	});
     	}
   	});
+
+  	$("#ssn-y").click(function(){
+        $("#ssnDiv").show();
+        $("#noSsnDiv").hide();
+    });
+
+  	$("#ssn-n").click(function(){
+    	$("#ssnDiv").hide();
+    	$("#noSsnDiv").show();
+	});
+
+  	$("#applyingAssitanceFlag-n").click(function(){
+  	    $("#applyAssistanceInfoDivs").hide();
+  	});
+
+  	$("#applyingAssitanceFlag-y").click(function(){
+  		$("#applyAssistanceInfoDivs").show();
+  		});
 </script>
 

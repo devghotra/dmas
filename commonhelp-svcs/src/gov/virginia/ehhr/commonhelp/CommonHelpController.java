@@ -43,12 +43,17 @@ public class CommonHelpController {
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		String userName = userProfile.getUserName();
 		
-		if(profileStore.get(userName) == null){
-			String authtoken = UUID.randomUUID().toString().replace("-", "");
-			userProfile.setAuthtoken(authtoken);
-			profileStore.put(userName, userProfile);
-			svcsResponse.setUserProfile(userProfile);
-			svcsResponse.setResponseCode(200);
+		if(profileStore.get(userName) == null){	
+			if(userName.equalsIgnoreCase("kevinsmith") || userName.equalsIgnoreCase("chrisbell") || userName.equalsIgnoreCase("johndoe")){
+				String authtoken = UUID.randomUUID().toString().replace("-", "");
+				userProfile.setAuthtoken(authtoken);
+				profileStore.put(userName, userProfile);
+				svcsResponse.setUserProfile(userProfile);
+				svcsResponse.setResponseCode(200);
+			} else{
+				svcsResponse.setError("Invalid Data");
+				svcsResponse.setResponseCode(500);
+			}
 		} else{
 			svcsResponse.setError("Duplicate Username");
 			svcsResponse.setResponseCode(500);
@@ -355,6 +360,16 @@ public class CommonHelpController {
 	public ApplicationServiceResponse getApplicationId(@RequestParam(value="userName", required = true) String userName){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		svcsResponse.setApplicationId(profileStore.get(userName).getApplicationId());
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/delete", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse deleteUser(@RequestParam(value="userName", required = true) String userName){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		profileStore.remove(userName);
 		return svcsResponse;	
 	}
 	

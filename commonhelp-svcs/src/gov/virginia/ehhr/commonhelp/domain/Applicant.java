@@ -46,6 +46,8 @@ public class Applicant implements Serializable{
 	private Ethnicity ethnicity;
 	private String taxFileType;
 	private Boolean tempAwayHomeFlag;
+	private Boolean ssnFlag;
+	private Boolean applyingAssitanceFlag;
 	private List<HouseholdMember> hhMemberList;
 	private Integer totalHouseHoldMembers;
 	private Integer totalTaxDependents;
@@ -303,6 +305,19 @@ public class Applicant implements Serializable{
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public Boolean getSsnFlag() {
+		return ssnFlag;
+	}
+	public void setSsnFlag(Boolean ssnFlag) {
+		this.ssnFlag = ssnFlag;
+	}
+	public Boolean getApplyingAssitanceFlag() {
+		return applyingAssitanceFlag;
+	}
+	public void setApplyingAssitanceFlag(Boolean applyingAssitanceFlag) {
+		this.applyingAssitanceFlag = applyingAssitanceFlag;
+	}
+	
 	
 	
 }

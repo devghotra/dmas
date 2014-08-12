@@ -55,8 +55,8 @@
 							<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
 						</select>
                    	</div>
-                   	<div class="col-md-3">
-                   		<button type="button" onclick="javascript:addIncome('present-job');" class="btn btn-green pull-right">Add</button>
+                   	<div class="col-md-2">
+                   		<button type="button" onclick="javascript:addIncome('present-job');" class="btn btn-green pull-right btn-block">Add Present Job</button>
                    	</div>
                  </div>
              </div>
@@ -97,8 +97,8 @@
 							<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
 						</select>
                    	</div>
-                   	<div class="col-md-3">
-                   		<button type="button" onclick="javascript:addIncome('past-job-summary');" class="btn btn-green pull-right">Add</button>
+                   	<div class="col-md-2">
+                   		<button type="button" onclick="javascript:addIncome('past-job-summary');" class="btn btn-green pull-right btn-block">Add Past Job</button>
                    	</div>
                  </div>
              </div>
@@ -138,8 +138,8 @@
 							<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
 						</select>
                    	</div>
-                   	<div class="col-md-3">
-                   		<button type="button" onclick="javascript:addIncome('self-employment');" class="btn btn-green pull-right">Add</button>
+                   	<div class="col-md-2">
+                   		<button type="button" onclick="javascript:addIncome('self-employment');" class="btn btn-green pull-right btn-block">Add Self Employment</button>
                    	</div>
                  </div>
              </div>
@@ -169,9 +169,16 @@
 	</div>
 </div>
 
-<div class="row form-row">
-	<button id="nextBtn" type="button" class="btn btn-green pull-right">Next</button>
-</div>
+	<div class="row form-row">
+		<div class="col-md-2 col-md-offset-10">
+			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block">Save & Next</button>
+		</div>
+	</div>
+	<div class="row form-row">
+		<div class="col-md-2 col-md-offset-10">
+			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
+		</div>
+	</div>
 
 <div id="dialog-confirm" title="Delete Income?" style="display: none;">
   <p>This income will be permanently deleted and cannot be recovered. Are you sure?</p>
@@ -201,11 +208,13 @@ $(document).ready(function(){
 						$("#selfEmploymentSummaryNA").hide();
 						appendSelfEmploymentIncome(memberIncome, memberInfo);
 					} else if(memberIncome.incomeType == 'other-income'){
-						$("#otherIncomeSummaryNA").hide();
 						var otherIncomeId = memberIncome.incomeId;
-						$.each(memberIncome.otherIncome, function( index, otherIncomeItem ) {
-							appendOtherIncome(otherIncomeItem, memberInfo, otherIncomeId);
-						});
+						if(memberIncome.otherIncome != null){
+							$("#otherIncomeSummaryNA").hide();
+							$.each(memberIncome.otherIncome, function( index, otherIncomeItem ) {
+								appendOtherIncome(otherIncomeItem, memberInfo, otherIncomeId);
+							});
+						}
 					}
 				});
 			});

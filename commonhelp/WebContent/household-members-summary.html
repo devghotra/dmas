@@ -33,20 +33,30 @@
 				<td><span id="taxFileType"></span></td>
 				<td><span id="livingType"></span></td>
 				<td><span id="tempAwayHomeFlag"></span></td>
-				<td><a href="javascript:editApplicant();">Edit</a></td>
+				<td><button type="button" class="btn btn-blue" onclick="javascript:editApplicant();">Edit</button></td>
 			</tr>
 		</tbody>
 	</table>
 </form>
-	
-<div class="row form-row">
-	<button id="addDependent" type="button" class="btn btn-green pull-right">Add Dependent</button>
-</div>
 
 <div class="row form-row">
-	<button id="backBtn" type="button" class="btn btn-green pull-left" value="household-member-numbers.html">Back</button>
-	<button id="nextBtn" type="button" class="btn btn-green pull-right">Next</button>
-</div>
+		<div class="col-md-10">
+			<button id="backBtn" type="button" class="btn btn-green pull-left" value="household-member-numbers.html">Previous</button>
+		</div>
+		<div class="col-md-2">
+			<button id="addDependent" type="button" class="btn btn-green pull-right btn-block">Add Household Member</button>
+		</div>
+	</div>
+	<div class="row form-row">
+		<div class="col-md-2 col-md-offset-10">
+			<button id="nextBtn" type="submit" class="btn btn-green pull-right btn-block">Save & Next</button>
+		</div>
+	</div>
+	<div class="row form-row">
+		<div class="col-md-2 col-md-offset-10">
+			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
+		</div>
+	</div>
 
 <script>
 var db = TAFFY();
@@ -78,7 +88,7 @@ $(document).ready(function(){
     						'<td><span id="hhmb'+i+'.taxFileType"></span></td>'+
     						'<td><span id="hhmb'+i+'.livingType"></span></td>'+
     						'<td><span id="hhmb'+i+'.tempAwayHomeFlag"></span></td>'+
-    						'<td><a href="javascript:editHhMember(\''+hhMember.hhMemberId+'\')">Edit</a></td>'+
+    						'<td><button type="button" class="btn btn-blue" onclick="javascript:editHhMember(\''+hhMember.hhMemberId+'\')">Edit</button></td>'+
     					'</tr>');
 
     			    $(this).renderHtmlFromJson("hhmb"+i,hhMember);
@@ -101,7 +111,7 @@ $( "#nextBtn" ).click(function( event ) {
 	return false;
 });
 
-function editHhMember(){
+function editHhMember(hhMemberId){
 	sessionStorage.getHhMemberId = hhMemberId;
 	loadPage("household-member.html");
 }

@@ -20,6 +20,7 @@ public class HouseholdMember implements Serializable {
 	private String maritalStatus;
 	private String livingType;
 	private Boolean virginiaResidentFlag;
+	private Boolean ssnFlag;
 	private String ssn;
 	private String noSsnReason;
 	private String ssnAppliedDate;
@@ -156,6 +157,12 @@ public class HouseholdMember implements Serializable {
 	}
 	public void setHhMemberId(String hhMemberId) {
 		this.hhMemberId = hhMemberId;
+	}
+	public Boolean getSsnFlag() {
+		return ssnFlag;
+	}
+	public void setSsnFlag(Boolean ssnFlag) {
+		this.ssnFlag = ssnFlag;
 	}
 	
 	

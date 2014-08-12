@@ -58,8 +58,13 @@
 				<label for="suffix">What is this person's martial status?</label> <select
 					class="form-control" id="maritalStatus" name="maritalStatus">
 					<option value="">Select</option>
-					<option value="Single">Single</option>
-					<option value="Married">Married</option>
+					<OPTION VALUE="Divorced" TITLE="Divorced">Divorced</OPTION>
+					 <OPTION VALUE="Married" TITLE="Married">Married</OPTION>
+					 <OPTION VALUE="Single" TITLE="Single-Never Married">Single-Never Married</OPTION>
+					 <OPTION VALUE="Separated" TITLE="Separated">Separated</OPTION>
+					 <OPTION VALUE="Legally Separated" TITLE="Legally Separated">Legally Separated</OPTION>
+					 <OPTION VALUE="Widowed" TITLE="Widowed">Widowed</OPTION>
+					 <OPTION VALUE="Other" TITLE="Other">Other</OPTION>
 				</select>
 			</div>
 			<div class="col-md-4 col-md-offset-2">
@@ -94,8 +99,23 @@
 		<h4 class="hl bottom-15">
 		SSN/Citizenship Information<i class="fa fa-chevron-up toggle"></i>
 		</h4>
+		
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="suffix">Do you have SSN?</label>
+			</div>
+			<div class="col-md-4">
+				<label class="radio-inline" for="ssn-y"> <input
+					type="radio" name="ssnFlag" id="ssn-y" value="true">Yes
+				</label> <label class="radio-inline" for="ssn-n"> <input
+					type="radio" name="ssnFlag" id="ssn-n" value="false">No
+				</label>
+
+			</div>
+		</div>
+		
 		<div>
-			<div class="row form-row">
+			<div class="row form-row" id="ssnDiv" style="display: none;">
 				<div class="col-md-6">
 					<label for="">Social Security Number:</label>
 				</div>
@@ -104,6 +124,7 @@
 				</div>
 	
 			</div>
+			<div id="noSsnDiv" style="display: none;">
 			<div class="row form-row">
 				<div class="col-md-5">
 					<label for="suffix">If this person does not have a social
@@ -113,10 +134,10 @@
 				<div class="col-md-4 col-md-offset-1">
 					<select class="form-control" id="noSsnReason" name="noSsnReason">
 						<option value="">Click here to choose</option>
-						<option value="reason 1">reason 1</option>
-						<option value="reason 2">reason 2</option>
-						<option value="reason 3">reason 3</option>
-						<option value="reason 4">reason 4</option>
+						<OPTION VALUE="CI" TITLE="Circumstances beyond the clients control prevent him from securing proof required to obtain an SSN (FS only)">Circumstances beyond the clients control prevent him from securing proof required to obtain an SSN (FS only)</OPTION>
+ 						<OPTION VALUE="OT" TITLE="Other">Other</OPTION>
+ 						<OPTION VALUE="RO" TITLE="Religious Objection">Religious Objection</OPTION>
+ 						<OPTION VALUE="UN" TITLE="Undocumented alien not required to apply">Undocumented alien not required to apply</OPTION>
 					</select>
 				</div>
 			</div>
@@ -126,9 +147,11 @@
 						applied, please provide the date application was submitted:</label>
 				</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="ssnAppliedDate"
+					<input type="text"
+					class="form-control datepicker" id="ssnAppliedDate"
 						name="ssnAppliedDate" placeholder="mm/dd/yyyy">
 				</div>
+			</div>
 			</div>
 			<br />
 		
@@ -146,7 +169,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+	
 	<br />
 	
 	<h4 class="hl bottom-15">
@@ -203,10 +226,18 @@
 			<div class="col-md-4">
 				<select class="form-control" id="tribe" name="tribe">
 					<option value="">Select the tribe</option>
-					<option value="tribe 1">tribe 1</option>
-					<option value="tribe 2">tribe 2</option>
-					<option value="tribe 3">tribe 3</option>
-					<option value="tribe 4">tribe 4</option>
+					<OPTION VALUE="MAT" TITLE="Mattaponi">Mattaponi</OPTION>
+					 <OPTION VALUE="UMT" TITLE="Upper Mattaponi">Upper Mattaponi</OPTION>
+					 <OPTION VALUE="PAM" TITLE="Pamunkey">Pamunkey</OPTION>
+					 <OPTION VALUE="CHI" TITLE="Chickahominy">Chickahominy</OPTION>
+					 <OPTION VALUE="ECY" TITLE="Eastern Chickahominy">Eastern Chickahominy</OPTION>
+					 <OPTION VALUE="MON" TITLE="Monacan">Monacan</OPTION>
+					 <OPTION VALUE="NAN" TITLE="Nansemond">Nansemond</OPTION>
+					 <OPTION VALUE="RAP" TITLE="Rappahannock">Rappahannock</OPTION>
+					 <OPTION VALUE="PAT" TITLE="Patawomeck">Patawomeck</OPTION>
+					 <OPTION VALUE="NOT" TITLE="Nottoway">Nottoway</OPTION>
+					 <OPTION VALUE="CHE" TITLE="Cheroenhaka (Nottoway)">Cheroenhaka (Nottoway)</OPTION>
+					 <OPTION VALUE="OTH" TITLE="Other">Other</OPTION>
 				</select>
 			</div>
 		</div>
@@ -284,6 +315,7 @@
 			</div>
 		</div>
 	</div>
+	</div>
 	<br />
 	
 	<h4 class="hl bottom-15">
@@ -297,11 +329,11 @@
 			</div>
 			<div class="col-md-4">
 				<select class="form-control" id="taxFileType" name="taxFileType">
-					<option value="">Tax dependent</option>
-					<option value="No dependent">No dependent</option>
-					<option value="Self dependent">Self dependent</option>
-					<option value="No tax payee">No tax payee</option>
-					<option value="Below poverty level">Below poverty level</option>
+					<OPTION VALUE="" TITLE="">Select</OPTION>
+					<OPTION VALUE="Non-filer" TITLE="Non-filer">Non-filer</OPTION>
+ 					<OPTION VALUE="Tax dependent" TITLE="Tax dependent">Tax dependent</OPTION>
+ 					<OPTION VALUE="Taxpayer" TITLE="Taxpayer">Taxpayer</OPTION>
+ 					<OPTION VALUE="Joint taxpayer" TITLE="Joint taxpayer">Joint taxpayer</OPTION>
 				</select>
 			</div>
 		</div>
@@ -349,8 +381,19 @@
 	</div>
 	<input type="hidden" id="nextPage" value="household-members-summary.html">
 	
-	<button id="cancelBtn" type="button" class="btn btn-green pull-left">Cancel</button>
-	<button id="nextBtn" type="submit" class="btn btn-green pull-right">Add</button>
+	<div class="row form-row">
+		<div class="col-md-10">
+			<button id="cancelBtn" type="button" class="btn btn-green pull-left">Cancel</button>
+		</div>
+		<div class="col-md-2">
+			<button id="nextBtn" type="submit" class="btn btn-green pull-right btn-block">Save & Next</button>
+		</div>
+	</div>
+	<div class="row form-row">
+		<div class="col-md-2 col-md-offset-10">
+			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
+		</div>
+	</div>
 </form>
 
 
@@ -363,8 +406,16 @@ $(document).ready(function(){
 	$("#hhMemberId").val(hhMemberId);
 	if(sessionStorage.applicationId != null && hhMemberId != null){
 		$.get( "/commonhelp-svcs/services/medicaid/applicant/household-member?app-id="+sessionStorage.applicationId+"&hh-member-id="+hhMemberId, function( data ) {
-    		var formData = JSON.parse(JSON.stringify(data.hhMember));
-			js2form(document.getElementById('applicationForm'), formData);
+    		//var formData = JSON.parse(JSON.stringify(data.hhMember));
+			js2form(document.getElementById('applicationForm'), data.hhMember);
+
+			if(data.hhMember.applyingAssitanceFlag)
+				$("#applyingAssitanceFlag-y").click();
+
+			if(data.hhMember.ssnFlag)
+    			$("#ssnDiv").show();
+			else if(data.applicant.ssnFlag == false)
+				$("#noSsnDiv").show();
     	});
 	}
 });
@@ -381,4 +432,14 @@ $("#applyingAssitanceFlag-n").click(function(){
 $("#applyingAssitanceFlag-y").click(function(){
 	$("#ssnCitizenshipDiv").show();
 	});
+
+$("#ssn-y").click(function(){
+    $("#ssnDiv").show();
+    $("#noSsnDiv").hide();
+});
+
+$("#ssn-n").click(function(){
+	$("#ssnDiv").hide();
+	$("#noSsnDiv").show();
+});
 </script>

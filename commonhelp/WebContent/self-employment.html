@@ -150,8 +150,9 @@
 				<table class="table" id="expenseTable">
 				<thead>
 					<tr>
-						<th style="width: 80%">Expense Type</th>
+						<th style="width: 60%">Expense Type</th>
 						<th style="width: 20%">Amount</th>
+						<th style="width: 20%"><button id="addExpenseBtn" type="button" class="btn btn-green pull-right">Add Expense</button> </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -182,13 +183,11 @@
 								<input type="text" class="form-control" id="selfEmployment.expenseList[0].expenseAmount" name="selfEmployment.expenseList[0].expenseAmount" placeholder="">
 							</div>
 						</td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>
 			</div>
-		</div>
-		<div class="row form-row">
-			<button id="addExpenseBtn" type="button" class="btn btn-green pull-right">Add Expense</button>
 		</div>
 		
 		<input type="hidden" id="nextPage" value="other-income.html">
@@ -197,9 +196,18 @@
 </form>
 
 <div class="row form-row">
-	<button id="backBtn" type="button" class="btn btn-green pull-left" value="past-job-summary.html">Previous</button>
-	<button id="nextBtn" type="button" class="btn btn-green pull-right" disabled>Next</button>
-</div>
+		<div class="col-md-10">
+			<button id="backBtn" type="button" class="btn btn-green pull-left" value="past-job-summary.html">Previous</button>
+		</div>
+		<div class="col-md-2">
+			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" disabled>Save & Next</button>
+		</div>
+	</div>
+	<div class="row form-row">
+		<div class="col-md-2 col-md-offset-10">
+			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
+		</div>
+	</div>
 
 <script>
 var db = TAFFY(sessionStorage.db);
@@ -269,6 +277,7 @@ $("#addExpenseBtn").click(function(){
 				'</td>'+
 				'<td style="border-top: 0px;"><div class="input-group"><span class="input-group-addon">$</span><input type="text" '+
 					'class="form-control" id="selfEmployment.expenseList['+expenseItr+'].expenseAmount" name="selfEmployment.expenseList['+expenseItr+'].expenseAmount" placeholder=""></div></td>'+
+				'<td></td>'+
 			'</tr>');
 	expenseItr++;
 });

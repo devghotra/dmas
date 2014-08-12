@@ -1,10 +1,9 @@
-<h3 class="hl">Assistance For Which You Would Like to Apply?</h3>
-<p class="text-muted">Please select the types(s) of assistance you would like to apply for. Then click the "Next" button at the bottom of the page.</p>
+<h3 class="hl">You have selected to apply for Medicaid Assistance.</h3>
 <hr/>
 
 <div class="row form-row">
 	<div class="col-md-12">
-		<label  style="margin-left: 10px;">Medical Assistance</label>
+		<label  style="font-Size: larger; ">Medical Assistance</label>
 	</div>
 </div>
 
@@ -16,7 +15,21 @@
 			Individuals who are not eligible for Medical Assistance may be automatically referred to the Health Insurance Marketplace.
 		</span>
 	</div>
-</div><br/><br/>
+</div><br/>
+
+<div class="info-board info-board-green"> 
+	If you want to apply for other programs (TANF, Food Assistance, Child Services, Energy Assistance) you can do so at the end of this application.
+</div>
+<br/><br/>
+
+
 
 <button type="button" class="btn btn-green pull-left" onclick="javascript: loadPage('who-is-applying.html')">Previous</button>
 <button type="button" class="btn btn-green pull-right" onclick="javascript: loadPage('primary-applicant-basic.html');">Next</button>
+
+<script>
+	$(document).ready(function(){
+		$("#applicationMenu").hide();
+		sessionStorage.currentScreen = "program-selection.html";
+  	});
+</script>

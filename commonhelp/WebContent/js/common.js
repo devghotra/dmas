@@ -1,6 +1,7 @@
 /**
  * 
  */
+var saveLogout = false;
 function init(){
 	//window.history.forward(1);
 	$("#topMenuBar").load("top-menu.html"); 
@@ -12,6 +13,7 @@ function init(){
 }
 
 function loadPage(pageUrl){
+	$("#applicationMenu").show();
 	sessionStorage.currentScreen = pageUrl;
 	$("#applicationFormDiv").load(pageUrl, function(){
 		$(this).setPageEventHandlers();
@@ -76,7 +78,10 @@ $.fn.setPageEventHandlers = function(){
 			        	catch(err) {}
 			        	if(data.applicationId != null)
 			        		sessionStorage.applicationId = data.applicationId;
-			        	loadPage(nextPage);
+			        	if(saveLogout)
+			        		signOut();
+			        	else
+			        		loadPage(nextPage);
 		        	} else{
 		        		try {
 		        			$(this).formSubmissionFailed(data);
@@ -137,4 +142,19 @@ $.fn.renderHtmlFromJson = function(node, data){
     });
 };
 
+function signOut(){
+	sessionStorage.removeItem("visitedLinks");
+	sessionStorage.removeItem("userProfile");
+	window.location.href = "/commonhelp/index.html";
+}
+
+function doSaveLogout(){
+	saveLogout = true;
+	if($('#applicationForm') != null ) {
+		$("#applicationForm").submit();
+    } else{
+    	signOut();
+    }
+	
+}
 
