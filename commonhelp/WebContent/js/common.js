@@ -14,6 +14,12 @@ function init(){
 
 function loadPage(pageUrl){
 	$("#applicationMenu").show();
+	
+	if(sessionStorage.applicationId !== undefined)
+		$('#appIdDiv').show();
+	else
+		$('#appIdDiv').hide();
+	
 	sessionStorage.currentScreen = pageUrl;
 	$("#applicationFormDiv").load(pageUrl, function(){
 		$(this).setPageEventHandlers();

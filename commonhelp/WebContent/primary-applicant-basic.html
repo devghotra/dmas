@@ -39,16 +39,25 @@
 		</div>
 		<div class="row form-row">
 			<div class="col-md-6">
+				<label for="last-name">Date of Birth</label> <input type="text"
+					class="form-control datepicker" id="dob" name="dob" placeholder="mm/dd/yyyy">
+			</div>
+			<div class="col-md-4">
 				<label for="gender">Gender</label><br /> <label
-					class="radio-inline" for="radios-0"> <input type="radio"
+					class="radio-inline" for="gender-m"> <input type="radio"
 					name="gender" id="gender-m" value="male">Male
-				</label> <label class="radio-inline" for="radios-1"> <input
+				</label> <label class="radio-inline" for="gender-f"> <input
 					type="radio" name="gender" id="gender-f" value="female">Female
 				</label>
 			</div>
-			<div class="col-md-2">
-				<label for="last-name">Date of Birth</label> <input type="text"
-					class="form-control datepicker" id="dob" name="dob" placeholder="mm/dd/yyyy">
+			<div class="col-md-2"  id="pregnantDiv" style="display: none;">
+				<label>Are you pregnant?</label><br /> 
+				<label class="radio-inline" for="pregnant-y"> 
+					<input type="radio" name="pregnantFlag" id="pregnant-y" value=true>Yes
+				</label> 
+				<label class="radio-inline" for="pregnant-n"> 
+					<input type="radio" name="pregnantFlag" id="pregnant-n" value=false>No
+				</label>
 			</div>
 		</div>
 		<div class="row form-row">
@@ -678,10 +687,14 @@
 		
     	if(sessionStorage.applicationId != null){
     		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
-        		var formData = JSON.parse(JSON.stringify(data.applicant));
+        		var formData = data.applicant;
+
         		if(data.applicant.mailAddressDifferentFlag)
         			$("#mailAddress").show();
-        		//console.debug(formData);
+
+        		if(data.applicant.gender == "female")
+        			$("#pregnantDiv").show();
+    			
 				js2form(document.getElementById('applicationForm'), formData);
 				
 				$( "#maritalStatus" ).ready(function() {
@@ -704,14 +717,24 @@
         	$("#mailAddress").show();
       	});
 
+	    $("#gender-f").click(function(){
+    	    $("#pregnantDiv").show();
+    	});
+
+	    $("#gender-m").click(function(){
+    	    $("#pregnantDiv").hide();
+    	});
+
       	$( "#maritalStatus" ).change(function() {
       	  	var maritalStatus = $( "#maritalStatus" ).val();
-    		if(maritalStatus == 'Single'){
-    			$('#spouseOutHomeFlag-y').prop('checked', false);
+    		if(maritalStatus == 'Married'){
+    			$("#outOfHomeSpouseDiv").show();
+        	}else{
+        		$('#spouseOutHomeFlag-y').prop('checked', false);
     			$('#spouseOutHomeFlag-n').prop('checked', false);
     			$("#outOfHomeSpouseDiv").hide();
-        	}else if(maritalStatus == 'Married')
-            	$("#outOfHomeSpouseDiv").show();
+            }
+            	
     		
       	});
   });

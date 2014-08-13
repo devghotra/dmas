@@ -90,8 +90,69 @@
 				</label> <label class="radio-inline" for="usCitizen-n"> <input
 					type="radio" name="usCitizenFlag" id="usCitizen-n" value="false">No
 				</label>
-
 			</div>
+		</div>
+		
+		<div class="row form-row alienDiv">
+			<div class="col-md-6">
+				<label>Alien Number</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="alienNumber" name="alien.alienNumber">
+			</div>	
+		</div>
+		<div class="row form-row alienDiv">
+			<div class="col-md-6">
+				<label>Alien Status</label>
+			</div>
+			<div class="col-md-4">
+				<select class="form-control" id="alienStatus" name="alien.alienStatus">
+					<OPTION VALUE="" TITLE="">Select</OPTION>
+ 					<OPTION VALUE="AME" TITLE="Amerasian">Amerasian</OPTION>
+					<OPTION VALUE="ASY" TITLE="Asylee (unable or unwilling to return to home country)">Asylee (unable or unwilling to return to home country)</OPTION>
+					<OPTION VALUE="CET" TITLE="Conditional Entrant">Conditional Entrant</OPTION>
+					<OPTION VALUE="CHE" TITLE="Cuban Haitian Entrant">Cuban Haitian Entrant</OPTION>
+					<OPTION VALUE="DWD" TITLE="Deportation Withheld">Deportation Withheld</OPTION>
+					<OPTION VALUE="HHL" TITLE="Hmong/Highland Laotians">Hmong/Highland Laotians</OPTION>
+					<OPTION VALUE="IAL" TITLE="Illegal Alien">Illegal Alien</OPTION>
+					<OPTION VALUE="NAS" TITLE="Native Americans">Native Americans</OPTION>
+					<OPTION VALUE="PAY" TITLE="Parolee - At Least 1 Year">Parolee - At Least 1 Year</OPTION>
+					<OPTION VALUE="PRA" TITLE="Permanent Resident Alien">Permanent Resident Alien</OPTION>
+					<OPTION VALUE="RFG" TITLE="Refugee">Refugee</OPTION>
+					<OPTION VALUE="OTH" TITLE="Other">Other</OPTION>
+				</select>
+			</div>	
+		</div>
+		<div class="row form-row alienDiv">
+			<div class="col-md-6">
+				<label>Document Type</label>
+			</div>
+			<div class="col-md-4">
+				<select class="form-control" id="documentType" name="alien.documentType">
+					<OPTION VALUE="" TITLE="">Select</OPTION>
+ 					<OPTION VALUE="A" TITLE="Permanent Resident Card (Green Card, I-551)">Permanent Resident Card (Green Card, I-551)</OPTION>
+					 <OPTION VALUE="B" TITLE="Temporary I-551 Stamp (on passport or I-94, I-94A)">Temporary I-551 Stamp (on passport or I-94, I-94A)</OPTION>
+					 <OPTION VALUE="C" TITLE="Machine Readable Immigrant Visa (with temporary I-551 language)">Machine Readable Immigrant Visa (with temporary I-551 language)</OPTION>
+					 <OPTION VALUE="D" TITLE="Employment Authorization Card (EAD, I-766)">Employment Authorization Card (EAD, I-766)</OPTION>
+					 <OPTION VALUE="E" TITLE="Arrival/Departure Record (I-94, I-94A)">Arrival/Departure Record (I-94, I-94A)</OPTION>
+					 <OPTION VALUE="F" TITLE="Arrival/Departure Record in foreign passport (I-94)">Arrival/Departure Record in foreign passport (I-94)</OPTION>
+					 <OPTION VALUE="G" TITLE="Foreign passport">Foreign passport</OPTION>
+					 <OPTION VALUE="H" TITLE="Reentry Permit (I-327)">Reentry Permit (I-327)</OPTION>
+					 <OPTION VALUE="I" TITLE="Refugee Travel Document (I-571)">Refugee Travel Document (I-571)</OPTION>
+					 <OPTION VALUE="J" TITLE="Certificate of Eligibility for Nonimmigrant (F-1) Student Status (I-20)">Certificate of Eligibility for Nonimmigrant (F-1) Student Status (I-20)</OPTION>
+					 <OPTION VALUE="K" TITLE="Certificate of Eligibility for Exchange Visitor (J-1) Status (DS2019)">Certificate of Eligibility for Exchange Visitor (J-1) Status (DS2019)</OPTION>
+					 <OPTION VALUE="L" TITLE="Notice of Action (I-797)">Notice of Action (I-797)</OPTION>
+					 <OPTION VALUE="M" TITLE="Other">Other</OPTION>
+				</select>
+			</div>	
+		</div>
+		<div class="row form-row alienDiv">
+			<div class="col-md-6">
+				<label>Date of Entry into USA</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control datepicker" id="dateOfEntry" name="alien.dateOfEntry" placeholder="mm/dd/yyyy">
+			</div>	
 		</div>
 	</div>
 	<br />
@@ -320,6 +381,7 @@
 	$(document).ready(function(){
 		sessionStorage.currentScreen = "primary-applicant-other.html";
 		$(this).resetLeftNavLinks("#aboutYouNavLink");
+		$('.alienDiv').hide();
 		if(sessionStorage.applicationId != null){
     		$.get( "/commonhelp-svcs/services/medicaid/applicant/basic-info?app-id="+sessionStorage.applicationId, function( data ) {
         		var formData = JSON.parse(JSON.stringify(data.applicant));
@@ -334,6 +396,9 @@
         			$("#ssnDiv").show();
 				else if(data.applicant.ssnFlag == false)
 					$("#noSsnDiv").show();
+
+				if(data.applicant.usCitizenFlag == false)
+					$(".alienDiv").show();
         	});
     	}
   	});
@@ -348,12 +413,20 @@
     	$("#noSsnDiv").show();
 	});
 
+  	$("#usCitizen-n").click(function(){
+  	    $(".alienDiv").show();
+  	});
+
+  	$("#usCitizen-y").click(function(){
+  	    $(".alienDiv").hide();
+  	});
+
   	$("#applyingAssitanceFlag-n").click(function(){
   	    $("#applyAssistanceInfoDivs").hide();
   	});
 
   	$("#applyingAssitanceFlag-y").click(function(){
   		$("#applyAssistanceInfoDivs").show();
-  		});
+  	});
 </script>
 

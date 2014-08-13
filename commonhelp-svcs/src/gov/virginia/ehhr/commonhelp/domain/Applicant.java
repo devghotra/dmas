@@ -51,6 +51,8 @@ public class Applicant implements Serializable{
 	private List<HouseholdMember> hhMemberList;
 	private Integer totalHouseHoldMembers;
 	private Integer totalTaxDependents;
+	private Boolean pregnantFlag;
+	private Alien alien;
 	
 	
 	public String getApplicationId() {
@@ -316,6 +318,18 @@ public class Applicant implements Serializable{
 	}
 	public void setApplyingAssitanceFlag(Boolean applyingAssitanceFlag) {
 		this.applyingAssitanceFlag = applyingAssitanceFlag;
+	}
+	public Boolean getPregnantFlag() {
+		return pregnantFlag;
+	}
+	public void setPregnantFlag(Boolean pregnantFlag) {
+		this.pregnantFlag = pregnantFlag;
+	}
+	public Alien getAlien() {
+		return alien;
+	}
+	public void setAlien(Alien alien) {
+		this.alien = alien;
 	}
 	
 	

@@ -29,7 +29,16 @@
 	<!-- Main Body -->
 	<div class="wrapper">
 		<div class="section-header">
-			
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12" id="appIdDiv">
+						<!-- Remove the .animated class if you don't want things to move -->
+						<h1 class="animated slideInRight text-right">
+							<span>Application ID:</span> <span id="appIdSpan"></span>
+						</h1>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="container">	
 			<!-- Help Center -->
@@ -65,14 +74,14 @@
 				<div class="col-md-2">
 					<div class="user-menu bottom-15" style="background-color: #E6E6E6">
 						<ul>
-							<li><a class="leftNavLink disabled" href="javascript: loadPage('relation.html')" id="relationNavLink"> Bills</a></li>
+							<li><a class="leftNavLink disabled" href="javascript: loadPage('resources.html')" id="resourcesNavLink"> Resources</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="user-menu bottom-15" style="background-color: #E6E6E6">
 						<ul>
-							<li><a class="leftNavLink disabled" href="javascript: loadPage('otherinformation.html')" id="otherInformationNavLink"> Other Information</a></li>
+							<li><a class="leftNavLink disabled" href="javascript: loadPage('relation.html')" id="relationNavLink"> Bills</a></li>
 						</ul>
 					</div>
 				</div>
@@ -89,6 +98,8 @@
 	<script> 
 	$(document).ready(function(){
 		init();
+		var appId = sessionStorage.applicationId;
+		$('#appIdSpan').html(appId);
 	});
     </script>
     

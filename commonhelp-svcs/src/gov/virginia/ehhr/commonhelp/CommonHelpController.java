@@ -172,7 +172,7 @@ public class CommonHelpController {
 		String appId = applicant.getApplicationId();
 		if(appId == null || appId.isEmpty()){
 			Random randomGenerator = new Random();
-			appId = "APP"+randomGenerator.nextInt(10000);
+			appId = "A"+randomGenerator.nextInt(10000000);
 			String applicantId = "A"+randomGenerator.nextInt(10000);
 			applicant.setApplicationId(appId);
 			applicant.setApplicantId(applicantId);

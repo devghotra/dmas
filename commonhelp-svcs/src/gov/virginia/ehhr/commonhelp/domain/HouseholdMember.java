@@ -31,6 +31,7 @@ public class HouseholdMember implements Serializable {
 	private String taxFileType;
 	private Boolean tempAwayHomeFlag;
 	private Boolean applyingAssitanceFlag;
+	private Boolean pregnantFlag;
 	
 	public String getApplicationId() {
 		return applicationId;
@@ -163,6 +164,12 @@ public class HouseholdMember implements Serializable {
 	}
 	public void setSsnFlag(Boolean ssnFlag) {
 		this.ssnFlag = ssnFlag;
+	}
+	public Boolean getPregnantFlag() {
+		return pregnantFlag;
+	}
+	public void setPregnantFlag(Boolean pregnantFlag) {
+		this.pregnantFlag = pregnantFlag;
 	}
 	
 	
