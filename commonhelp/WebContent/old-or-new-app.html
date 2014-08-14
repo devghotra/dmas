@@ -15,7 +15,6 @@
 <script>
 	$(document).ready(function(){
 		$("#applicationMenu").hide();
-		$('#appIdDiv').hide();
 		sessionStorage.currentScreen = "old-or-new-app.html";
   	});
 
@@ -35,10 +34,12 @@
 		if($("input[name=oldOrNewApp]:checked").val() == 1){
 			sessionStorage.removeItem("applicationId");
 			$("#backBtn").val("who-is-applying.html");
+			$("#sectionHeaderContent").html("");
 		}
 		else{
 			sessionStorage.applicationId = appId;
 			$("#backBtn").val("primary-applicant-basic.html");
+			$("#sectionHeaderContent").load("app-id.html");
 		}
 			
   	 });

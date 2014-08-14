@@ -32,6 +32,7 @@ public class HouseholdMember implements Serializable {
 	private Boolean tempAwayHomeFlag;
 	private Boolean applyingAssitanceFlag;
 	private Boolean pregnantFlag;
+	private Alien alien;
 	
 	public String getApplicationId() {
 		return applicationId;
@@ -170,6 +171,12 @@ public class HouseholdMember implements Serializable {
 	}
 	public void setPregnantFlag(Boolean pregnantFlag) {
 		this.pregnantFlag = pregnantFlag;
+	}
+	public Alien getAlien() {
+		return alien;
+	}
+	public void setAlien(Alien alien) {
+		this.alien = alien;
 	}
 	
 	

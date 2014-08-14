@@ -162,6 +162,17 @@ public class CommonHelpController {
 		return svcsResponse;	
 	}
 	
+	@RequestMapping(value = "/app-id", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody 
+	public ApplicationServiceResponse getApplicationId(){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		String appId = "A"+ new Random().nextInt(10000000);
+		svcsResponse.setApplicationId(appId);
+		return svcsResponse;	
+	}
+	
 	@RequestMapping(value = "/basic-info", 
     		method = RequestMethod.POST, 
     		consumes = {"application/json"}, 
@@ -170,11 +181,9 @@ public class CommonHelpController {
 	public ApplicationServiceResponse setAboutYouData(@RequestBody Applicant applicant){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		String appId = applicant.getApplicationId();
-		if(appId == null || appId.isEmpty()){
-			Random randomGenerator = new Random();
-			appId = "A"+randomGenerator.nextInt(10000000);
-			String applicantId = "A"+randomGenerator.nextInt(10000);
-			applicant.setApplicationId(appId);
+		String applicantId = applicant.getApplicantId();
+		if(applicantId == null || applicantId.isEmpty()){
+			applicantId = "A"+new Random().nextInt(10000);
 			applicant.setApplicantId(applicantId);
 			store.put(appId, applicant);
 			
@@ -370,6 +379,18 @@ public class CommonHelpController {
 	public ApplicationServiceResponse deleteUser(@RequestParam(value="userName", required = true) String userName){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		profileStore.remove(userName);
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/clear", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse clean(){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		store.clear();
+		profileStore.clear();
+		incomeStore.clear();
 		return svcsResponse;	
 	}
 	

@@ -1,0 +1,13 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<!-- Remove the .animated class if you don't want things to move -->
+			<h1 class="animated slideInRight text-right">
+				<span>Application ID:</span> <span id="appIdSpan"></span>
+			</h1>
+		</div>
+	</div>
+</div>
+<script>
+	$('#appIdSpan').html(sessionStorage.applicationId);
+</script>

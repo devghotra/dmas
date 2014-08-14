@@ -10,6 +10,8 @@
 	</h4>
 	<div>
 		<div class="row form-row">
+		
+			<input type="hidden" id="applicantId" name="applicantId">
 			<div class="col-md-4">
 				<label for="first-name">First Name</label> <input type="text"
 					class="form-control" id="firstName" name="firstName">
@@ -681,6 +683,7 @@
 		$(this).resetLeftNavLinks("#aboutYouNavLink");
 		var userProfile = sessionStorage.userProfile;
 		$("#userName").val(JSON.parse(userProfile).userName);
+		$('#applicationId').val(sessionStorage.applicationId);
 
 		//console.debug($("#userName").val());
 		//console.debug(sessionStorage.applicationId);
@@ -707,7 +710,13 @@
 		            	$("#outOfHomeSpouseDiv").show();
 			    });
         	});
-    	}
+    	} else{
+    		$.get( "/commonhelp-svcs/services/medicaid/applicant/app-id", function( data ) {
+    			sessionStorage.applicationId = data.applicationId;
+    			$('#applicationId').val(data.applicationId);
+    			$("#sectionHeaderContent").load("app-id.html");
+        	});
+        }
 
     	$("#mailAddressDifferentFlag-n").click(function(){
     	    $("#mailAddress").hide();
