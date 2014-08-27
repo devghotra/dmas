@@ -66,7 +66,6 @@ $.fn.setPageEventHandlers = function(){
 		});
 	 
 	 $( "#applicationForm" ).submit(function( event ) {
-		 	var nextPage = $('#nextPage').val();
 		 	//var jsondata = JSON.stringify(form2js(this, '.', true));
 		 	//console.debug("json data: "+jsondata);
 			$.ajax({
@@ -79,15 +78,18 @@ $.fn.setPageEventHandlers = function(){
 		        success : function( data ) {
 		        	if(data.responseCode == 200){
 		        		try {
-		        			$(this).formSubmissionSucess(data);
+		        			$(this).formSubmissionSuccess(data);
 			        	}
 			        	catch(err) {}
 			        	if(data.applicationId != null)
 			        		sessionStorage.applicationId = data.applicationId;
 			        	if(saveLogout)
 			        		signOut();
-			        	else
+			        	else{
+			        		var nextPage = $('#nextPage').val();
 			        		loadPage(nextPage);
+			        	}
+			        		
 		        	} else{
 		        		try {
 		        			$(this).formSubmissionFailed(data);

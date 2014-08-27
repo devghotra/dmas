@@ -1,0 +1,210 @@
+<h3 class="hl">How Are You Related?</h3>
+<p class="text-muted">
+	Please tell us <span class="memberNameSpan"></span>'s relationship with other household members<br />
+</p>
+
+	<input type="hidden" id="applicationId" name="applicationId">
+	<input type="hidden" id="memberId" name="memberId">
+	
+<div class="hide">
+	<div ID="maleRelation">
+		<input type="hidden" id="memberIdIndex" name="relationship[Index].memberId">
+		<input type="hidden" id="memberGenderIndex" name="relationship[Index].memberGender">
+		<input type="hidden" id="relationWithMemberIdIndex" name="relationship[Index].relationWithMemberId">
+		<SELECT class="form-control" id="relationIndex" name="relationship[Index].relation">
+			 <OPTION VALUE="" TITLE="">Select</OPTION>
+			 <OPTION VALUE="BTR" TITLE="is the Brother of">is the Brother of</OPTION>
+			 <OPTION VALUE="FTR" TITLE="is the Father of">is the Father of</OPTION>
+			 <OPTION VALUE="GGF" TITLE="is the Grandfather (Including Great) of">is the Grandfather (Including Great) of</OPTION>
+			 <OPTION VALUE="GGS" TITLE="is the Grandson (Including Great) of">is the Grandson (Including Great) of</OPTION>
+			 <OPTION VALUE="HUS" TITLE="is the Husband of">is the Husband of</OPTION>
+			 <OPTION VALUE="SON" TITLE="is the Son of">is the Son of</OPTION>
+			 <OPTION VALUE="FCO" TITLE="is the First Cousin of">is the First Cousin of</OPTION>
+			 <OPTION VALUE="FC" TITLE="is the First Cousin (Once removed) of">is the First Cousin (Once removed) of</OPTION>
+			 <OPTION VALUE="FK" TITLE="is the Foster Child of">is the Foster Child of</OPTION>
+			 <OPTION VALUE="FP" TITLE="is the Foster Parent of">is the Foster Parent of</OPTION>
+			 <OPTION VALUE="HBR" TITLE="is the Half Brother of">is the Half Brother of</OPTION>
+			 <OPTION VALUE="LG" TITLE="is the Legal Guardian of">is the Legal Guardian of</OPTION>
+			 <OPTION VALUE="LD" TITLE="is the Legally Guarded of">is the Legally Guarded of</OPTION>
+			 <OPTION VALUE="LT" TITLE="is the Living Partner of">is the Living Partner of</OPTION>
+			 <OPTION VALUE="NEP" TITLE="is the Nephew (Including Great) of">is the Nephew (Including Great) of</OPTION>
+			 <OPTION VALUE="PL" TITLE="is the Pending Legal Guardian of">is the Pending Legal Guardian of</OPTION>
+			 <OPTION VALUE="PD" TITLE="is the Pending Legally Guarded of">is the Pending Legally Guarded of</OPTION>
+			 <OPTION VALUE="PF" TITLE="is the Putative(alleged) Father of">is the Putative(alleged) Father of</OPTION>
+			 <OPTION VALUE="PS" TITLE="is the Putative(alleged) Son of">is the Putative(alleged) Son of</OPTION>
+			 <OPTION VALUE="STB" TITLE="is the Step Brother of">is the Step Brother of</OPTION>
+			 <OPTION VALUE="STF" TITLE="is the Step Father of">is the Step Father of</OPTION>
+			 <OPTION VALUE="SG" TITLE="is the Step Grandfather (Including Great) of">is the Step Grandfather (Including Great) of</OPTION>
+			 <OPTION VALUE="SR" TITLE="is the Step Grandson (Including Great) of">is the Step Grandson (Including Great) of</OPTION>
+			 <OPTION VALUE="STS" TITLE="is the Step Son of">is the Step Son of</OPTION>
+			 <OPTION VALUE="UNC" TITLE="is the Uncle (Including Great) of">is the Uncle (Including Great) of</OPTION>
+			 <OPTION VALUE="UR" TITLE="is in the Unrelated Court Ordered Placement of">is in the Unrelated Court Ordered Placement of</OPTION>
+			 <OPTION VALUE="NOT" TITLE="is Not related to">is Not related to</OPTION>
+			 <OPTION VALUE="RT" TITLE="is Related to another way to">is Related to another way to</OPTION>
+			 <OPTION VALUE="BIL" TITLE="is Brother In Law of">is Brother In Law of</OPTION>
+			 <OPTION VALUE="AS" TITLE="is Alien Sponsor of">is Alien Sponsor of</OPTION>
+		</SELECT>
+	</div>
+	<div ID="femaleRelation">
+		<input type="hidden" id="memberIdIndex" name="relationship[Index].memberId">
+		<input type="hidden" id="memberGenderIndex" name="relationship[Index].memberGender">
+		<input type="hidden" id="relationWithMemberIdIndex" name="relationship[Index].relationWithMemberId">
+		<SELECT class="form-control" id="relationIndex" name="relationship[Index].relation">
+			 <OPTION VALUE="" TITLE="">Select</OPTION>
+			 <OPTION VALUE="DAU" TITLE="is the Daughter of">is the Daughter of</OPTION>
+			 <OPTION VALUE="GRD" TITLE="is the Granddaughter (Including Great) of">is the Granddaughter (Including Great) of</OPTION>
+			 <OPTION VALUE="GRM" TITLE="is the Grandmother (Including Great) of">is the Grandmother (Including Great) of</OPTION>
+			 <OPTION VALUE="MTR" TITLE="is the Mother of">is the Mother of</OPTION>
+			 <OPTION VALUE="STR" TITLE="is the Sister of">is the Sister of</OPTION>
+			 <OPTION VALUE="WIF" TITLE="is the Wife of">is the Wife of</OPTION>
+			 <OPTION VALUE="AUN" TITLE="is the Aunt (Including Great) of">is the Aunt (Including Great) of</OPTION>
+			 <OPTION VALUE="FCO" TITLE="is the First Cousin of">is the First Cousin of</OPTION>
+			 <OPTION VALUE="FC" TITLE="is the First Cousin (Once removed) of">is the First Cousin (Once removed) of</OPTION>
+			 <OPTION VALUE="FK" TITLE="is the Foster Child of">is the Foster Child of</OPTION>
+			 <OPTION VALUE="FP" TITLE="is the Foster Parent of">is the Foster Parent of</OPTION>
+			 <OPTION VALUE="HSR" TITLE="is the Half Sister of">is the Half Sister of</OPTION>
+			 <OPTION VALUE="LG" TITLE="is the Legal Guardian of">is the Legal Guardian of</OPTION>
+			 <OPTION VALUE="LD" TITLE="is the Legally Guarded of">is the Legally Guarded of</OPTION>
+			 <OPTION VALUE="LT" TITLE="is the Living Partner of">is the Living Partner of</OPTION>
+			 <OPTION VALUE="NIE" TITLE="is the Niece (Including Great) of">is the Niece (Including Great) of</OPTION>
+			 <OPTION VALUE="PL" TITLE="is the Pending Legal Guardian of">is the Pending Legal Guardian of</OPTION>
+			 <OPTION VALUE="PD" TITLE="is the Pending Legally Guarded of">is the Pending Legally Guarded of</OPTION>
+			 <OPTION VALUE="PU" TITLE="is the Putative(alleged) Daughter of">is the Putative(alleged) Daughter of</OPTION>
+			 <OPTION VALUE="STD" TITLE="is the Step Daughter of">is the Step Daughter of</OPTION>
+			 <OPTION VALUE="SH" TITLE="is the Step Granddaughter (Including Great) of">is the Step Granddaughter (Including Great) of</OPTION>
+			 <OPTION VALUE="SX" TITLE="is the Step Grandmother (Including Great) of">is the Step Grandmother (Including Great) of</OPTION>
+			 <OPTION VALUE="STM" TITLE="is the Step Mother of">is the Step Mother of</OPTION>
+			 <OPTION VALUE="SSR" TITLE="is the Step Sister of">is the Step Sister of</OPTION>
+			 <OPTION VALUE="UR" TITLE="is in the Unrelated Court Ordered Placement of">is in the Unrelated Court Ordered Placement of</OPTION>
+			 <OPTION VALUE="NOT" TITLE="is Not related to">is Not related to</OPTION>
+			 <OPTION VALUE="RT" TITLE="is Related to another way to">is Related to another way to</OPTION>
+			 <OPTION VALUE="SIL" TITLE="is Sister In Law of">is Sister In Law of</OPTION>
+			 <OPTION VALUE="AS" TITLE="is Alien Sponsor of">is Alien Sponsor of</OPTION>
+		</SELECT>
+	</div>
+
+	<div id="relationRow">
+		<div class="row form-row text-center">
+			<div class="col-md-2 col-md-offset-2">
+				<i class="fa fa-user fa-3x"></i><br/>
+				<span id="memberNameIndex"></span>
+			</div>
+			<div class="col-md-4" id="relationDropdownIndex">
+				
+			</div>
+			<div class="col-md-2">
+				<i class="fa fa-user fa-3x"></i><br/>
+				<span id="relationWithMemberNameIndex"></span>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/relationship">
+
+<div class="row form-row" id="btnDiv">
+	<div class="col-md-10">
+		<button id="previousBtn" type="button" class="btn btn-green pull-left">Previous</button>
+	</div>
+	<div class="col-md-2">
+		<button id="nextBtn" type="submit" class="btn btn-green pull-right btn-block">Save & Next</button>
+	</div>
+</div>
+<div class="row form-row">
+	<div class="col-md-2 col-md-offset-10">
+		<button type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
+	</div>
+</div>
+
+<input type="hidden" id="nextPage" value="relationship.html">
+
+</form>
+
+
+<script>
+var db = TAFFY(sessionStorage.db);
+var activeMember = db({type:"member", relationship:"active"}).first();
+
+$(document).ready(function(){
+	sessionStorage.currentScreen = "relationship.html";
+	$(this).resetLeftNavLinks("#relationNavLink");
+	
+	$("#applicationId").val(sessionStorage.applicationId);
+	$("#memberId").val(activeMember.id);
+	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
+	$(".memberfirstNameSpan").html(activeMember.firstName);
+
+	var reqParams = "member-id="+activeMember.id+"&app-id="+sessionStorage.applicationId;
+
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/relationship?"+reqParams, function( data ) {
+		if(data.relationShipList != null){
+			//console.debug(data.relationShipList);
+
+			$.each(data.relationShipList, function( index, relationship ) {
+				var realtionWithMember = db({type:"member", id:relationship.relationWithMemberId}).first();
+				//console.debug(activeMember.firstName + " relation to " + realtionWithMember.firstName);
+				var relationDiv = $('#relationRow').html();
+				relationDiv = relationDiv.replace(/Index/g,index);
+				$(relationDiv).insertBefore( "#btnDiv" );
+
+				$('#memberName'+index).html(activeMember.firstName);
+				$('#relationWithMemberName'+index).html(realtionWithMember.firstName);
+				if(relationship.memberGender == 'male')
+					$('#relationDropdown'+index).html("<br/>"+$('#maleRelation').html().replace(/Index/g,index));
+				else if(relationship.memberGender == 'female')
+					$('#relationDropdown'+index).html("<br/>"+$('#femaleRelation').html().replace(/Index/g,index));
+
+				$('#memberId'+index).val(relationship.memberId);
+				$('#memberGender'+index).val(relationship.memberGender);
+				$('#relationWithMemberId'+index).val(relationship.relationWithMemberId);
+				$('#relation'+index).val(relationship.relation);
+				
+			});
+		}
+	});
+});
+
+$.fn.formSubmissionSuccess = function(data){
+	var relationStack;
+	if(sessionStorage.relationStack == null){
+		relationStack = new Array(activeMember.id);
+	}
+	else{
+		relationStack = new Array(sessionStorage.relationStack);
+		relationStack.push(activeMember.id);
+	}
+		
+	sessionStorage.relationStack = relationStack;
+	db({type:"member", relationship:"active"}).update({relationship:"completed"});
+	var pendingMembersCount = db({type:"member", relationship:"pending"}).count();
+	if(pendingMembersCount > 1){
+		var nextPendingMember = db({type:"member", relationship:"pending"}).first();
+		db(nextPendingMember).update({relationship:"active"});
+		sessionStorage.db = db().stringify();
+	} else{
+		db({type:"member", relationship:"pending"}).update({relationship:"completed"});
+		sessionStorage.db = db().stringify();
+		$('#nextPage').val("relationship-summary.html");
+	}
+		
+};
+
+$('#previousBtn').click(function(){	
+	if(sessionStorage.relationStack == null || sessionStorage.relationStack == ""){
+		loadPage("household-members-summary.html");
+		return;
+	}
+		
+	var relationStack = (sessionStorage.relationStack).split(',');
+	var lastRSMemberId = relationStack.pop();
+	sessionStorage.relationStack = relationStack;
+	if(lastRSMemberId != null){
+		db({type:"member", id:lastRSMemberId}).update({relationship:"active"});
+		db({type:"member", id:activeMember.id}).update({relationship:"pending"});
+		sessionStorage.db = db().stringify();
+		loadPage("relationship.html");
+	} else
+		loadPage("household-members-summary.html");
+});
+</script>

@@ -380,18 +380,18 @@
 
 
 <div class="row form-row">
-		<div class="col-md-10">
-			<button id="backBtn" type="button" class="btn btn-green pull-left" value="household-members-summary.html">Previous</button>
-		</div>
-		<div class="col-md-2">
-			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" disabled>Save & Next</button>
-		</div>
+	<div class="col-md-10">
+		<button id="backBtn" type="button" class="btn btn-green pull-left" value="household-members-summary.html">Previous</button>
 	</div>
-	<div class="row form-row">
-		<div class="col-md-2 col-md-offset-10">
-			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
-		</div>
+	<div class="col-md-2">
+		<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" disabled>Save & Next</button>
 	</div>
+</div>
+<div class="row form-row">
+	<div class="col-md-2 col-md-offset-10">
+		<button type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
+	</div>
+</div>
 
 
 <script>
@@ -465,5 +465,9 @@ $("#presentJob-n").click(function(){
 	$("#applicationForm").hide();
 	$("#nextBtn").removeAttr("disabled");
 });
+
+$.fn.formSubmissionSuccess = function(data){
+
+};
 
 </script>

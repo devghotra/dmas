@@ -55,7 +55,7 @@
 	</div>
 	<div class="row form-row">
 		<div class="col-md-2 col-md-offset-10">
-			<button id="nextBtn" type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
+			<button type="button" class="btn btn-green pull-right btn-block" onclick="javascript: doSaveLogout()">Save & Logout</button>
 		</div>
 	</div>
 
@@ -63,6 +63,7 @@
 var db = TAFFY();
 $(document).ready(function(){
 	sessionStorage.currentScreen = "household-members-summary.html";
+	sessionStorage.removeItem('relationStack');
 	$(this).resetLeftNavLinks("#householdMemberNavLink");
 	
 	if(sessionStorage.applicationId != null){
@@ -70,14 +71,14 @@ $(document).ready(function(){
     		var applicantData = JSON.parse(JSON.stringify(data.applicant));
     		$(this).renderHtmlFromJson(null, applicantData);
 
-    		db.insert({type:"member",id:applicantData.applicantId,firstName:applicantData.firstName, lastName:applicantData.lastName, incomeSection:"active"});
+    		db.insert({type:"member",id:applicantData.applicantId,firstName:applicantData.firstName, lastName:applicantData.lastName, incomeSection:"active", relationship:"active"});
 
     		var i = 0;
     		if(data.applicant.hhMemberList != null){
     			var hhMemberList = JSON.parse(JSON.stringify(data.applicant.hhMemberList));
     			$.each(hhMemberList, function(index) {
     			    var hhMember = hhMemberList[index];
-    			    db.insert({type:"member",id:hhMember.hhMemberId,firstName:hhMember.firstName, lastName:hhMember.lastName, incomeSection:"pending"});
+    			    db.insert({type:"member",id:hhMember.hhMemberId,firstName:hhMember.firstName, lastName:hhMember.lastName, incomeSection:"pending", relationship:"pending"});
     			    $('#hhMemberSummaryTable tr').last().after(
     			    	'<tr>'+
     						'<td><span id="hhmb'+i+'.firstName"></span> <span id="hhmb'+i+'.lastName"></span></td>'+
@@ -108,7 +109,7 @@ $( "#addDependent" ).click(function( event ) {
 });
 
 $( "#nextBtn" ).click(function( event ) {
-	loadPage("present-job.html");
+	loadPage("relationship.html");
 	return false;
 });
 

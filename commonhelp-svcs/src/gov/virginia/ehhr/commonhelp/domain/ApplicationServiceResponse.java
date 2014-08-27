@@ -17,6 +17,7 @@ public class ApplicationServiceResponse implements Serializable{
 	private Income income;
 	private HashMap<String, List<Income>> incomeList;
 	private UserProfile userProfile;
+	private List<Relationship> relationShipList;
 
 	public int getResponseCode() {
 		return responseCode;
@@ -89,5 +90,14 @@ public class ApplicationServiceResponse implements Serializable{
 	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
 	}
+
+	public List<Relationship> getRelationShipList() {
+		return relationShipList;
+	}
+
+	public void setRelationShipList(List<Relationship> relationShipList) {
+		this.relationShipList = relationShipList;
+	}
+	
 	
 }

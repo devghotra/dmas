@@ -53,8 +53,14 @@ public class Applicant implements Serializable{
 	private Integer totalTaxDependents;
 	private Boolean pregnantFlag;
 	private Alien alien;
+	private List<Relationship> relationship;
 	
-	
+	public List<Relationship> getRelationship() {
+		return relationship;
+	}
+	public void setRelationship(List<Relationship> relationship) {
+		this.relationship = relationship;
+	}
 	public String getApplicationId() {
 		return applicationId;
 	}

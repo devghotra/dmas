@@ -5,6 +5,7 @@ import gov.virginia.ehhr.commonhelp.domain.ApplicationServiceResponse;
 import gov.virginia.ehhr.commonhelp.domain.HouseholdMember;
 import gov.virginia.ehhr.commonhelp.domain.Income;
 import gov.virginia.ehhr.commonhelp.domain.KnowledgeBaseAuthQA;
+import gov.virginia.ehhr.commonhelp.domain.Relationship;
 import gov.virginia.ehhr.commonhelp.domain.UserProfile;
 
 import java.util.ArrayList;
@@ -29,9 +30,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CommonHelpController {
 	
 	static Logger LOGGER = LoggerFactory.getLogger(CommonHelpController.class);
-	HashMap<String, Applicant> store = new HashMap<String, Applicant>();
+	HashMap<String, Applicant> appStore = new HashMap<String, Applicant>();
 	LinkedHashMap<String, Income> incomeStore = new LinkedHashMap<String, Income>();
 	HashMap<String, UserProfile> profileStore = new HashMap<String, UserProfile>();
+	HashMap<String, List<Relationship>> relationStore = new HashMap<String, List<Relationship>>();
 	
 	
 	@RequestMapping(value = "/sign-up-basic", 
@@ -185,13 +187,13 @@ public class CommonHelpController {
 		if(applicantId == null || applicantId.isEmpty()){
 			applicantId = "A"+new Random().nextInt(10000);
 			applicant.setApplicantId(applicantId);
-			store.put(appId, applicant);
+			appStore.put(appId, applicant);
 			
 			String userName = applicant.getUserName();
 			profileStore.get(userName).setApplicationId(appId);
 			
 		} else{
-			CommonHelpUtil.merge(store.get(appId), applicant);
+			CommonHelpUtil.merge(appStore.get(appId), applicant);
 		}
 		svcsResponse.setApplicationId(appId);
 		svcsResponse.setResponseCode(200);
@@ -204,7 +206,7 @@ public class CommonHelpController {
 	@ResponseBody
 	public ApplicationServiceResponse getAboutYouData(@RequestParam(value="app-id") String appId){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
-		svcsResponse.setApplicant(store.get(appId));
+		svcsResponse.setApplicant(appStore.get(appId));
 		return svcsResponse;	
 	}
 	
@@ -222,7 +224,7 @@ public class CommonHelpController {
 			throw new Exception("App ID not found");
 		
 			
-		Applicant applicant = store.get(appId);
+		Applicant applicant = appStore.get(appId);
 		List<HouseholdMember> hhMemberList = applicant.getHhMemberList();
 		
 		if(hhMemberList == null){
@@ -256,7 +258,7 @@ public class CommonHelpController {
 	public ApplicationServiceResponse getHouseholdMember(@RequestParam(required = true, value="app-id") String appId, @RequestParam(required = false, value="hh-member-id") String hhMemberId) throws Exception{
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		
-		Applicant applicant = store.get(appId);
+		Applicant applicant = appStore.get(appId);
 		
 		if(applicant == null)
 			throw new Exception("Applicant not found");
@@ -372,13 +374,90 @@ public class CommonHelpController {
 		return svcsResponse;	
 	}
 	
-	@RequestMapping(value = "/delete", 
+	@RequestMapping(value = "/relationship/summary", 
     		method = RequestMethod.GET, 
     		produces = {"application/json"})
 	@ResponseBody
-	public ApplicationServiceResponse deleteUser(@RequestParam(value="userName", required = true) String userName){
+	public ApplicationServiceResponse getRelationshipSummary(@RequestParam(value="app-id", required = true) String appId){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
-		profileStore.remove(userName);
+		List<Relationship> relationshipList = new ArrayList<Relationship>();
+		Applicant applicant = appStore.get(appId);
+		relationshipList.addAll(relationStore.get(applicant.getApplicantId()));
+		
+		List<HouseholdMember> hhMemberList = applicant.getHhMemberList();
+		for(HouseholdMember hhMember : hhMemberList){
+			if(relationStore.get(hhMember.getHhMemberId()) != null)
+				relationshipList.addAll(relationStore.get(hhMember.getHhMemberId()));
+		}
+		
+		svcsResponse.setRelationShipList(relationshipList);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;
+	}
+	
+	
+	@RequestMapping(value = "/relationship", 
+    		method = RequestMethod.POST, 
+    		consumes = {"application/json"}, 
+    	    produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse setRelationship(@RequestBody Applicant applicant){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		List<Relationship> relationshipList = applicant.getRelationship();
+		relationStore.put(relationshipList.get(0).getMemberId(), relationshipList);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;
+	}
+	
+	@RequestMapping(value = "/relationship", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getRelationship(@RequestParam(value="app-id", required = true) String appId, @RequestParam(value="member-id", required = true) String memberId){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		List<Relationship> rsList = new ArrayList<Relationship>();
+		if(relationStore.get(memberId) == null){
+			Applicant applicant = appStore.get(appId);
+			List<HouseholdMember> hhMemberList = applicant.getHhMemberList();
+			// relationship for applicant
+			if(applicant.getApplicantId().equalsIgnoreCase(memberId)){
+				for(HouseholdMember hhMember : hhMemberList){
+					Relationship relationWithMember = new Relationship();
+					relationWithMember.setMemberId(memberId);
+					relationWithMember.setMemberGender(applicant.getGender());
+					relationWithMember.setRelationWithMemberId(hhMember.getHhMemberId());
+					relationWithMember.setRelation("");
+					relationWithMember.setRelationCode("");
+					rsList.add(relationWithMember);
+				}
+			} 
+			// relationship for member
+			else{ 
+				String gender = "";
+				for(HouseholdMember hhMember : hhMemberList){
+					if(hhMember.getHhMemberId().equalsIgnoreCase(memberId)){
+						gender = hhMember.getGender();
+						break;
+					}
+				}
+				
+				for(HouseholdMember hhMember : hhMemberList){
+					if(!hhMember.getHhMemberId().equalsIgnoreCase(memberId) && relationStore.get(hhMember.getHhMemberId()) == null){
+						Relationship relationWithMember = new Relationship();
+						relationWithMember.setMemberId(memberId);
+						relationWithMember.setMemberGender(gender);
+						relationWithMember.setRelationWithMemberId(hhMember.getHhMemberId());
+						relationWithMember.setRelation("");
+						relationWithMember.setRelationCode("");
+						rsList.add(relationWithMember);
+					}
+				}
+			}
+			relationStore.put(memberId, rsList);
+			svcsResponse.setRelationShipList(rsList);
+		} else{
+			svcsResponse.setRelationShipList(relationStore.get(memberId));
+		}
 		return svcsResponse;	
 	}
 	
@@ -388,11 +467,21 @@ public class CommonHelpController {
 	@ResponseBody
 	public ApplicationServiceResponse clean(){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
-		store.clear();
+		appStore.clear();
 		profileStore.clear();
 		incomeStore.clear();
+		relationStore.clear();
 		return svcsResponse;	
 	}
 	
+	@RequestMapping(value = "/delete", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse deleteUser(@RequestParam(value="userName", required = true) String userName){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		profileStore.remove(userName);
+		return svcsResponse;	
+	}
 
 }
