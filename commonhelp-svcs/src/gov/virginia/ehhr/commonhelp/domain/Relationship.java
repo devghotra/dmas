@@ -13,8 +13,8 @@ public class Relationship implements Serializable{
 	private String relationCode;
 	private String relation;
 	private String memberGender;
-	private static Map<String, String> maleRelations = new HashMap<String, String>();
-	private static Map<String, String> femaleRelations = new HashMap<String, String>();
+	public static Map<String, String> maleRelations = new HashMap<String, String>();
+	public static Map<String, String> femaleRelations = new HashMap<String, String>();
 	
 	static{
 		 maleRelations.put("BTR" ,"is the Brother of");
@@ -78,44 +78,48 @@ public class Relationship implements Serializable{
 		 femaleRelations.put("RT" ,"is Related to another way to");
 		 femaleRelations.put("SIL" ,"is Sister In Law of");
 		 femaleRelations.put("AS" ,"is Alien Sponsor of");
-	}	
-	
+	}
+
 	public String getMemberId() {
 		return memberId;
 	}
+
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+
 	public String getRelationWithMemberId() {
 		return relationWithMemberId;
 	}
+
 	public void setRelationWithMemberId(String relationWithMemberId) {
 		this.relationWithMemberId = relationWithMemberId;
 	}
-	public String getRelation() {
-		return relation;
-	}
-	public void setRelation(String relation) {
-		this.relation = relation;
-	}
+
 	public String getRelationCode() {
 		return relationCode;
 	}
+
 	public void setRelationCode(String relationCode) {
 		this.relationCode = relationCode;
 	}
+
+	public String getRelation() {
+		return relation;
+	}
+
+	public void setRelation(String relation) {
+		this.relation = relation;
+	}
+
 	public String getMemberGender() {
-		
-		if(memberGender != null && memberGender.equalsIgnoreCase("male"))
-			this.relation = maleRelations.get(relationCode);
-		else if(memberGender != null && memberGender.equalsIgnoreCase("female"))
-			this.relation = femaleRelations.get(relationCode);
-		
 		return memberGender;
 	}
+
 	public void setMemberGender(String memberGender) {
 		this.memberGender = memberGender;
-	}
+	}	
+	
 	
 	
 	

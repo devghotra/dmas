@@ -11,7 +11,7 @@
 		<input type="hidden" id="memberIdIndex" name="relationship[Index].memberId">
 		<input type="hidden" id="memberGenderIndex" name="relationship[Index].memberGender">
 		<input type="hidden" id="relationWithMemberIdIndex" name="relationship[Index].relationWithMemberId">
-		<SELECT class="form-control" id="relationIndex" name="relationship[Index].relation">
+		<SELECT class="form-control" id="relationIndex" name="relationship[Index].relationCode">
 			 <OPTION VALUE="" TITLE="">Select</OPTION>
 			 <OPTION VALUE="BTR" TITLE="is the Brother of">is the Brother of</OPTION>
 			 <OPTION VALUE="FTR" TITLE="is the Father of">is the Father of</OPTION>
@@ -49,7 +49,7 @@
 		<input type="hidden" id="memberIdIndex" name="relationship[Index].memberId">
 		<input type="hidden" id="memberGenderIndex" name="relationship[Index].memberGender">
 		<input type="hidden" id="relationWithMemberIdIndex" name="relationship[Index].relationWithMemberId">
-		<SELECT class="form-control" id="relationIndex" name="relationship[Index].relation">
+		<SELECT class="form-control" id="relationIndex" name="relationship[Index].relationCode">
 			 <OPTION VALUE="" TITLE="">Select</OPTION>
 			 <OPTION VALUE="DAU" TITLE="is the Daughter of">is the Daughter of</OPTION>
 			 <OPTION VALUE="GRD" TITLE="is the Granddaughter (Including Great) of">is the Granddaughter (Including Great) of</OPTION>
@@ -127,6 +127,18 @@ var db = TAFFY(sessionStorage.db);
 var activeMember = db({type:"member", relationship:"active"}).first();
 
 $(document).ready(function(){
+	var pendingMembersCount = db({type:"member", relationship:"pending"}).count();
+
+	if(pendingMembersCount == 0){
+		loadPage("present-job.html");
+		return false;
+	}
+	
+	if(!activeMember){
+		loadPage("relationship-summary.html");
+		return false;
+	}
+	
 	sessionStorage.currentScreen = "relationship.html";
 	$(this).resetLeftNavLinks("#relationNavLink");
 	
@@ -158,7 +170,7 @@ $(document).ready(function(){
 				$('#memberId'+index).val(relationship.memberId);
 				$('#memberGender'+index).val(relationship.memberGender);
 				$('#relationWithMemberId'+index).val(relationship.relationWithMemberId);
-				$('#relation'+index).val(relationship.relation);
+				$('#relation'+index).val(relationship.relationCode);
 				
 			});
 		}

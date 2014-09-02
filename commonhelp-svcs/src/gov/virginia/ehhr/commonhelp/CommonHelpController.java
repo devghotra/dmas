@@ -404,6 +404,13 @@ public class CommonHelpController {
 	public ApplicationServiceResponse setRelationship(@RequestBody Applicant applicant){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		List<Relationship> relationshipList = applicant.getRelationship();
+		for(Relationship rs : relationshipList){
+			String gender = rs.getMemberGender();
+			if(gender.equalsIgnoreCase("male"))
+				rs.setRelation(Relationship.maleRelations.get(rs.getRelationCode()));
+			else
+				rs.setRelation(Relationship.femaleRelations.get(rs.getRelationCode()));
+		}
 		relationStore.put(relationshipList.get(0).getMemberId(), relationshipList);
 		svcsResponse.setResponseCode(200);
 		return svcsResponse;
@@ -416,8 +423,8 @@ public class CommonHelpController {
 	public ApplicationServiceResponse getRelationship(@RequestParam(value="app-id", required = true) String appId, @RequestParam(value="member-id", required = true) String memberId){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		List<Relationship> rsList = new ArrayList<Relationship>();
+		Applicant applicant = appStore.get(appId);
 		if(relationStore.get(memberId) == null){
-			Applicant applicant = appStore.get(appId);
 			List<HouseholdMember> hhMemberList = applicant.getHhMemberList();
 			// relationship for applicant
 			if(applicant.getApplicantId().equalsIgnoreCase(memberId)){
@@ -456,7 +463,29 @@ public class CommonHelpController {
 			relationStore.put(memberId, rsList);
 			svcsResponse.setRelationShipList(rsList);
 		} else{
-			svcsResponse.setRelationShipList(relationStore.get(memberId));
+			rsList = relationStore.get(memberId);
+			// check if new members are added
+			List<HouseholdMember> hhMemberList = applicant.getHhMemberList();
+			for(HouseholdMember hhMember : hhMemberList){
+				boolean newMember = true;
+				for(Relationship rs : rsList){
+					if(rs.getRelationWithMemberId().equalsIgnoreCase(hhMember.getHhMemberId())){
+						newMember = false;
+						break;
+					}
+				}
+				
+				if(newMember){
+					Relationship relationWithMember = new Relationship();
+					relationWithMember.setMemberId(memberId);
+					relationWithMember.setMemberGender(rsList.get(0).getMemberGender());
+					relationWithMember.setRelationWithMemberId(hhMember.getHhMemberId());
+					relationWithMember.setRelation("");
+					relationWithMember.setRelationCode("");
+					rsList.add(relationWithMember);
+				}
+			}
+			svcsResponse.setRelationShipList(rsList);
 		}
 		return svcsResponse;	
 	}

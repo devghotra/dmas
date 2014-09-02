@@ -66,8 +66,8 @@ $.fn.setPageEventHandlers = function(){
 		});
 	 
 	 $( "#applicationForm" ).submit(function( event ) {
-		 	//var jsondata = JSON.stringify(form2js(this, '.', true));
-		 	//console.debug("json data: "+jsondata);
+		 	var jsondata = JSON.stringify(form2js(this, '.', true));
+		 	console.debug("json data: "+jsondata);
 			$.ajax({
 		        url     : $(this).attr('action'),
 		        type    : $(this).attr('method'),
