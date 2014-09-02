@@ -341,4 +341,8 @@ db({type:"member"}).each(function (record,recordnumber) {
 	$('.memberNames').append($('<option>', { value : record["id"] }).text(memberName));
 });
 
+$.fn.formSubmissionSuccess = function(data){
+	// no logic on formSubmissionSuccess
+};
+
 </script>
