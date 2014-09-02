@@ -127,9 +127,9 @@ var db = TAFFY(sessionStorage.db);
 var activeMember = db({type:"member", relationship:"active"}).first();
 
 $(document).ready(function(){
-	var pendingMembersCount = db({type:"member", relationship:"pending"}).count();
+	var totalMembers = db({type:"member"}).count();
 
-	if(pendingMembersCount == 0){
+	if(totalMembers == 1){
 		loadPage("present-job.html");
 		return false;
 	}
