@@ -469,7 +469,7 @@ public class CommonHelpController {
 			for(HouseholdMember hhMember : hhMemberList){
 				boolean newMember = true;
 				for(Relationship rs : rsList){
-					if(rs.getRelationWithMemberId().equalsIgnoreCase(hhMember.getHhMemberId())){
+					if(rs.getMemberId().equalsIgnoreCase(hhMember.getHhMemberId()) || rs.getRelationWithMemberId().equalsIgnoreCase(hhMember.getHhMemberId())){
 						newMember = false;
 						break;
 					}
