@@ -1,0 +1,314 @@
+<h3 class="hl">Medicare Details</h3>
+<p class="text-muted">
+	Tell us about <span class="memberfirstNameSpan"></span>'s Medicare bills. If
+	you are entitled to Medicare but are not actually getting it, please
+	enter 0 for your premium amount. <br />
+</p>
+<hr />
+
+<form role="form" id="applicationForm" method="post"
+	action="/commonhelp-svcs/services/medicaid/applicant/medicare">
+	
+	<input type="hidden" id="applicationId" name="applicationId"> 
+	<input type="hidden" id="memberId" name="memberId">
+	
+	<h4 class="hl bottom-15">
+		Medicare Part A<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-4">
+				<label>Is <span class="memberfirstNameSpan"></span> entitled to or receiving Medicare Part A?</label>
+			</div>
+			<div class="col-md-6">
+				<label class="radio-inline"> <input type="radio"
+					name="medicareA" id="medicareA-y" value=true>Yes
+				</label> <label class="radio-inline"> <input type="radio"
+					name="medicareA" id="medicareA-n" value=false>No
+				</label>
+			</div>
+		</div>
+
+		<div id="medicareADiv" style="display: none;">
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label>When did <span class="memberfirstNameSpan"></span>'s Medicare Part A begin?</label>
+				</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control datepicker" id="medicareAStartDate" name="medicareAStartDate" placeholder="">
+				</div>
+				<div class="col-md-4">
+					<label>When did <span class="memberfirstNameSpan"></span>'s Medicare Part A end?</label>
+				</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control datepicker" id="medicareAEndDate" name="medicareAEndDate" placeholder="">
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label>How much is <span class="memberfirstNameSpan"></span>'s Medicare Part A premium?</label>
+				</div>
+				<div class="col-md-2">
+					<div class="input-group">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicareAPremium" name="medicareAPremium" placeholder="" value="" style="width: 75%">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<label>How is <span class="memberfirstNameSpan"></span>'s Medicare Part A premium paid?</label>
+				</div>
+				<div class="col-md-2">
+					<select class="form-control" id="medicareAPaidBy" name="medicareAPaidBy">
+						<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+						<OPTION VALUE="BI" TITLE="Full Time Job">Buy in</OPTION>
+						<OPTION VALUE="PBE" TITLE="Part Time Job">Paid by employer</OPTION>
+						<OPTION VALUE="RRBD" TITLE="Contract Work">Rail road benefit deduction</OPTION>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<br/>
+	
+	<h4 class="hl bottom-15">
+		Medicare Part B<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-4">
+				<label>Is <span class="memberfirstNameSpan"></span> entitled to or receiving Medicare Part B?</label>
+			</div>
+			<div class="col-md-6">
+				<label class="radio-inline"> <input type="radio"
+					name="medicareB" id="medicareB-y" value=true>Yes
+				</label> <label class="radio-inline"> <input type="radio"
+					name="medicareB" id="medicareB-n" value=false>No
+				</label>
+			</div>
+		</div>
+
+		<div id="medicareBDiv" style="display: none;">
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label>When did <span class="memberfirstNameSpan"></span>'s Medicare Part B begin?</label>
+				</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control datepicker" id="medicareBStartDate" name="medicareBStartDate" placeholder="">
+				</div>
+				<div class="col-md-4">
+					<label>When did <span class="memberfirstNameSpan"></span>'s Medicare Part B end?</label>
+				</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control datepicker" id="medicareBEndDate" name="medicareBEndDate" placeholder="">
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label>How much is <span class="memberfirstNameSpan"></span>'s Medicare Part B premium?</label>
+				</div>
+				<div class="col-md-2">
+					<div class="input-group">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicareBPremium" name="medicareBPremium" placeholder="" value="" style="width: 75%">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<label>How is <span class="memberfirstNameSpan"></span>'s Medicare Part B premium paid?</label>
+				</div>
+				<div class="col-md-2">
+					<select class="form-control" id="medicareBPaidBy" name="medicareBPaidBy">
+						<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+						<OPTION VALUE="BI" TITLE="Full Time Job">Buy in</OPTION>
+						<OPTION VALUE="PBE" TITLE="Part Time Job">Paid by employer</OPTION>
+						<OPTION VALUE="RRBD" TITLE="Contract Work">Rail road benefit deduction</OPTION>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<br/>
+	
+	<h4 class="hl bottom-15">
+		Medicare Part D<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-4">
+				<label>Is <span class="memberfirstNameSpan"></span> entitled to or receiving Medicare Part D?</label>
+			</div>
+			<div class="col-md-6">
+				<label class="radio-inline"> <input type="radio"
+					name="medicareD" id="medicareD-y" value=true>Yes
+				</label> <label class="radio-inline"> <input type="radio"
+					name="medicareD" id="medicareD-n" value=false>No
+				</label>
+			</div>
+		</div>
+
+		<div id="medicareDDiv" style="display: none;">
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label>When did <span class="memberfirstNameSpan"></span>'s Medicare Part D begin?</label>
+				</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control datepicker" id="medicareDStartDate" name="medicareDStartDate" placeholder="">
+				</div>
+				<div class="col-md-4">
+					<label>When did <span class="memberfirstNameSpan"></span>'s Medicare Part D end?</label>
+				</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control datepicker" id="medicareDEndDate" name="medicareDEndDate" placeholder="">
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label>How much is <span class="memberfirstNameSpan"></span>'s Medicare Part D premium?</label>
+				</div>
+				<div class="col-md-2">
+					<div class="input-group">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicareBPremium" name="medicareDPremium" placeholder="" value="" style="width: 75%">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<label>How is <span class="memberfirstNameSpan"></span>'s Medicare Part D premium paid?</label>
+				</div>
+				<div class="col-md-2">
+					<select class="form-control" id="medicareDPaidBy" name="medicareDPaidBy">
+						<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+						<OPTION VALUE="BI" TITLE="Full Time Job">Buy in</OPTION>
+						<OPTION VALUE="PBE" TITLE="Part Time Job">Paid by employer</OPTION>
+						<OPTION VALUE="RRBD" TITLE="Contract Work">Rail road benefit deduction</OPTION>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<br/>
+	
+	<h4 class="hl bottom-15">
+		Medicare Claim Number<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div>
+		<div class="row form-row">
+			<div class="col-md-7">
+				<label>
+					What is <span class="memberfirstNameSpan"></span>'s Medicare Claim Number? You can find this number on the front of your Medicare card.
+				</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="medicareClaimNumber" name="medicareClaimNumber" placeholder="">
+			</div>
+		</div>
+	</div>
+	
+	<input type="hidden" id="nextPage" value="medical-summary.html">
+</form>
+
+<div class="row form-row">
+	<div class="col-md-10">
+		<button id="backBtn" type="button" class="btn btn-green pull-left"
+			value="medical-bills.html">Previous</button>
+	</div>
+	<div class="col-md-2">
+		<button id="nextBtn" type="button"
+			class="btn btn-green pull-right btn-block" disabled>Save &
+			Next</button>
+	</div>
+</div>
+<div class="row form-row">
+	<div class="col-md-2 col-md-offset-10">
+		<button type="button" class="btn btn-green pull-right btn-block"
+			onclick="javascript: doSaveLogout()">Save & Logout</button>
+	</div>
+</div>
+
+
+<script>
+var db = TAFFY(sessionStorage.db);
+var activeMember = db({type:"member", billsSection:"active"}).first();
+var isEditMode = activeMember.editMode;
+var isAddMode = activeMember.addMode;
+
+$(document).ready(function(){
+	sessionStorage.currentScreen = "medicare.html";
+	$(this).resetLeftNavLinks("#billsNavLink");
+	
+	$("#applicationId").val(sessionStorage.applicationId);
+	$("#memberId").val(activeMember.id);
+	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
+	$(".memberfirstNameSpan").html(activeMember.firstName);
+
+	var reqParams = "member-id="+activeMember.id+"&applicationId="+sessionStorage.applicationId;
+
+	$("#nextBtn").removeAttr("disabled");
+
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/medicare?"+reqParams, function( data ) {
+		
+		if(data.medicareData != null){
+
+			var medicareData = data.medicareData;
+
+			if(medicareData.medicareA)
+				$("#medicareA-y").click();
+			else
+				$("#medicareA-n").click();
+
+			if(medicareData.medicareB)
+				$("#medicareB-y").click();
+			else
+				$("#medicareB-n").click();
+
+			if(medicareData.medicareD)
+				$("#medicareD-y").click();
+			else
+				$("#medicareD-n").click();
+		    
+			var formData = medicareData;
+			
+			js2form(document.getElementById('applicationForm'), formData);
+		}
+	});
+	
+});
+
+
+$("#nextBtn").click(function(){
+	$("#applicationForm").submit();
+});
+
+$("#medicareA-y").click(function(){
+	$("#medicareADiv").show();
+});
+
+$("#medicareA-n").click(function(){
+	$("#medicareADiv").hide();
+});
+
+$("#medicareB-y").click(function(){
+	$("#medicareBDiv").show();
+});
+
+$("#medicareB-n").click(function(){
+	$("#medicareBDiv").hide();
+});
+
+$("#medicareD-y").click(function(){
+	$("#medicareDDiv").show();
+});
+
+$("#medicareD-n").click(function(){
+	$("#medicareDDiv").hide();
+});
+
+
+$.fn.formSubmissionSuccess = function(data){
+	// no logic on formSubmissionSuccess
+};
+</script>

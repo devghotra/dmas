@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+</head>
+<body>
+
+	<table>
+	  <tr>
+	    <td id="subscriber">DSS</td>
+	    <td id="fromDate">09/01/2014</td> 
+	    <td id="toDate">09/30/2014</td>
+	    <td><button id="invoiceBtn" onclick="getInvoiceDetails('DSS','09/01/2014', '09/30/2014');">Invoice</button></td>
+	  </tr>
+</table>
+
+<script type="text/javascript">
+	function getInvoiceDetails(subscriber, fromDate, toDate){
+		var jsonObj = {
+			    "subscriber": subscriber,
+			    "fromDate" : fromDate,
+			    "toDate" : toDate
+			};
+		var jsonData = JSON.stringify(jsonObj);
+		console.debug("JSON Object: "+jsonData);
+		$.ajax({
+	        url     : "action url",
+	        type    : "POST",
+	        contentType : "application/json; charset=utf-8",
+	        dataType: 'json',
+	        data    : jsonData,
+	        success : function( data ) {
+	        	console.debug("Form submitted successfully - Data: "+data);
+	        },
+	        error   : function( xhr, err ) {
+	        	console.debug('Error in form submission '+err+xhr);     
+	        }
+	    }); 
+	}
+</script>
+
+</body>
+</html>

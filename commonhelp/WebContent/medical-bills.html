@@ -1,0 +1,341 @@
+<h3 class="hl">Medical Bills</h3>
+<p class="text-muted">
+	Tell us unpaid medical bills from prior months or ongoing medical bills
+	for <span class="memberNameSpan"></span><br />
+</p>
+<hr />
+
+<div class="row form-row">
+	<div class="col-md-6">
+		<label>Does <span class="memberNameSpan"></span> have unpaid
+			medical bills from prior months or ongoing medical bills?
+		</label>
+	</div>
+	<div class="col-md-6">
+		<label class="radio-inline"> <input type="radio"
+			name="medicalBills" id="medicalBills-y" value=true>Yes
+		</label> <label class="radio-inline"> <input type="radio"
+			name="medicalBills" id="medicalBills-n" value=false>No
+		</label>
+	</div>
+</div>
+<br />
+
+<form role="form" id="applicationForm" method="post"
+	action="/commonhelp-svcs/services/medicaid/applicant/medical-bills"
+	style="display: none;">
+	<input type="hidden" id="applicationId" name="applicationId"> 
+	<input type="hidden" id="memberId" name="memberId">
+
+	<h4 class="hl bottom-15">
+		<span class="memberfirstNameSpan"></span>'s medical bills<i
+			class="fa fa-chevron-up toggle"></i>
+	</h4>
+	<div class="row form-row">
+		<div class="col-md-6">
+			<div class="row form-row" style="background: #ddd">
+				<div class="col-md-8">
+					<label>Medical Bill Type</label>
+				</div>
+
+				<div class="col-md-4">
+					<label>Total Monthly Amount<br/>(Best Estimate)</label>
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Medical and Dental Bills</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[0].type" name="medicalBills[0].type" value="Medical and Dental Bills"> 
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[0].amount" name="medicalBills[0].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Hospital/Outpatient treatment</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[1].type" name="medicalBills[1].type" value="Hospital/Outpatient treatment">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[1].amount" name="medicalBills[1].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Prescription drugs/Approved non-prescription</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[2].type" name="medicalBills[2].type" value="Prescription drugs/Approved non-prescription">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[2].amount" name="medicalBills[2].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Nursing/Nursing home care</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[3].type" name="medicalBills[3].type" value="Nursing/Nursing home care">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[3].amount" name="medicalBills[3].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Medical supplies/Equipment-prescribed</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[4].type" name="medicalBills[4].type" value="Medical supplies/Equipment-prescribed">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[4].amount" name="medicalBills[4].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Insurance premiums - health and hospitalization</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[5].type" name="medicalBills[5].type" value="Insurance premiums - health and hospitalization">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[5].amount" name="medicalBills[5].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Dentures, hearing aids and prosthetics</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[6].type" name="medicalBills[6].type" value="Dentures, hearing aids and prosthetics">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[6].amount" name="medicalBills[6].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Animal expenses - seeing eye or hearing or attendant</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[7].type" name="medicalBills[7].type" value="Animal expenses - seeing eye or hearing or attendant">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[7].amount" name="medicalBills[7].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="row form-row" style="background: #ddd">
+				<div class="col-md-8">
+					<label>Medical Bill Type</label>
+				</div>
+
+				<div class="col-md-4">
+					<label>Total Monthly Amount<br/>(Best Estimate)</label>
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Eyeglasses/Contact lenses - prescribed</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[8].type" name="medicalBills[8].type" value="Eyeglasses/Contact lenses - prescribed">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[8].amount" name="medicalBills[8].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Transportation/Lodging costs to get medical services</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[9].type" name="medicalBills[9].type" value="Transportation/Lodging costs to get medical services">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[9].amount" name="medicalBills[9].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Maintaining attendant due to age/Illness/Infirmity</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[10].type" name="medicalBills[10].type" value="Maintaining attendant due to age/Illness/Infirmity">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[10].amount" name="medicalBills[10].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Attendant meals furnished</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[11].type" name="medicalBills[11].type" value="Attendant meals furnished">
+						<span class="input-group-addon">$</span> 
+						<input type="text"	class="form-control" id="medicalBills[11].amount" name="medicalBills[11].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Deaf/Handicapped special equipment</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[12].type" name="medicalBills[12].type" value="Deaf/Handicapped special equipment">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[12].amount" name="medicalBills[12].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Psychotherapy</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[13].type" name="medicalBills[13].type" value="Psychotherapy">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[13].amount" name="medicalBills[13].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Community based in-home care</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[14].type" name="medicalBills[14].type" value="Community based in-home care">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[14].amount" name="medicalBills[14].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+
+			<div class="row form-row">
+				<div class="col-md-8">
+					<label>Other</label>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="hidden" id="medicalBills[15].type" name="medicalBills[15].type" value="Other">
+						<span class="input-group-addon">$</span> 
+						<input type="text" class="form-control" id="medicalBills[15].amount" name="medicalBills[15].amount" placeholder="" value=" ">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+	<input type="hidden" id="nextPage" value="medicare.html">
+</form>
+
+<div class="row form-row">
+	<div class="col-md-10">
+		<button id="backBtn" type="button" class="btn btn-green pull-left"
+			value="income-summary.html">Previous</button>
+	</div>
+	<div class="col-md-2">
+		<button id="nextBtn" type="button"
+			class="btn btn-green pull-right btn-block" disabled>Save &
+			Next</button>
+	</div>
+</div>
+<div class="row form-row">
+	<div class="col-md-2 col-md-offset-10">
+		<button type="button" class="btn btn-green pull-right btn-block"
+			onclick="javascript: doSaveLogout()">Save & Logout</button>
+	</div>
+</div>
+
+
+<script>
+var db = TAFFY(sessionStorage.db);
+var activeMember = db({type:"member", billsSection:"active"}).first();
+var isEditMode = activeMember.editMode;
+var isAddMode = activeMember.addMode;
+
+$(document).ready(function(){
+	sessionStorage.currentScreen = "medical-bills.html";
+	$(this).resetLeftNavLinks("#billsNavLink");
+	
+	$("#applicationId").val(sessionStorage.applicationId);
+	$("#memberId").val(activeMember.id);
+	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
+	$(".memberfirstNameSpan").html(activeMember.firstName);
+
+	var reqParams = "member-id="+activeMember.id+"&applicationId="+sessionStorage.applicationId;
+
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/medical-bills?"+reqParams, function( data ) {
+		if(data.medicalData != null){
+			$("#medicalBills-y").click();
+		    
+			var formData = data.medicalData;
+			
+			js2form(document.getElementById('applicationForm'), formData);
+		}
+	});
+	
+});
+
+$("#nextBtn").click(function(){
+	var selection = $('input[name=medicalBills]:checked').val();
+	
+	if(selection == "true")
+		$("#applicationForm").submit();
+	else 
+		alert("not checked");
+});
+
+$("#medicalBills-y").click(function(){
+	$("#applicationForm").show();
+	$("#nextBtn").removeAttr("disabled");
+});
+
+$("#medicalBills-n").click(function(){
+	$("#applicationForm").hide();
+	$("#nextBtn").removeAttr("disabled");
+});
+
+$.fn.formSubmissionSuccess = function(data){
+	// no logic on formSubmissionSuccess
+};
+
+</script>

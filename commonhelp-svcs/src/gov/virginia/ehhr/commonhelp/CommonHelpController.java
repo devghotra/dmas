@@ -5,6 +5,8 @@ import gov.virginia.ehhr.commonhelp.domain.ApplicationServiceResponse;
 import gov.virginia.ehhr.commonhelp.domain.HouseholdMember;
 import gov.virginia.ehhr.commonhelp.domain.Income;
 import gov.virginia.ehhr.commonhelp.domain.KnowledgeBaseAuthQA;
+import gov.virginia.ehhr.commonhelp.domain.MedicalData;
+import gov.virginia.ehhr.commonhelp.domain.MedicareData;
 import gov.virginia.ehhr.commonhelp.domain.Relationship;
 import gov.virginia.ehhr.commonhelp.domain.UserProfile;
 
@@ -13,6 +15,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.UUID;
 
@@ -30,11 +33,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CommonHelpController {
 	
 	static Logger LOGGER = LoggerFactory.getLogger(CommonHelpController.class);
-	HashMap<String, Applicant> appStore = new HashMap<String, Applicant>();
-	LinkedHashMap<String, Income> incomeStore = new LinkedHashMap<String, Income>();
-	HashMap<String, UserProfile> profileStore = new HashMap<String, UserProfile>();
-	HashMap<String, List<Relationship>> relationStore = new HashMap<String, List<Relationship>>();
-	
+	Map<String, Applicant> appStore = new HashMap<String, Applicant>();
+	Map<String, Income> incomeStore = new LinkedHashMap<String, Income>();
+	Map<String, UserProfile> profileStore = new HashMap<String, UserProfile>();
+	Map<String, List<Relationship>> relationStore = new HashMap<String, List<Relationship>>();
+	Map<String, MedicalData> medicalDataStore = new HashMap<String, MedicalData>();
+	Map<String, MedicareData> medicareDataStore = new HashMap<String, MedicareData>();
 	
 	@RequestMapping(value = "/sign-up-basic", 
     		method = RequestMethod.POST, 
@@ -46,7 +50,7 @@ public class CommonHelpController {
 		String userName = userProfile.getUserName();
 		
 		if(profileStore.get(userName) == null){	
-			if(userName.equalsIgnoreCase("kevinsmith") || userName.equalsIgnoreCase("chrisbell") || userName.equalsIgnoreCase("johndoe")){
+			if(userName.equalsIgnoreCase("kevinsmith") || userName.equalsIgnoreCase("dsg") || userName.equalsIgnoreCase("johndoe")){
 				String authtoken = UUID.randomUUID().toString().replace("-", "");
 				userProfile.setAuthtoken(authtoken);
 				profileStore.put(userName, userProfile);
@@ -361,6 +365,85 @@ public class CommonHelpController {
 		}
 		
 		svcsResponse.setIncomeList(incomeList);
+		return svcsResponse;
+	}
+	
+	@RequestMapping(value = "/medical-bills", 
+    		method = RequestMethod.GET,  
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getMedicalBills(@RequestParam(value="applicationId") String applicationId, @RequestParam(value="member-id") String memberId){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		MedicalData medicalData = medicalDataStore.get(memberId);
+		svcsResponse.setMedicalData(medicalData);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/medical-bills", 
+    		method = RequestMethod.POST, 
+    		consumes = {"application/json"}, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse setMedicalBills(@RequestBody MedicalData medicalData){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		medicalDataStore.put(medicalData.getMemberId(), medicalData);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/medicare", 
+    		method = RequestMethod.GET,  
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getMedicare(@RequestParam(value="applicationId") String applicationId, @RequestParam(value="member-id") String memberId){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		MedicareData medicalData = medicareDataStore.get(memberId);
+		svcsResponse.setMedicareData(medicalData);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;	
+	}
+	
+	
+	@RequestMapping(value = "/medicare", 
+    		method = RequestMethod.POST, 
+    		consumes = {"application/json"}, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse setMedicare(@RequestBody MedicareData medicareData){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		medicareDataStore.put(medicareData.getMemberId(), medicareData);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/medical/summary", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getMedicalSummary(@RequestParam(value="applicationId") String applicationId){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		
+		List<MedicalData> medicalDataList = new ArrayList<MedicalData>();
+		List<MedicareData> medicareDataList = new ArrayList<MedicareData>();
+		
+		for(Entry<String, MedicalData> medicalDataEntry : medicalDataStore.entrySet()){
+			MedicalData medicalData = medicalDataEntry.getValue();
+			if(medicalData.getApplicationId().equalsIgnoreCase(applicationId)){
+				medicalDataList.add(medicalData);
+			}
+		}
+		
+		for(Entry<String, MedicareData> medicareDataEntry : medicareDataStore.entrySet()){
+			MedicareData medicareData = medicareDataEntry.getValue();
+			if(medicareData.getApplicationId().equalsIgnoreCase(applicationId)){
+				medicareDataList.add(medicareData);
+			}
+		}
+		
+		svcsResponse.setMedicalDataList(medicalDataList);
+		svcsResponse.setMedicareDataList(medicareDataList);
+		
 		return svcsResponse;
 	}
 	

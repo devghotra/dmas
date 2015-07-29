@@ -18,6 +18,10 @@ public class ApplicationServiceResponse implements Serializable{
 	private HashMap<String, List<Income>> incomeList;
 	private UserProfile userProfile;
 	private List<Relationship> relationShipList;
+	private MedicalData medicalData;
+	private MedicareData medicareData;
+	private List<MedicalData> medicalDataList;
+	private List<MedicareData> medicareDataList;
 
 	public int getResponseCode() {
 		return responseCode;
@@ -97,6 +101,38 @@ public class ApplicationServiceResponse implements Serializable{
 
 	public void setRelationShipList(List<Relationship> relationShipList) {
 		this.relationShipList = relationShipList;
+	}
+
+	public MedicalData getMedicalData() {
+		return medicalData;
+	}
+
+	public void setMedicalData(MedicalData medicalData) {
+		this.medicalData = medicalData;
+	}
+
+	public MedicareData getMedicareData() {
+		return medicareData;
+	}
+
+	public void setMedicareData(MedicareData medicareData) {
+		this.medicareData = medicareData;
+	}
+
+	public List<MedicalData> getMedicalDataList() {
+		return medicalDataList;
+	}
+
+	public void setMedicalDataList(List<MedicalData> medicalDataList) {
+		this.medicalDataList = medicalDataList;
+	}
+
+	public List<MedicareData> getMedicareDataList() {
+		return medicareDataList;
+	}
+
+	public void setMedicareDataList(List<MedicareData> medicareDataList) {
+		this.medicareDataList = medicareDataList;
 	}
 	
 	
