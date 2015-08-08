@@ -487,13 +487,17 @@ public class CommonHelpController {
 	public ApplicationServiceResponse setRelationship(@RequestBody Applicant applicant){
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		List<Relationship> relationshipList = applicant.getRelationship();
-		for(Relationship rs : relationshipList){
-			String gender = rs.getMemberGender();
-			if(gender.equalsIgnoreCase("male"))
-				rs.setRelation(Relationship.maleRelations.get(rs.getRelationCode()));
-			else
-				rs.setRelation(Relationship.femaleRelations.get(rs.getRelationCode()));
+		
+		if(relationshipList != null){
+			for(Relationship rs : relationshipList){
+				String gender = rs.getMemberGender();
+				if(gender.equalsIgnoreCase("male"))
+					rs.setRelation(Relationship.maleRelations.get(rs.getRelationCode()));
+				else
+					rs.setRelation(Relationship.femaleRelations.get(rs.getRelationCode()));
+			}
 		}
+		
 		relationStore.put(relationshipList.get(0).getMemberId(), relationshipList);
 		svcsResponse.setResponseCode(200);
 		return svcsResponse;

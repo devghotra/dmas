@@ -151,6 +151,7 @@ $(document).ready(function(){
 
 	$.get( "/commonhelp-svcs/services/medicaid/applicant/relationship?"+reqParams, function( data ) {
 		if(data.relationShipList != null){
+			
 			//console.debug(data.relationShipList);
 
 			$.each(data.relationShipList, function( index, relationship ) {
@@ -162,8 +163,9 @@ $(document).ready(function(){
 
 				$('#memberName'+index).html(activeMember.firstName);
 				$('#relationWithMemberName'+index).html(realtionWithMember.firstName);
-				if(relationship.memberGender == 'male')
+				if(relationship.memberGender == 'male'){
 					$('#relationDropdown'+index).html("<br/>"+$('#maleRelation').html().replace(/Index/g,index));
+				}
 				else if(relationship.memberGender == 'female')
 					$('#relationDropdown'+index).html("<br/>"+$('#femaleRelation').html().replace(/Index/g,index));
 

@@ -71,14 +71,14 @@ $(document).ready(function(){
     		var applicantData = JSON.parse(JSON.stringify(data.applicant));
     		$(this).renderHtmlFromJson(null, applicantData);
 
-    		db.insert({type:"member",id:applicantData.applicantId,firstName:applicantData.firstName, lastName:applicantData.lastName, incomeSection:"active", relationship:"active", billsSection:"active"});
+    		db.insert({type:"member",id:applicantData.applicantId,firstName:applicantData.firstName, lastName:applicantData.lastName, incomeSection:"active", relationship:"active", medicalSection:"active"});
 
     		var i = 0;
     		if(data.applicant.hhMemberList != null){
     			var hhMemberList = JSON.parse(JSON.stringify(data.applicant.hhMemberList));
     			$.each(hhMemberList, function(index) {
     			    var hhMember = hhMemberList[index];
-    			    db.insert({type:"member",id:hhMember.hhMemberId,firstName:hhMember.firstName, lastName:hhMember.lastName, incomeSection:"pending", relationship:"pending", billsSection:"pending"});
+    			    db.insert({type:"member",id:hhMember.hhMemberId,firstName:hhMember.firstName, lastName:hhMember.lastName, incomeSection:"pending", relationship:"pending", medicalSection:"pending"});
     			    $('#hhMemberSummaryTable tr').last().after(
     			    	'<tr>'+
     						'<td><span id="hhmb'+i+'.firstName"></span> <span id="hhmb'+i+'.lastName"></span></td>'+

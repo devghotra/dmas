@@ -232,7 +232,7 @@
 
 <script>
 var db = TAFFY(sessionStorage.db);
-var activeMember = db({type:"member", billsSection:"active"}).first();
+var activeMember = db({type:"member", medicalSection:"active"}).first();
 var isEditMode = activeMember.editMode;
 var isAddMode = activeMember.addMode;
 
