@@ -22,6 +22,10 @@ public class ApplicationServiceResponse implements Serializable{
 	private MedicareData medicareData;
 	private List<MedicalData> medicalDataList;
 	private List<MedicareData> medicareDataList;
+	private EmployeeHealthInsurance empHealthInsurance;
+	private MemberHealthInsurance memberHealthInsurance;
+	List<EmployeeHealthInsurance> empHealthInsuranceList;
+	private List<MemberHealthInsurance> memberHealthInsuranceList;
 
 	public int getResponseCode() {
 		return responseCode;
@@ -133,6 +137,40 @@ public class ApplicationServiceResponse implements Serializable{
 
 	public void setMedicareDataList(List<MedicareData> medicareDataList) {
 		this.medicareDataList = medicareDataList;
+	}
+
+	public EmployeeHealthInsurance getEmpHealthInsurance() {
+		return empHealthInsurance;
+	}
+
+	public void setEmpHealthInsurance(EmployeeHealthInsurance empHealthInsurance) {
+		this.empHealthInsurance = empHealthInsurance;
+	}
+
+	public MemberHealthInsurance getMemberHealthInsurance() {
+		return memberHealthInsurance;
+	}
+
+	public void setMemberHealthInsurance(MemberHealthInsurance memberHealthInsurance) {
+		this.memberHealthInsurance = memberHealthInsurance;
+	}
+
+	public List<EmployeeHealthInsurance> getEmpHealthInsuranceList() {
+		return empHealthInsuranceList;
+	}
+
+	public void setEmpHealthInsuranceList(
+			List<EmployeeHealthInsurance> empHealthInsuranceList) {
+		this.empHealthInsuranceList = empHealthInsuranceList;
+	}
+
+	public List<MemberHealthInsurance> getMemberHealthInsuranceList() {
+		return memberHealthInsuranceList;
+	}
+
+	public void setMemberHealthInsuranceList(
+			List<MemberHealthInsurance> memberHealthInsuranceList) {
+		this.memberHealthInsuranceList = memberHealthInsuranceList;
 	}
 	
 	

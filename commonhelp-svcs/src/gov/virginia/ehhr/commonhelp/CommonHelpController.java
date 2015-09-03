@@ -2,11 +2,13 @@ package gov.virginia.ehhr.commonhelp;
 
 import gov.virginia.ehhr.commonhelp.domain.Applicant;
 import gov.virginia.ehhr.commonhelp.domain.ApplicationServiceResponse;
+import gov.virginia.ehhr.commonhelp.domain.EmployeeHealthInsurance;
 import gov.virginia.ehhr.commonhelp.domain.HouseholdMember;
 import gov.virginia.ehhr.commonhelp.domain.Income;
 import gov.virginia.ehhr.commonhelp.domain.KnowledgeBaseAuthQA;
 import gov.virginia.ehhr.commonhelp.domain.MedicalData;
 import gov.virginia.ehhr.commonhelp.domain.MedicareData;
+import gov.virginia.ehhr.commonhelp.domain.MemberHealthInsurance;
 import gov.virginia.ehhr.commonhelp.domain.Relationship;
 import gov.virginia.ehhr.commonhelp.domain.UserProfile;
 
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/medicaid/applicant")
 public class CommonHelpController {
 	
+	static String str = "";
 	static Logger LOGGER = LoggerFactory.getLogger(CommonHelpController.class);
 	Map<String, Applicant> appStore = new HashMap<String, Applicant>();
 	Map<String, Income> incomeStore = new LinkedHashMap<String, Income>();
@@ -39,6 +42,8 @@ public class CommonHelpController {
 	Map<String, List<Relationship>> relationStore = new HashMap<String, List<Relationship>>();
 	Map<String, MedicalData> medicalDataStore = new HashMap<String, MedicalData>();
 	Map<String, MedicareData> medicareDataStore = new HashMap<String, MedicareData>();
+	Map<String, EmployeeHealthInsurance> employeeHealthInsuranceStore = new HashMap<String, EmployeeHealthInsurance>();
+	Map<String, MemberHealthInsurance> memberHealthInsuranceStore = new HashMap<String, MemberHealthInsurance>();
 	
 	@RequestMapping(value = "/sign-up-basic", 
     		method = RequestMethod.POST, 
@@ -575,6 +580,86 @@ public class CommonHelpController {
 			svcsResponse.setRelationShipList(rsList);
 		}
 		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/emp-health-insurance", 
+    		method = RequestMethod.GET,  
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getEmpolyeeHealthInsurance(@RequestParam(value="applicationId") String applicationId, @RequestParam(value="member-id") String memberId){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		EmployeeHealthInsurance empHealthInsurance = employeeHealthInsuranceStore.get(memberId);
+		svcsResponse.setEmpHealthInsurance(empHealthInsurance);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;	
+	}
+	
+	
+	@RequestMapping(value = "/emp-health-insurance", 
+    		method = RequestMethod.POST, 
+    		consumes = {"application/json"}, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse setEmpolyeeHealthInsurance(@RequestBody EmployeeHealthInsurance empHealthInsurance){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		employeeHealthInsuranceStore.put(empHealthInsurance.getMemberId(), empHealthInsurance);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/member-health-insurance", 
+    		method = RequestMethod.GET,  
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getMemberHealthInsurance(@RequestParam(value="applicationId") String applicationId, @RequestParam(value="member-id") String memberId){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		MemberHealthInsurance memberHealthInsurance = memberHealthInsuranceStore.get(memberId);
+		svcsResponse.setMemberHealthInsurance(memberHealthInsurance);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;	
+	}
+	
+	
+	@RequestMapping(value = "/member-health-insurance", 
+    		method = RequestMethod.POST, 
+    		consumes = {"application/json"}, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse setMemberHealthInsurance(@RequestBody MemberHealthInsurance memberHealthInsurance){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		memberHealthInsuranceStore.put(memberHealthInsurance.getMemberId(), memberHealthInsurance);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/insurance/summary", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getInsuracneSummary(@RequestParam(value="applicationId") String applicationId){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		
+		List<EmployeeHealthInsurance> empHealthInsuranceList = new ArrayList<EmployeeHealthInsurance>();
+		List<MemberHealthInsurance> memberHealthInsuranceList = new ArrayList<MemberHealthInsurance>();
+		
+		for(Entry<String, EmployeeHealthInsurance> empHealthInsuranceEntry : employeeHealthInsuranceStore.entrySet()){
+			EmployeeHealthInsurance empHealthInsurance = empHealthInsuranceEntry.getValue();
+			if(empHealthInsurance.getApplicationId().equalsIgnoreCase(applicationId)){
+				empHealthInsuranceList.add(empHealthInsurance);
+			}
+		}
+		
+		for(Entry<String, MemberHealthInsurance> memberHealthInsuranceEntry : memberHealthInsuranceStore.entrySet()){
+			MemberHealthInsurance memberHealthInsurance = memberHealthInsuranceEntry.getValue();
+			if(memberHealthInsurance.getApplicationId().equalsIgnoreCase(applicationId)){
+				memberHealthInsuranceList.add(memberHealthInsurance);
+			}
+		}
+		
+		svcsResponse.setEmpHealthInsuranceList(empHealthInsuranceList);
+		svcsResponse.setMemberHealthInsuranceList(memberHealthInsuranceList);
+		
+		return svcsResponse;
 	}
 	
 	@RequestMapping(value = "/clear", 

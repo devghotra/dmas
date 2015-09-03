@@ -1,0 +1,506 @@
+<h3 class="hl">Member Health Insurance</h3>
+<p class="text-muted">
+	Tell us about <span class="memberNameSpan"></span>'s health insurance.<br />
+</p>
+<hr/>
+
+<div class="row form-row">
+	<div class="col-md-6">
+		<label>Does <span class="memberfirstNameSpan"></span> have Health Insurance?
+		</label>
+	</div>
+	<div class="col-md-6">
+		<label class="radio-inline"> <input type="radio"
+			name="memberHealthInsurance" id="memberHealthInsurance-y" value=true>Yes
+		</label> <label class="radio-inline"> <input type="radio"
+			name="memberHealthInsurance" id="memberHealthInsurance-n" value=false>No
+		</label>
+	</div>
+</div>
+<br />
+
+<form role="form" id="applicationForm" method="post"
+	action="/commonhelp-svcs/services/medicaid/applicant/member-health-insurance"
+	style="display: none;">
+	<input type="hidden" id="applicationId" name="applicationId"> 
+	<input type="hidden" id="memberId" name="memberId">
+	<input type="hidden" id="isMemberHealthInsurance" name="isMemberHealthInsurance" value=false>
+	
+	<h4 class="hl bottom-15">
+		<span class="memberfirstNameSpan"></span>'s Health Insurance<i
+			class="fa fa-chevron-up toggle"></i>
+	</h4>
+	
+	<div>
+		<div class="row form-row">
+			<div class="col-md-2">
+				<label for="first-name">How much is the premium?</label> 
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="premiumAmount" name="premiumAmount">
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<label for="first-name">What is policy number?</label> 
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="policyNumber" name="policyNumber">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-2">
+				<label for="first-name">Health coverage begin date?</label> 
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control datepicker" id="coverageBeginDate" name="coverageBeginDate">
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<label for="first-name">Health coverage end date?</label> 
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control datepicker" id="coverageEndDate" name="coverageEndDate">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-2">
+				<label for="first-name">Type of policy?</label> 
+			</div>
+			<div class="col-md-3">
+				<select class="form-control" id="policyType" name="policyType">
+					<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					 <option value="Absent Parent" title="Absent Parent">Absent Parent</option>
+					 <option value="Automobile" title="Automobile">Automobile</option>
+					 <option value="Burial" title="Burial">Burial</option>
+					 <option value="Casualty" title="Casualty">Casualty</option>
+					 <option value="Disability" title="Disability">Disability</option>
+					 <option value="FAMIS SELECT" title="FAMIS SELECT">FAMIS SELECT</option>
+					 <option value="HIPP" title="HIPP">HIPP</option>
+					 <option value="HIV" title="HIV">HIV</option>
+					 <option value="Health" title="Health">Health</option>
+					 <option value="Homeowner" title="Homeowner">Homeowner</option>
+					 <option value="Life" title="Life">Life</option>
+					 <option value="Military" title="Military">Military</option>
+					 <option value="Other" title="Other">Other</option>
+					 <option value="Trusts" title="Trusts">Trusts</option>
+					 <option value="Medicare" title="Medicare">Medicare</option>
+					 <option value="Workman Compensation" title="Workman's Compensation">Workman's Compensation</option>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<label for="first-name">Overall type of coverage?</label> 
+			</div>
+			<div class="col-md-4">
+				<select class="form-control" id="coverageType" name="coverageType">
+					<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					 <option value="13" title="Cancer Insurance">Cancer Insurance</option>
+					 <option value="10" title="Champus - Covers Civilian And Military Healthcare">Champus - Covers Civilian And Military Healthcare</option>
+					 <option value="20" title="Court-Ordered Health Insurance By An Absent Parent">Court-Ordered Health Insurance By An Absent Parent</option>
+					 <option value="17" title="Court-Ordered Medical Care By Absent Parents">Court-Ordered Medical Care By Absent Parents</option>
+					 <option value="16" title="Dental Insurance - Covers Specified Dental Care">Dental Insurance - Covers Specified Dental Care</option>
+					 <option value="21" title="FAMIS/FAMIS MOMS">FAMIS/FAMIS MOMS</option>
+					 <option value="22" title="FAMIS PLUS/Medicaid">FAMIS PLUS/Medicaid</option>
+					 <option value="11" title="Federal Employee Program-Covers Federal Employees">Federal Employee Program-Covers Federal Employees</option>
+					 <option value="7" title="HMO (Health Maintenance Organization)">HMO (Health Maintenance Organization)</option>
+					 <option value="3" title="Hospital And Surgical">Hospital And Surgical</option>
+					 <option value="1" title="Hospital - Covers Charges While In a Hospital">Hospital - Covers Charges While In a Hospital</option>
+					 <option value="4" title="Hospital, Surgical Plus Major Medical">Hospital, Surgical Plus Major Medical</option>
+					 <option value="12" title="Income Protection-Pays If Work Loss/Earnings Loss">Income Protection-Pays If Work Loss/Earnings Loss</option>
+					 <option value="23" title="Indemnity/Reimbursement Plans">Indemnity/Reimbursement Plans</option>
+					 <option value="6" title="Long-Term Care-Covers Nursing-Facility Services, etc">Long-Term Care-Covers Nursing-Facility Services, etc</option>
+					 <option value="5" title="Medical/Surgical And Major Medical">Medical/Surgical And Major Medical</option>
+					 <option value="2" title="Medical/Surgical-Covers Lab, Surgery, etc. By Doctor">Medical/Surgical-Covers Lab, Surgery, etc. By Doctor</option>
+					 <option value="8" title="Medicare Extended - Medicare Coinsurance/Deductible">Medicare Extended - Medicare Coinsurance/Deductible</option>
+					 <option value="9" title="Medicare Extended Plus Major Medical">Medicare Extended Plus Major Medical</option>
+					 <option value="14" title="Prescription Policy - Pays For Prescription Drugs">Prescription Policy - Pays For Prescription Drugs</option>
+					 <option value="15" title="School &amp; Accident Policy-School/Accidental Injury">School &amp; Accident Policy-School/Accidental Injury</option>
+					 <option value="18" title="Vision Care-Eye Exams, Glasses,	 Contact Lenses">Vision Care-Eye Exams, Glasses, Contact Lenses</option>
+					 <option value="24" title="Medicare">Medicare</option>
+					 <option value="19" title="Workers Compensation-On-The-Job Injury">Workers Compensation-On-The-Job Injury</option>
+ 				</select>
+			</div>
+		</div>
+		
+		<br/>
+		
+		<div class="row form-row">
+			<div class="col-md-12">
+			<p>Please select each type of coverage that <span class="memberfirstNameSpan"></span>'s health insurance plan covers. For each type of coverage selected, enter the coverage Begin date and End date.</p>
+			</div>
+		</div>
+		
+		
+		<div class="row form-row">
+			<div class="col-md-5">
+				<label>Coverage Type</label>
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<label>Begin Date</label>
+			</div>
+			<div class="col-md-3">
+				<label>End Date</label>
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-5">
+				<select class="form-control" id="coverage[0].coverageType" name="coverage[0].coverageType">
+					<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					<option value="3" title="Cancer">Cancer</option>
+					<option value="16" title="Chiropractor">Chiropractor</option>
+					<option value="4" title="Dental">Dental</option>
+					<option value="9" title="Dependent Pregnancy">Dependent Pregnancy</option>
+					<option value="5" title="Home Health/Personal Care">Home Health/Personal Care</option>
+					<option value="7" title="Hospitalization">Hospitalization</option>
+					<option value="8" title="Indemnity/Accident">Indemnity/Accident</option>
+					<option value="13" title="Intermediate Care Nursing Facility">Intermediate Care Nursing Facility</option>
+					<option value="12" title="Major/Medical-Comprehensive">Major/Medical-Comprehensive</option>
+					<option value="11" title="Managed Care (HMO/PPO)">Managed Care (HMO/PPO)</option>
+					<option value="10" title="Medicare Extended">Medicare Extended</option>
+					<option value="1" title="Medicare Part A">Medicare Part A</option>
+					<option value="2" title="Medicare Part B">Medicare Part B</option>
+					<option value="6" title="Mental Health">Mental Health</option>
+					<option value="14" title="Optical/Vision">Optical/Vision</option>
+					<option value="17" title="Pharmacy">Pharmacy</option>
+					<option value="15" title="Physician">Physician</option>
+					<option value="22" title="Preventive Care">Preventive Care</option>
+					<option value="20" title="Rehabilitation/Physical Medicine">Rehabilitation/Physical Medicine</option>
+					<option value="18" title="Skilled Nursing">Skilled Nursing</option>
+					<option value="19" title="Transportation">Transportation</option>
+					<option value="21" title="Worker's Compensation">Worker's Compensation</option>
+				</select>
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<input type="text" class="form-control datepicker" id="coverage[0].beginDate" name="coverage[0].beginDate">
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control datepicker" id="coverage[0].endDate" name="coverage[0].endDate">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-5">
+				<select class="form-control" id="coverage[1].coverageType" name="coverage[1].coverageType">
+					<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					<option value="3" title="Cancer">Cancer</option>
+					<option value="16" title="Chiropractor">Chiropractor</option>
+					<option value="4" title="Dental">Dental</option>
+					<option value="9" title="Dependent Pregnancy">Dependent Pregnancy</option>
+					<option value="5" title="Home Health/Personal Care">Home Health/Personal Care</option>
+					<option value="7" title="Hospitalization">Hospitalization</option>
+					<option value="8" title="Indemnity/Accident">Indemnity/Accident</option>
+					<option value="13" title="Intermediate Care Nursing Facility">Intermediate Care Nursing Facility</option>
+					<option value="12" title="Major/Medical-Comprehensive">Major/Medical-Comprehensive</option>
+					<option value="11" title="Managed Care (HMO/PPO)">Managed Care (HMO/PPO)</option>
+					<option value="10" title="Medicare Extended">Medicare Extended</option>
+					<option value="1" title="Medicare Part A">Medicare Part A</option>
+					<option value="2" title="Medicare Part B">Medicare Part B</option>
+					<option value="6" title="Mental Health">Mental Health</option>
+					<option value="14" title="Optical/Vision">Optical/Vision</option>
+					<option value="17" title="Pharmacy">Pharmacy</option>
+					<option value="15" title="Physician">Physician</option>
+					<option value="22" title="Preventive Care">Preventive Care</option>
+					<option value="20" title="Rehabilitation/Physical Medicine">Rehabilitation/Physical Medicine</option>
+					<option value="18" title="Skilled Nursing">Skilled Nursing</option>
+					<option value="19" title="Transportation">Transportation</option>
+					<option value="21" title="Worker's Compensation">Worker's Compensation</option>
+				</select>
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<input type="text" class="form-control datepicker" id="coverage[1].beginDate" name="coverage[1].beginDate">
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control datepicker" id="coverage[1].endDate" name="coverage[1].endDate">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-5">
+				<select class="form-control" id="coverage[2].coverageType" name="coverage[2].coverageType">
+					<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					<option value="3" title="Cancer">Cancer</option>
+					<option value="16" title="Chiropractor">Chiropractor</option>
+					<option value="4" title="Dental">Dental</option>
+					<option value="9" title="Dependent Pregnancy">Dependent Pregnancy</option>
+					<option value="5" title="Home Health/Personal Care">Home Health/Personal Care</option>
+					<option value="7" title="Hospitalization">Hospitalization</option>
+					<option value="8" title="Indemnity/Accident">Indemnity/Accident</option>
+					<option value="13" title="Intermediate Care Nursing Facility">Intermediate Care Nursing Facility</option>
+					<option value="12" title="Major/Medical-Comprehensive">Major/Medical-Comprehensive</option>
+					<option value="11" title="Managed Care (HMO/PPO)">Managed Care (HMO/PPO)</option>
+					<option value="10" title="Medicare Extended">Medicare Extended</option>
+					<option value="1" title="Medicare Part A">Medicare Part A</option>
+					<option value="2" title="Medicare Part B">Medicare Part B</option>
+					<option value="6" title="Mental Health">Mental Health</option>
+					<option value="14" title="Optical/Vision">Optical/Vision</option>
+					<option value="17" title="Pharmacy">Pharmacy</option>
+					<option value="15" title="Physician">Physician</option>
+					<option value="22" title="Preventive Care">Preventive Care</option>
+					<option value="20" title="Rehabilitation/Physical Medicine">Rehabilitation/Physical Medicine</option>
+					<option value="18" title="Skilled Nursing">Skilled Nursing</option>
+					<option value="19" title="Transportation">Transportation</option>
+					<option value="21" title="Worker's Compensation">Worker's Compensation</option>
+				</select>
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<input type="text" class="form-control datepicker" id="coverage[2].beginDate" name="coverage[2].beginDate">
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control datepicker" id="coverage[2].endDate" name="coverage[2].endDate">
+			</div>
+		</div>
+		
+		
+		<div class="row form-row">
+			<div class="col-md-5">
+				<select class="form-control" id="coverage[3].coverageType" name="coverage[3].coverageType">
+					<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					<option value="3" title="Cancer">Cancer</option>
+					<option value="16" title="Chiropractor">Chiropractor</option>
+					<option value="4" title="Dental">Dental</option>
+					<option value="9" title="Dependent Pregnancy">Dependent Pregnancy</option>
+					<option value="5" title="Home Health/Personal Care">Home Health/Personal Care</option>
+					<option value="7" title="Hospitalization">Hospitalization</option>
+					<option value="8" title="Indemnity/Accident">Indemnity/Accident</option>
+					<option value="13" title="Intermediate Care Nursing Facility">Intermediate Care Nursing Facility</option>
+					<option value="12" title="Major/Medical-Comprehensive">Major/Medical-Comprehensive</option>
+					<option value="11" title="Managed Care (HMO/PPO)">Managed Care (HMO/PPO)</option>
+					<option value="10" title="Medicare Extended">Medicare Extended</option>
+					<option value="1" title="Medicare Part A">Medicare Part A</option>
+					<option value="2" title="Medicare Part B">Medicare Part B</option>
+					<option value="6" title="Mental Health">Mental Health</option>
+					<option value="14" title="Optical/Vision">Optical/Vision</option>
+					<option value="17" title="Pharmacy">Pharmacy</option>
+					<option value="15" title="Physician">Physician</option>
+					<option value="22" title="Preventive Care">Preventive Care</option>
+					<option value="20" title="Rehabilitation/Physical Medicine">Rehabilitation/Physical Medicine</option>
+					<option value="18" title="Skilled Nursing">Skilled Nursing</option>
+					<option value="19" title="Transportation">Transportation</option>
+					<option value="21" title="Worker's Compensation">Worker's Compensation</option>
+				</select>
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<input type="text" class="form-control datepicker" id="coverage[3].beginDate" name="coverage[3].beginDate">
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control datepicker" id="coverage[3].endDate" name="coverage[3].endDate">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+			<div class="col-md-5">
+				<select class="form-control" id="coverage[4].coverageType" name="coverage[4].coverageType">
+					<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					<option value="3" title="Cancer">Cancer</option>
+					<option value="16" title="Chiropractor">Chiropractor</option>
+					<option value="4" title="Dental">Dental</option>
+					<option value="9" title="Dependent Pregnancy">Dependent Pregnancy</option>
+					<option value="5" title="Home Health/Personal Care">Home Health/Personal Care</option>
+					<option value="7" title="Hospitalization">Hospitalization</option>
+					<option value="8" title="Indemnity/Accident">Indemnity/Accident</option>
+					<option value="13" title="Intermediate Care Nursing Facility">Intermediate Care Nursing Facility</option>
+					<option value="12" title="Major/Medical-Comprehensive">Major/Medical-Comprehensive</option>
+					<option value="11" title="Managed Care (HMO/PPO)">Managed Care (HMO/PPO)</option>
+					<option value="10" title="Medicare Extended">Medicare Extended</option>
+					<option value="1" title="Medicare Part A">Medicare Part A</option>
+					<option value="2" title="Medicare Part B">Medicare Part B</option>
+					<option value="6" title="Mental Health">Mental Health</option>
+					<option value="14" title="Optical/Vision">Optical/Vision</option>
+					<option value="17" title="Pharmacy">Pharmacy</option>
+					<option value="15" title="Physician">Physician</option>
+					<option value="22" title="Preventive Care">Preventive Care</option>
+					<option value="20" title="Rehabilitation/Physical Medicine">Rehabilitation/Physical Medicine</option>
+					<option value="18" title="Skilled Nursing">Skilled Nursing</option>
+					<option value="19" title="Transportation">Transportation</option>
+					<option value="21" title="Worker's Compensation">Worker's Compensation</option>
+				</select>
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<input type="text" class="form-control datepicker" id="coverage[4].beginDate" name="coverage[4].beginDate">
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control datepicker" id="coverage[4].endDate" name="coverage[4].endDate">
+			</div>
+		</div>
+		
+	</div>
+	
+	<br/>
+	
+	<h4 class="hl bottom-15">
+		Health Insurance Company<i class="fa fa-chevron-up toggle"></i>
+	</h4>
+	
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="first-name">Health Insurance Company Name</label> 
+				<input type="text" class="form-control" id="healthInsCompanyName" name="healthInsCompanyName">
+			</div>
+			<div class="col-md-3">
+				<label for="first-name">Phone</label> 
+				<input type="text" class="form-control" id="healthInsCompanyPhone" name="healthInsCompanyPhone">
+			</div>
+		</div>
+		
+		<div class="row form-row">
+				<div class="col-md-4">
+					<label>Employer Address</label> <input type="text"
+						class="form-control" id="healthInsCompanyAddress.addressLine1" name="healthInsCompanyAddress.addressLine1" placeholder="Address Line 1">
+				</div>
+				<div class="col-md-4">
+					<label for="suffix">&nbsp;</label> <input type="text"
+						class="form-control" id="healthInsCompanyAddress.addressLine2" name="healthInsCompanyAddress.addressLine2" placeholder="Address Line 2">
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-3">
+					<label>City</label> <input type="text"
+						class="form-control" id="healthInsCompanyAddress.city" name="healthInsCompanyAddress.city" placeholder="">
+				</div>
+				<div class="col-md-3 col-md-offset-1">
+					<label>State</label> <select class="form-control"
+						id="healthInsCompanyAddress.state" name="healthInsCompanyAddress.state">
+						<option value="">Select</option>
+						<OPTION VALUE="AL" TITLE="Alabama">Alabama</OPTION>
+						 <OPTION VALUE="AK" TITLE="Alaska">Alaska</OPTION>
+						 <OPTION VALUE="AZ" TITLE="Arizona">Arizona</OPTION>
+						 <OPTION VALUE="AR" TITLE="Arkansas">Arkansas</OPTION>
+						 <OPTION VALUE="CA" TITLE="California">California</OPTION>
+						 <OPTION VALUE="CO" TITLE="Colorado">Colorado</OPTION>
+						 <OPTION VALUE="CT" TITLE="Connecticut">Connecticut</OPTION>
+						 <OPTION VALUE="DE" TITLE="Delaware">Delaware</OPTION>
+						 <OPTION VALUE="DC" TITLE="District Of Columbia">District Of Columbia</OPTION>
+						 <OPTION VALUE="FL" TITLE="Florida">Florida</OPTION>
+						 <OPTION VALUE="GA" TITLE="Georgia">Georgia</OPTION>
+						 <OPTION VALUE="HI" TITLE="Hawaii">Hawaii</OPTION>
+						 <OPTION VALUE="ID" TITLE="Idaho">Idaho</OPTION>
+						 <OPTION VALUE="IL" TITLE="Illinois">Illinois</OPTION>
+						 <OPTION VALUE="IN" TITLE="Indiana">Indiana</OPTION>
+						 <OPTION VALUE="IA" TITLE="Iowa">Iowa</OPTION>
+						 <OPTION VALUE="KS" TITLE="Kansas">Kansas</OPTION>
+						 <OPTION VALUE="KY" TITLE="Kentucky">Kentucky</OPTION>
+						 <OPTION VALUE="LA" TITLE="Louisiana">Louisiana</OPTION>
+						 <OPTION VALUE="ME" TITLE="Maine">Maine</OPTION>
+						 <OPTION VALUE="MD" TITLE="Maryland">Maryland</OPTION>
+						 <OPTION VALUE="MA" TITLE="Massachusetts">Massachusetts</OPTION>
+						 <OPTION VALUE="MI" TITLE="Michigan">Michigan</OPTION>
+						 <OPTION VALUE="MN" TITLE="Minnesota">Minnesota</OPTION>
+						 <OPTION VALUE="MS" TITLE="Mississippi">Mississippi</OPTION>
+						 <OPTION VALUE="MO" TITLE="Missouri">Missouri</OPTION>
+						 <OPTION VALUE="MT" TITLE="Montana">Montana</OPTION>
+						 <OPTION VALUE="NE" TITLE="Nebraska">Nebraska</OPTION>
+						 <OPTION VALUE="NV" TITLE="Nevada">Nevada</OPTION>
+						 <OPTION VALUE="NH" TITLE="New Hampshire">New Hampshire</OPTION>
+						 <OPTION VALUE="NJ" TITLE="New Jersey">New Jersey</OPTION>
+						 <OPTION VALUE="NM" TITLE="New Mexico">New Mexico</OPTION>
+						 <OPTION VALUE="NY" TITLE="New York">New York</OPTION>
+						 <OPTION VALUE="NC" TITLE="North Carolina">North Carolina</OPTION>
+						 <OPTION VALUE="ND" TITLE="North Dakota">North Dakota</OPTION>
+						 <OPTION VALUE="OH" TITLE="Ohio">Ohio</OPTION>
+						 <OPTION VALUE="OK" TITLE="Oklahoma">Oklahoma</OPTION>
+						 <OPTION VALUE="OR" TITLE="Oregon">Oregon</OPTION>
+						 <OPTION VALUE="PA" TITLE="Pennsylvania">Pennsylvania</OPTION>
+						 <OPTION VALUE="RI" TITLE="Rhode Island">Rhode Island</OPTION>
+						 <OPTION VALUE="SC" TITLE="South Carolina">South Carolina</OPTION>
+						 <OPTION VALUE="SD" TITLE="South Dakota">South Dakota</OPTION>
+						 <OPTION VALUE="TN" TITLE="Tennessee">Tennessee</OPTION>
+						 <OPTION VALUE="TX" TITLE="Texas">Texas</OPTION>
+						 <OPTION VALUE="UT" TITLE="Utah">Utah</OPTION>
+						 <OPTION VALUE="VT" TITLE="Vermont">Vermont</OPTION>
+						 <OPTION VALUE="VA" TITLE="Virginia">Virginia</OPTION>
+						 <OPTION VALUE="WA" TITLE="Washington">Washington</OPTION>
+						 <OPTION VALUE="WV" TITLE="West Virginia">West Virginia</OPTION>
+						 <OPTION VALUE="WI" TITLE="Wisconsin">Wisconsin</OPTION>
+						 <OPTION VALUE="WY" TITLE="Wyoming">Wyoming</OPTION>
+						 <OPTION VALUE="GU" TITLE="Guam">Guam</OPTION>
+						 <OPTION VALUE="PR" TITLE="Puerto Rico">Puerto Rico</OPTION>
+						 <OPTION VALUE="VI" TITLE="Virgin Islands">Virgin Islands</OPTION>
+						 <OPTION VALUE="AS" TITLE="American Samoa">American Samoa</OPTION>
+						 <OPTION VALUE="FM" TITLE="Federated States of Micronesia">Federated States of Micronesia</OPTION>
+						 <OPTION VALUE="MH" TITLE="Marshall Islands">Marshall Islands</OPTION>
+						 <OPTION VALUE="MP" TITLE="Northern Mariana Islands">Northern Mariana Islands</OPTION>
+						 <OPTION VALUE="PW" TITLE="Palau">Palau</OPTION>
+					</select>
+				</div>
+				<div class="col-md-2 col-md-offset-1">
+					<label for="suffix">Zip</label> <input type="text"
+						class="form-control" id="healthInsCompanyAddress.zipCode" name="healthInsCompanyAddress.zipCode" placeholder="">
+				</div>
+			</div>
+	</div>
+	
+	<input type="hidden" id="nextPage" value="insurance-summary.html">
+</form>
+
+<div class="row form-row">
+	<div class="col-md-10">
+		<button id="backBtn" type="button" class="btn btn-green pull-left"
+			value="employer-health-insurance.html">Previous</button>
+	</div>
+	<div class="col-md-2">
+		<button id="nextBtn" type="button"
+			class="btn btn-green pull-right btn-block" disabled>Save &
+			Next</button>
+	</div>
+</div>
+<div class="row form-row">
+	<div class="col-md-2 col-md-offset-10">
+		<button type="button" class="btn btn-green pull-right btn-block"
+			onclick="javascript: doSaveLogout()">Save & Logout</button>
+	</div>
+</div>
+
+
+<script>
+var db = TAFFY(sessionStorage.db);
+var activeMember = db({type:"member", additionalInfo:"active"}).first();
+var isEditMode = activeMember.editMode;
+var isAddMode = activeMember.addMode;
+
+$(document).ready(function(){
+	sessionStorage.currentScreen = "member-health-insurance.html";
+	$(this).resetLeftNavLinks("#additionalInfoNavLink");
+
+	$("#applicationId").val(sessionStorage.applicationId);
+	$("#memberId").val(activeMember.id);
+	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
+	$(".memberfirstNameSpan").html(activeMember.firstName);
+
+	var reqParams = "member-id="+activeMember.id+"&applicationId="+sessionStorage.applicationId;
+	
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/member-health-insurance?"+reqParams, function( data ) {
+		if(data.memberHealthInsurance != null){
+
+			if(data.memberHealthInsurance.isMemberHealthInsurance){
+				$("#memberHealthInsurance-y").click();
+			} else{
+				$("#memberHealthInsurance-n").click();
+			}
+			
+			var formData = data.memberHealthInsurance;
+			js2form(document.getElementById('applicationForm'), formData);
+		}
+	});
+	
+});
+
+$("#nextBtn").click(function(){
+	var selection = $('input[name=empHealthInsurance]:checked').val();
+	$("#applicationForm").submit();	
+
+});
+
+
+$("#memberHealthInsurance-y").click(function(){
+	$("#applicationForm").show();
+	$("#isMemberHealthInsurance").val(true); 
+	$("#nextBtn").removeAttr("disabled");
+});
+
+$("#memberHealthInsurance-n").click(function(){
+	$("#applicationForm").hide();
+	$("#isMemberHealthInsurance").val(false); 
+	$("#nextBtn").removeAttr("disabled");
+});
+</script>

@@ -177,11 +177,10 @@ function appendMedicarePremium(Name, type, amount, startData, endDate, memberId)
 	
 }
 
-var selectedMemberId;
+var selectedMemberId = null;
 $( ".memberNames" ).change(function() {
 	selectedMemberId = $(this).val();
 });
-
 
 db({type:"member"}).each(function (record,recordnumber) {
 	var memberName = (record["firstName"]+" "+record["lastName"]);
@@ -195,13 +194,8 @@ $("#nextBtn").click(function(){
 		sessionStorage.db = db().stringify();
 		loadPage("medical-bills.html");
 	} else
-		alert("next page in progress");
+		loadPage("employer-health-insurance.html");
 	
-});
-
-var selectedMemberId = null;
-$( ".memberNames" ).change(function() {
-	selectedMemberId = $(this).val();
 });
 
 function editMedicalBills(memberId){

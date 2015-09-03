@@ -6,6 +6,7 @@ public class MedicalData {
 	
 	private String applicationId;
 	private String memberId;
+	private Boolean isMedicalBills;
 	private List<MedicalBill> medicalBills;
 	
 	public String getApplicationId() {
@@ -30,6 +31,14 @@ public class MedicalData {
 
 	public void setMedicalBills(List<MedicalBill> medicalBills) {
 		this.medicalBills = medicalBills;
+	}
+
+	public Boolean getIsMedicalBills() {
+		return isMedicalBills;
+	}
+
+	public void setIsMedicalBills(Boolean isMedicalBills) {
+		this.isMedicalBills = isMedicalBills;
 	}
 	
 

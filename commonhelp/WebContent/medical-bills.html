@@ -26,6 +26,7 @@
 	style="display: none;">
 	<input type="hidden" id="applicationId" name="applicationId"> 
 	<input type="hidden" id="memberId" name="memberId">
+	<input type="hidden" id="isMedicalBills" name="isMedicalBills" value=false>
 
 	<h4 class="hl bottom-15">
 		<span class="memberfirstNameSpan"></span>'s medical bills<i
@@ -293,6 +294,10 @@ var isEditMode = activeMember.editMode;
 var isAddMode = activeMember.addMode;
 
 $(document).ready(function(){
+	if(activeMember == false){
+		loadPage("medical-summary.html");
+	}
+	
 	sessionStorage.currentScreen = "medical-bills.html";
 	$(this).resetLeftNavLinks("#billsNavLink");
 	
@@ -309,10 +314,14 @@ $(document).ready(function(){
 
 	$.get( "/commonhelp-svcs/services/medicaid/applicant/medical-bills?"+reqParams, function( data ) {
 		if(data.medicalData != null){
-			$("#medicalBills-y").click();
-		    
-			var formData = data.medicalData;
+
+			if(data.medicalData.isMedicalBills){
+				$("#medicalBills-y").click();
+			} else{
+				$("#medicalBills-n").click();
+			}
 			
+			var formData = data.medicalData;
 			js2form(document.getElementById('applicationForm'), formData);
 		}
 	});
@@ -321,20 +330,19 @@ $(document).ready(function(){
 
 $("#nextBtn").click(function(){
 	var selection = $('input[name=medicalBills]:checked').val();
-	
-	if(selection == "true")
-		$("#applicationForm").submit();
-	else 
-		alert("not checked");
+	$("#applicationForm").submit();	
+
 });
 
 $("#medicalBills-y").click(function(){
 	$("#applicationForm").show();
+	$("#isMedicalBills").val(true); 
 	$("#nextBtn").removeAttr("disabled");
 });
 
 $("#medicalBills-n").click(function(){
 	$("#applicationForm").hide();
+	$("#isMedicalBills").val(false); 
 	$("#nextBtn").removeAttr("disabled");
 });
 

@@ -401,6 +401,10 @@ var isEditMode = activeMember.editMode;
 var isAddMode = activeMember.addMode;
 
 $(document).ready(function(){
+	if(activeMember == false){
+		loadPage("income-summary.html");
+	}
+	
 	sessionStorage.currentScreen = "present-job.html";
 	$(this).resetLeftNavLinks("#incomeNavLink");
 	

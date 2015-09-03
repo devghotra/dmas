@@ -1,0 +1,261 @@
+<h3 class="hl">Employer Health Insurance</h3>
+<p class="text-muted">
+	Tell us about <span class="memberNameSpan"></span>'s employer health insurance.<br />
+</p>
+<hr/>		
+
+<div class="row form-row">
+	<div class="col-md-6">
+		<label>Does <span class="memberNameSpan"></span> have Employer Health Insurance?
+		</label>
+	</div>
+	<div class="col-md-6">
+		<label class="radio-inline"> <input type="radio"
+			name="empHealthInsurance" id="empHealthInsurance-y" value=true>Yes
+		</label> <label class="radio-inline"> <input type="radio"
+			name="empHealthInsurance" id="empHealthInsurance-n" value=false>No
+		</label>
+	</div>
+</div>
+<br />
+
+
+<form role="form" id="applicationForm" method="post"
+	action="/commonhelp-svcs/services/medicaid/applicant/emp-health-insurance"
+	style="display: none;">
+	<input type="hidden" id="applicationId" name="applicationId"> 
+	<input type="hidden" id="memberId" name="memberId">
+	<input type="hidden" id="isEmployeeHealthInsurance" name="isEmployeeHealthInsurance" value=false>
+	
+	<h4 class="hl bottom-15">
+		<span class="memberfirstNameSpan"></span>'s Employer Health Insurance<i
+			class="fa fa-chevron-up toggle"></i>
+	</h4>
+	
+	<div>
+		<div class="row form-row">
+			<div class="col-md-6">
+				<label for="first-name">Name of Employer</label> 
+				<input type="text" class="form-control" id="employerName" name="employerName">
+			</div>
+			<div class="col-md-6">
+			
+			</div>
+		</div>
+		
+		<div class="row form-row">
+				<div class="col-md-4">
+					<label>Employer Address</label> <input type="text"
+						class="form-control" id="employerAddress.addressLine1" name="employerAddress.addressLine1" placeholder="Address Line 1">
+				</div>
+				<div class="col-md-4">
+					<label for="suffix">&nbsp;</label> <input type="text"
+						class="form-control" id="employerAddress.addressLine2" name="employerAddress.addressLine2" placeholder="Address Line 2">
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-3">
+					<label>City</label> <input type="text"
+						class="form-control" id="employerAddress.city" name="employerAddress.city" placeholder="">
+				</div>
+				<div class="col-md-3 col-md-offset-1">
+					<label>State</label> <select class="form-control"
+						id="employerAddress.state" name="employerAddress.state">
+						<option value="">Select</option>
+						<OPTION VALUE="AL" TITLE="Alabama">Alabama</OPTION>
+						 <OPTION VALUE="AK" TITLE="Alaska">Alaska</OPTION>
+						 <OPTION VALUE="AZ" TITLE="Arizona">Arizona</OPTION>
+						 <OPTION VALUE="AR" TITLE="Arkansas">Arkansas</OPTION>
+						 <OPTION VALUE="CA" TITLE="California">California</OPTION>
+						 <OPTION VALUE="CO" TITLE="Colorado">Colorado</OPTION>
+						 <OPTION VALUE="CT" TITLE="Connecticut">Connecticut</OPTION>
+						 <OPTION VALUE="DE" TITLE="Delaware">Delaware</OPTION>
+						 <OPTION VALUE="DC" TITLE="District Of Columbia">District Of Columbia</OPTION>
+						 <OPTION VALUE="FL" TITLE="Florida">Florida</OPTION>
+						 <OPTION VALUE="GA" TITLE="Georgia">Georgia</OPTION>
+						 <OPTION VALUE="HI" TITLE="Hawaii">Hawaii</OPTION>
+						 <OPTION VALUE="ID" TITLE="Idaho">Idaho</OPTION>
+						 <OPTION VALUE="IL" TITLE="Illinois">Illinois</OPTION>
+						 <OPTION VALUE="IN" TITLE="Indiana">Indiana</OPTION>
+						 <OPTION VALUE="IA" TITLE="Iowa">Iowa</OPTION>
+						 <OPTION VALUE="KS" TITLE="Kansas">Kansas</OPTION>
+						 <OPTION VALUE="KY" TITLE="Kentucky">Kentucky</OPTION>
+						 <OPTION VALUE="LA" TITLE="Louisiana">Louisiana</OPTION>
+						 <OPTION VALUE="ME" TITLE="Maine">Maine</OPTION>
+						 <OPTION VALUE="MD" TITLE="Maryland">Maryland</OPTION>
+						 <OPTION VALUE="MA" TITLE="Massachusetts">Massachusetts</OPTION>
+						 <OPTION VALUE="MI" TITLE="Michigan">Michigan</OPTION>
+						 <OPTION VALUE="MN" TITLE="Minnesota">Minnesota</OPTION>
+						 <OPTION VALUE="MS" TITLE="Mississippi">Mississippi</OPTION>
+						 <OPTION VALUE="MO" TITLE="Missouri">Missouri</OPTION>
+						 <OPTION VALUE="MT" TITLE="Montana">Montana</OPTION>
+						 <OPTION VALUE="NE" TITLE="Nebraska">Nebraska</OPTION>
+						 <OPTION VALUE="NV" TITLE="Nevada">Nevada</OPTION>
+						 <OPTION VALUE="NH" TITLE="New Hampshire">New Hampshire</OPTION>
+						 <OPTION VALUE="NJ" TITLE="New Jersey">New Jersey</OPTION>
+						 <OPTION VALUE="NM" TITLE="New Mexico">New Mexico</OPTION>
+						 <OPTION VALUE="NY" TITLE="New York">New York</OPTION>
+						 <OPTION VALUE="NC" TITLE="North Carolina">North Carolina</OPTION>
+						 <OPTION VALUE="ND" TITLE="North Dakota">North Dakota</OPTION>
+						 <OPTION VALUE="OH" TITLE="Ohio">Ohio</OPTION>
+						 <OPTION VALUE="OK" TITLE="Oklahoma">Oklahoma</OPTION>
+						 <OPTION VALUE="OR" TITLE="Oregon">Oregon</OPTION>
+						 <OPTION VALUE="PA" TITLE="Pennsylvania">Pennsylvania</OPTION>
+						 <OPTION VALUE="RI" TITLE="Rhode Island">Rhode Island</OPTION>
+						 <OPTION VALUE="SC" TITLE="South Carolina">South Carolina</OPTION>
+						 <OPTION VALUE="SD" TITLE="South Dakota">South Dakota</OPTION>
+						 <OPTION VALUE="TN" TITLE="Tennessee">Tennessee</OPTION>
+						 <OPTION VALUE="TX" TITLE="Texas">Texas</OPTION>
+						 <OPTION VALUE="UT" TITLE="Utah">Utah</OPTION>
+						 <OPTION VALUE="VT" TITLE="Vermont">Vermont</OPTION>
+						 <OPTION VALUE="VA" TITLE="Virginia">Virginia</OPTION>
+						 <OPTION VALUE="WA" TITLE="Washington">Washington</OPTION>
+						 <OPTION VALUE="WV" TITLE="West Virginia">West Virginia</OPTION>
+						 <OPTION VALUE="WI" TITLE="Wisconsin">Wisconsin</OPTION>
+						 <OPTION VALUE="WY" TITLE="Wyoming">Wyoming</OPTION>
+						 <OPTION VALUE="GU" TITLE="Guam">Guam</OPTION>
+						 <OPTION VALUE="PR" TITLE="Puerto Rico">Puerto Rico</OPTION>
+						 <OPTION VALUE="VI" TITLE="Virgin Islands">Virgin Islands</OPTION>
+						 <OPTION VALUE="AS" TITLE="American Samoa">American Samoa</OPTION>
+						 <OPTION VALUE="FM" TITLE="Federated States of Micronesia">Federated States of Micronesia</OPTION>
+						 <OPTION VALUE="MH" TITLE="Marshall Islands">Marshall Islands</OPTION>
+						 <OPTION VALUE="MP" TITLE="Northern Mariana Islands">Northern Mariana Islands</OPTION>
+						 <OPTION VALUE="PW" TITLE="Palau">Palau</OPTION>
+					</select>
+				</div>
+				<div class="col-md-2 col-md-offset-1">
+					<label for="suffix">Zip</label> <input type="text"
+						class="form-control" id="employerAddress.zipCode" name="employerAddress.zipCode" placeholder="">
+				</div>
+			</div>
+			
+			<div class="row form-row">
+				<div class="col-md-3">
+					<label>Employer Phone</label> <input type="text"
+						class="form-control" id="employerPhone" name="employerPhone" placeholder="">
+				</div>
+				<div class="col-md-3 col-md-offset-1">
+					<label>Extension</label> <input type="text"
+						class="form-control" id="employerPhoneExt" name="employerPhoneExt" placeholder="">
+				</div>
+				<div class="col-md-3 col-md-offset-1" >
+					<label>Employer Identification Number(EIN)</label>
+					<input type="text" class="form-control" id="employerEIN" name="employerEIN" placeholder="">
+				</div>
+			</div>
+			<br/>
+			<div class="row form-row">
+				<div class="col-md-12">
+					<label>Who can we contact about employee health coverage at this job?</label>
+				</div>
+			</div>
+			<div class="row form-row">
+				<div class="col-md-3">
+					<label>Name</label> 
+					<input type="text" class="form-control" id="employerContactName" name="employerContactName" placeholder="">
+				</div>
+				<div class="col-md-2 col-md-offset-1">
+					<label>Phone Number</label>
+					<input type="text" class="form-control" id="employerContactPhone" name="employerContactPhone" placeholder="">
+				</div>
+				<div class="col-md-3 col-md-offset-2" >
+					<label>Email Address</label>
+					<input type="text" class="form-control" id="employerContactEmail" name="employerContactEmail" placeholder="">
+				</div>
+			</div>
+		</div>
+		
+		<br/>
+		
+		<h4 class="hl bottom-15">
+			Health Insurance<i class="fa fa-chevron-up toggle"></i>
+		</h4>
+		<div>
+			<div class="row form-row">
+				<div class="col-md-4">
+					<label>What is the policy number?</label> 
+				</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="policyNumber" name="policyNumber" placeholder="">
+				</div>
+			</div>
+		</div>
+		
+	<input type="hidden" id="nextPage" value="member-health-insurance.html">
+</form>
+
+<br/>
+
+<div class="row form-row">
+	<div class="col-md-10">
+		<button id="backBtn" type="button" class="btn btn-green pull-left"
+			value="medical-summary.html">Previous</button>
+	</div>
+	<div class="col-md-2">
+		<button id="nextBtn" type="button"
+			class="btn btn-green pull-right btn-block" disabled>Save &
+			Next</button>
+	</div>
+</div>
+<div class="row form-row">
+	<div class="col-md-2 col-md-offset-10">
+		<button type="button" class="btn btn-green pull-right btn-block"
+			onclick="javascript: doSaveLogout()">Save & Logout</button>
+	</div>
+</div>
+
+<script>
+var db = TAFFY(sessionStorage.db);
+var activeMember = db({type:"member", additionalInfo:"active"}).first();
+var isEditMode = activeMember.editMode;
+var isAddMode = activeMember.addMode;
+
+$(document).ready(function(){
+	sessionStorage.currentScreen = "employer-health-insurance.html";
+	$(this).resetLeftNavLinks("#additionalInfoNavLink");
+
+	$("#applicationId").val(sessionStorage.applicationId);
+	$("#memberId").val(activeMember.id);
+	$(".memberNameSpan").html(activeMember.firstName +" "+ activeMember.lastName);
+	$(".memberfirstNameSpan").html(activeMember.firstName);
+
+	if(isEditMode || isAddMode)
+		$("#nextPage").val("insurance-summary.html");
+
+	var reqParams = "member-id="+activeMember.id+"&applicationId="+sessionStorage.applicationId;
+	
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/emp-health-insurance?"+reqParams, function( data ) {
+		if(data.empHealthInsurance != null){
+
+			if(data.empHealthInsurance.isEmployeeHealthInsurance){
+				$("#empHealthInsurance-y").click();
+			} else{
+				$("#empHealthInsurance-n").click();
+			}
+			
+			var formData = data.empHealthInsurance;
+			js2form(document.getElementById('applicationForm'), formData);
+		}
+	});
+	
+});
+
+$("#nextBtn").click(function(){
+	var selection = $('input[name=empHealthInsurance]:checked').val();
+	$("#applicationForm").submit();	
+
+});
+
+
+$("#empHealthInsurance-y").click(function(){
+	$("#applicationForm").show();
+	$("#isEmployeeHealthInsurance").val(true); 
+	$("#nextBtn").removeAttr("disabled");
+});
+
+$("#empHealthInsurance-n").click(function(){
+	$("#applicationForm").hide();
+	$("#isEmployeeHealthInsurance").val(false); 
+	$("#nextBtn").removeAttr("disabled");
+});
+</script>
