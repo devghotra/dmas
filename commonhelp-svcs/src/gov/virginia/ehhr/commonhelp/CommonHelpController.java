@@ -3,6 +3,7 @@ package gov.virginia.ehhr.commonhelp;
 import gov.virginia.ehhr.commonhelp.domain.Applicant;
 import gov.virginia.ehhr.commonhelp.domain.ApplicationServiceResponse;
 import gov.virginia.ehhr.commonhelp.domain.EmployeeHealthInsurance;
+import gov.virginia.ehhr.commonhelp.domain.FileUpload;
 import gov.virginia.ehhr.commonhelp.domain.HouseholdMember;
 import gov.virginia.ehhr.commonhelp.domain.Income;
 import gov.virginia.ehhr.commonhelp.domain.KnowledgeBaseAuthQA;
@@ -12,6 +13,9 @@ import gov.virginia.ehhr.commonhelp.domain.MemberHealthInsurance;
 import gov.virginia.ehhr.commonhelp.domain.Relationship;
 import gov.virginia.ehhr.commonhelp.domain.UserProfile;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -29,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/medicaid/applicant")
@@ -44,6 +49,7 @@ public class CommonHelpController {
 	Map<String, MedicareData> medicareDataStore = new HashMap<String, MedicareData>();
 	Map<String, EmployeeHealthInsurance> employeeHealthInsuranceStore = new HashMap<String, EmployeeHealthInsurance>();
 	Map<String, MemberHealthInsurance> memberHealthInsuranceStore = new HashMap<String, MemberHealthInsurance>();
+	Map<String, List<FileUpload>> fileStore = new HashMap<String, List<FileUpload>>();
 	
 	@RequestMapping(value = "/sign-up-basic", 
     		method = RequestMethod.POST, 
@@ -683,6 +689,61 @@ public class CommonHelpController {
 		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
 		profileStore.remove(userName);
 		return svcsResponse;	
+	}
+	
+	@RequestMapping(value="/upload-file", method=RequestMethod.POST)
+    public String handleFileUpload(
+    		@RequestParam("applicationId") String applicationId,
+    		@RequestParam("fileUploadMember") String fileUploadMember, 
+    		@RequestParam("documentType") String documentType,
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("redirectUrl") String redirectUrl){
+		
+		List<FileUpload> fileList = fileStore.get(applicationId);
+		if(fileList == null)
+			fileList = new ArrayList<FileUpload>();
+		
+		FileUpload fileUpload = new FileUpload();
+		fileUpload.setFileName(file.getOriginalFilename());
+		fileUpload.setDocumentType(documentType);
+		fileUpload.setFileUploadMember(fileUploadMember);
+		
+		fileList.add(fileUpload);
+		
+		fileStore.put(applicationId, fileList);
+		
+	    return "redirect:" + redirectUrl;
+	}
+	
+	@RequestMapping(value="/files", method=RequestMethod.GET)
+	@ResponseBody
+	public ApplicationServiceResponse getFiles(@RequestParam("applicationId") String applicationId){
+		ApplicationServiceResponse response = new ApplicationServiceResponse();
+		response.setFileList(fileStore.get(applicationId));
+		
+		return response;
+	}
+	
+	@RequestMapping(value="/remove-file", method=RequestMethod.GET)
+	@ResponseBody
+	public ApplicationServiceResponse removeFile(@RequestParam("applicationId") String applicationId, @RequestParam("fileName") String fileName){
+		ApplicationServiceResponse response = new ApplicationServiceResponse();
+		
+		List<FileUpload> fileList = fileStore.get(applicationId);
+		FileUpload toBeRemovedFile = null;
+		if(fileList != null){
+			for(FileUpload file : fileList){
+				if(file.getFileName().equalsIgnoreCase(fileName)){
+					toBeRemovedFile = file;
+					break;
+				}
+			}
+		}
+		
+		if(toBeRemovedFile != null)
+			fileList.remove(toBeRemovedFile);
+		
+		return response;
 	}
 
 }

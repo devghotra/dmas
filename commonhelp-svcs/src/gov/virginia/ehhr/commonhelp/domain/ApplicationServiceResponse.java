@@ -24,8 +24,9 @@ public class ApplicationServiceResponse implements Serializable{
 	private List<MedicareData> medicareDataList;
 	private EmployeeHealthInsurance empHealthInsurance;
 	private MemberHealthInsurance memberHealthInsurance;
-	List<EmployeeHealthInsurance> empHealthInsuranceList;
+	private List<EmployeeHealthInsurance> empHealthInsuranceList;
 	private List<MemberHealthInsurance> memberHealthInsuranceList;
+	private List<FileUpload> fileList;
 
 	public int getResponseCode() {
 		return responseCode;
@@ -171,6 +172,14 @@ public class ApplicationServiceResponse implements Serializable{
 	public void setMemberHealthInsuranceList(
 			List<MemberHealthInsurance> memberHealthInsuranceList) {
 		this.memberHealthInsuranceList = memberHealthInsuranceList;
+	}
+
+	public List<FileUpload> getFileList() {
+		return fileList;
+	}
+
+	public void setFileList(List<FileUpload> fileList) {
+		this.fileList = fileList;
 	}
 	
 	

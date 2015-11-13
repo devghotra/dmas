@@ -1,0 +1,219 @@
+<h3 class="hl">Submit Your Documents</h3>
+<hr/>
+<p class="text-muted">
+No additional documentation of information is required at this time. However, if you have documents or information that you would like to add to your 
+application at this time, you may upload them here. If you do not upload any documents, this will not impact your eligibility. We will use electronic sources to 
+verify income data, including information from tax returns, if available, to make a decision on your application. If we are unable to use electronic data sources, 
+we may ask you to send documents later. This section is for your convenience only.
+<br/><br/>
+If you have already uploaded documents, a list of the documents you have already uploaded will appear in the "Documents You Have Already Uploaded" section. 
+</p>
+<br/>
+
+<h4 class="hl bottom-15">
+	Upload a New Document<i class="fa fa-chevron-up toggle"></i>
+</h4>
+<div>
+	<div class="row form-row">
+		<div class="col-md-12">
+			<p>
+			For each document you upload, please select the name of the person for whom you are uploading the document and the type of document. 
+			<br/>Next, click "Browse", and then select the file. After you have selected the file, click Upload. Please ensure that the file name describes the content of the file.
+ 			<br/><br/>
+			If you need more information on the document types to upload, please click on the Page Help for instructions.
+ 			<br/><br/>
+			Once the document has been uploaded, it will be listed in the Documents You Have Already Uploaded section.
+		</p>
+		</div>
+	</div>
+	<div class="row form-row">
+	<form role="form" id="fileUploadForm" method="post"  enctype="multipart/form-data" action="/commonhelp-svcs/services/medicaid/applicant/upload-file">
+			<input type="hidden" id="applicationId" name="applicationId">
+			<input type="hidden" id="redirectUrl" name="redirectUrl">
+			
+			<div class="col-md-3">
+				<label>Name</label> 
+				<select class="form-control memberNames" id="fileUploadMember" name="fileUploadMember">
+					<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+				</select>
+			</div>
+			
+			<div class="col-md-4">
+				<label>Document Type</label> 
+				<select class="form-control" id="documentType" name="documentType">
+					<OPTION VALUE="SEL" TITLE="Select" SELECTED>Select</OPTION>
+					<option value="Alien/immigration documents" title="Alien/immigration documents">Alien/immigration documents</option>
+	 				<option value="Bank or other financial statement" title="Bank or other financial statement">Bank or other financial statement</option>
+					 <option value="Birth documentation" title="Birth documentation">Birth documentation</option>
+					 <option value="Health insurance verification" title="Health insurance verification">Health insurance verification</option>
+					 <option value="Immunization verification" title="Immunization verification">Immunization verification</option>
+					 <option value="Lease" title="Lease">Lease</option>
+					 <option value="Medical bill" title="Medical bill">Medical bill</option>
+					 <option value="Other" title="Other">Other</option>
+					 <option value="Pay stub" title="Pay stub">Pay stub</option>
+					 <option value="Social Security Number application receipt" title="Social Security Number application receipt">Social Security Number application receipt</option>
+					 <option value="Tax form" title="Tax form">Tax form</option>
+				</select>
+			</div>
+			
+			<div class="col-md-2 col-md-offset-1">
+				<div>&nbsp;</div> 
+				<input type="file" name="file">
+			</div>
+			
+			<div class="col-md-2">
+				<div>&nbsp;</div> 
+				<input type="button" class="btn btn-green" onclick="uploadFile()" id="fileUploadBtn" value="Upload">
+			</div>
+		
+		</form>
+	</div>
+	
+	<div class="row form-row">
+		<div class="col-md-4 col-md-offset-8">
+			<p>Files with extensions ".jpg", ".pdf" and ".tif" are supported.</p>
+		</div>
+	</div>
+</div>
+
+
+<h4 class="hl bottom-15">
+	Documents You Have Already Uploaded<i class="fa fa-chevron-up toggle"></i>
+</h4>
+
+<div>
+	<div class="row form-row">
+		<div class="col-md-12">
+			<p>These documents have already been uploaded and will be submitted when you submit your application. If you would like to remove a document, click "Remove."</p>
+		</div>
+		<div class="col-md-12">
+			<table class="table table-striped table-hover " id="fileTable">
+			<thead>
+				<tr style="background: #ddd">
+					<th>Who</th>
+					<th>Document Type</th>
+					<th>File Name</th>
+					<th style="width: 8%">Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="4" id="fileTableNA">Not Applicable</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+
+<div id="dialog-message" title="Select Member Name & Document Type" style="display: none;">
+  <p>Please select Member Name & Document Type</p>
+</div>
+
+<div id="dialog-confirm" title="Remove Document?" style="display: none;">
+  <p>This document will be permanently removed and cannot be recovered. Are you sure?</p>
+</div>
+
+<script>
+var db = TAFFY(sessionStorage.db);
+$(document).ready(function(){
+	sessionStorage.currentScreen = "submit-documents.html";
+	$(this).resetLeftNavLinks("#finishSubmitNavLink");
+
+	$("#applicationId").val(sessionStorage.applicationId);
+	$("#redirectUrl").val(window.location.href);
+
+	$.get( "/commonhelp-svcs/services/medicaid/applicant/files?applicationId="+sessionStorage.applicationId, function( data ) {
+		if(data.fileList != null){
+			$.each(data.fileList, function(index, file) {
+				$("#fileTableNA").hide();
+				console.debug(file.fileUploadMember + "," + file.fileName +","+file.documentType);
+				appendFileTable(file.fileUploadMember, file.documentType, file.fileName);
+			});
+		}
+	});
+	
+});
+
+db({type:"member"}).each(function (record,recordnumber) {
+	var memberName = (record["firstName"]+" "+record["lastName"]);
+	$('.memberNames').append($('<option>', { value : record["id"] }).text(memberName));
+});
+
+$("#fileUploadBtn").click(function(){
+	var member = $("#fileUploadMember").val();
+	var docType = $("#documentType").val();
+
+	if(member == "SEL" || docType == "SEL"){
+		showDialog();
+	}
+	
+	$("#fileUploadForm").submit();
+});
+
+function appendFileTable(memberId, docmentType, fileName){
+	var member = db({type:"member", id:memberId}).first();
+	var name = member.firstName+" "+member.lastName;
+	$('#fileTable tr').last().after(
+	    	'<tr style="height: 50px;">'+
+				'<td>'+name+'</td>'+
+				'<td>'+docmentType+'</td>'+
+				'<td>'+fileName+'</td>'+
+				'<td><button type="button" class="btn btn-red" onclick="javascript:removeDocument(\''+fileName+'\')">Remove</button></td>'+
+			'</tr>');
+	
+}
+
+function showDialog(){
+	$( "#dialog-message" ).dialog({
+	      modal: true,
+	      resizable: false,
+	      width:400,
+	      height:175,
+	      position: ['center',100],
+	      buttons: {
+	        Ok: function() {
+	          $( this ).dialog( "close" );
+	        }
+	      },
+	      open:function () {
+	    	  $(this).closest(".ui-dialog").find("button:first").html("X");
+	          $(this).closest(".ui-dialog").find("button:last").addClass("btn btn-red");
+	          $(this).closest(".ui-dialog").find("button").eq(1).addClass("btn btn-dark");
+	        }
+	    });
+}
+
+function removeDocument(fileName){
+	$( "#dialog-confirm" ).dialog({
+		  modal: true,
+	      resizable: false,
+	      width:400,
+	      height:175,
+	      position: ['center',400],
+	      buttons: {
+	        "Cancel":function() {
+	          		$( this ).dialog( "close" );
+	        	},
+	        "Remove": function() {
+	        	$.ajax({
+	      		  url: '/commonhelp-svcs/services/medicaid/applicant/remove-file?fileName='+fileName+'&applicationId='+sessionStorage.applicationId,
+	      		  type: 'GET',
+	      		  dataType: 'text',
+	      		  data: '',
+	      		  success: function(response) { 
+	      			 	loadPage("submit-documents.html");
+	      			}
+	      		  });
+	        	$( this ).dialog( "close" );
+	        }
+	      },
+	      open:function () {
+	    	  $(this).closest(".ui-dialog").find("button:first").html("X");
+	          $(this).closest(".ui-dialog").find("button:last").addClass("btn btn-red");
+	          $(this).closest(".ui-dialog").find("button").eq(1).addClass("btn btn-dark");
+	        }
+	});
+}
+
+</script>
