@@ -87,6 +87,8 @@ $.fn.setPageEventHandlers = function(){
 			        		signOut();
 			        	else{
 			        		var nextPage = $('#nextPage').val();
+			        		console.debug("in loadpage - "+nextPage);
+			        		//console.debug("loading next page  - "+nextPage);
 			        		loadPage(nextPage);
 			        	}
 			        		

@@ -1,6 +1,7 @@
 package gov.virginia.ehhr.commonhelp;
 
 import gov.virginia.ehhr.commonhelp.domain.Applicant;
+import gov.virginia.ehhr.commonhelp.domain.ApplicationServiceRequest;
 import gov.virginia.ehhr.commonhelp.domain.ApplicationServiceResponse;
 import gov.virginia.ehhr.commonhelp.domain.EmployeeHealthInsurance;
 import gov.virginia.ehhr.commonhelp.domain.FileUpload;
@@ -13,9 +14,6 @@ import gov.virginia.ehhr.commonhelp.domain.MemberHealthInsurance;
 import gov.virginia.ehhr.commonhelp.domain.Relationship;
 import gov.virginia.ehhr.commonhelp.domain.UserProfile;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -745,5 +743,65 @@ public class CommonHelpController {
 		
 		return response;
 	}
+	
+	@RequestMapping(value = "/registered-users", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getRegisteredUserDetails(){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		
+		List<UserProfile> userProfileList = new ArrayList<UserProfile>();
+		for(Entry<String, UserProfile> userEntry : profileStore.entrySet()){
+			UserProfile userProfile = userEntry.getValue();
+			userProfileList.add(userProfile);
+		}
+		
+		svcsResponse.setUserProfileList(userProfileList);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;	
+	}
 
+	@RequestMapping(value = "/user-profile", 
+    		method = RequestMethod.GET, 
+    		produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse getUserProfile(@RequestParam String userName){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		
+		UserProfile userProfile = profileStore.get(userName);
+		
+		svcsResponse.setUserProfile(userProfile);
+		svcsResponse.setResponseCode(200);
+		return svcsResponse;	
+	}
+	
+	@RequestMapping(value = "/display-level", 
+    		method = RequestMethod.POST,
+    		consumes = {"application/json"}, 
+    	    produces = {"application/json"})
+	@ResponseBody
+	public ApplicationServiceResponse setRegisteredUserDetails(@RequestBody ApplicationServiceRequest svcsRequest){
+		ApplicationServiceResponse svcsResponse = new ApplicationServiceResponse();
+		
+		List<UserProfile> userProfileList = svcsRequest.getUserProfileList();
+		if(userProfileList != null && !userProfileList.isEmpty()){
+			for(UserProfile userProfile : userProfileList){
+				UserProfile storedProfile = profileStore.get(userProfile.getUserName());
+				storedProfile.setMemberPortalAccess(userProfile.isMemberPortalAccess());
+				storedProfile.setProviderAccess(userProfile.isProviderAccess());
+				storedProfile.setClaimsAccess(userProfile.isClaimsAccess());
+				storedProfile.setPharmacyAccess(userProfile.isPharmacyAccess());
+				storedProfile.setMmisAccess(userProfile.isMmisAccess());
+				storedProfile.setReportsAccess(userProfile.isReportsAccess());
+			}
+			
+			svcsResponse.setResponseCode(200);	
+			return svcsResponse;
+		}
+		
+		svcsResponse.setError("Invalid Username");
+		svcsResponse.setResponseCode(500);	
+		return svcsResponse;
+	}
 }

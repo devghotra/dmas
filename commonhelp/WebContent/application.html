@@ -19,6 +19,10 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<style>
+	.services li {margin: 30px;}
+</style>
 </head>
 
 <body>
@@ -31,59 +35,59 @@
 		<div class="section-header" id="sectionHeaderContent">
 			
 		</div>
-		<div class="container">	
+		<div class="container" style="height: 350px">	
 			<!-- Help Center -->
-			<div class="row" id="applicationMenu">
-				<div class="col-md-2 col-md-navlink">
-					<div class="user-menu bottom-15" style="background-color: #E6E6E6">
+			
+			<div class="row">
+				<div class="col-md-offset-1">
+					<div class="services">
 						<ul>
-							<li><a class="leftNavLink disabled" href="javascript: loadPage('primary-applicant-basic.html')" id="aboutYouNavLink">Primary Applicant </a></li>
+							<li id="memberPortalItem" style="display: none;"><i class="fa fa-desktop fa-3x"></i>
+								<p>
+									Member Portal<br />
+									<a target="_blank" href="https://commonhelp.virginia.gov">Click here to go to member portal</a>
+								</p></li>
+							<li id="providerItem" style="display: none;"><i class="fa fa-user-md fa-3x"></i>
+								<p>
+									Provider<br />
+									<a href="#">Click here to go to provider</a>
+								</p></li>
+							<li id="claimsItem" style="display: none;"><i class="fa fa-list-alt fa-3x"></i>
+								<p>
+									Claims<br />
+									<a href="#">Click here to go to claims</a>
+								</p></li>
 						</ul>
-					</div>
-				</div>
-				<div class="col-md-2 col-md-navlink" style="width: 15%;">
-					<div class="user-menu bottom-15" style="background-color: #E6E6E6">
-						<ul>
-							<li><a class="leftNavLink disabled" href="javascript: loadPage('household-members-summary.html')" id="householdMemberNavLink">Household Member</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-2 col-md-navlink">
-					<div class="user-menu bottom-15" style="background-color: #E6E6E6">
-						<ul>
-							<li><a class="leftNavLink disabled" href="javascript: loadPage('relationship.html')" id="relationNavLink">Relationship</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-2 col-md-navlink">
-					<div class="user-menu bottom-15" style="background-color: #E6E6E6">
-						<ul>
-							<li><a class="leftNavLink disabled" href="javascript: loadPage('present-job.html')" id="incomeNavLink">Income</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-2 col-md-navlink">
-					<div class="user-menu bottom-15" style="background-color: #E6E6E6">
-						<ul>
-							<li><a class="leftNavLink disabled" href="javascript: loadPage('medical-bills.html')" id="billsNavLink">Bills</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-2 col-md-navlink">
-					<div class="user-menu bottom-15" style="background-color: #E6E6E6">
-						<ul>
-							<li><a class="leftNavLink disabled" href="javascript: loadPage('employer-health-insurance.html')" id="additionalInfoNavLink">Additional Info</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-2 col-md-navlink">
-					<div class="user-menu bottom-15" style="background-color: #E6E6E6">
-						<ul>
-							<li><a class="leftNavLink disabled" href="javascript: loadPage('submit-documents.html')" id="finishSubmitNavLink">Finish & Submit</a></li>
-						</ul>
+						<div class="clearfix"></div>
 					</div>
 				</div>
 			</div>
+			
+			<div class="row">
+				<div class="col-md-offset-1">
+					<div class="services">
+						<ul>
+							<li id="pharmacyItem" style="display: none;"><i class="fa fa-medkit fa-3x"></i>
+								<p>
+									Pharmacy<br />
+									<a href="#">Click here to go to pharmacy</a>
+								</p></li>
+							<li id="mmisItem" style="display: none;"><i class="fa fa-cog fa-3x"></i>
+								<p>
+									MMIS<br />
+									<a target="_blank" href="https://www.virginiamedicaid.dmas.virginia.gov/wps/portal">Click here to go to MMIS</a>
+								</p></li>
+							<li id="reportsItem" style="display: none;"><i class="fa fa-file-text-o fa-3x"></i>
+								<p>
+									Reports<br />
+									<a href="#">Click here to go to reports</a>
+								</p></li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+			
 			<div class="row">
 				<div class="col-md-12" id="applicationFormDiv"></div>
 			</div>
@@ -95,9 +99,42 @@
 
 	<script> 
 	$(document).ready(function(){
-		init();
-		var appId = sessionStorage.applicationId;
+		$("#topMenuBar").load("top-menu.html"); 
+		$("#footerDiv").load("footer.html"); 
+		sessionStorage.currentScreen = "application.html";
+
+		var profile = JSON.parse(sessionStorage.userProfile);
+
+		$.get( "/commonhelp-svcs/services/medicaid/applicant/user-profile?userName="+profile.userName, function( data ) {
+			if(data.userProfile != null){
+				sessionStorage.userProfile = JSON.stringify(data.userProfile);
+				updateView();
+			}
+		});
+		
 	});
+
+	function updateView(){
+		var profile = JSON.parse(sessionStorage.userProfile);
+		if(profile.memberPortalAccess){
+			$("#memberPortalItem").show();
+		}
+		if(profile.providerAccess){
+			$("#providerItem").show();
+		}
+		if(profile.claimsAccess){
+			$("#claimsItem").show();
+		}
+		if(profile.pharmacyAccess){
+			$("#pharmacyItem").show();
+		}
+		if(profile.mmisAccess){
+			$("#mmisItem").show();
+		}
+		if(profile.reportsAccess){
+			$("#reportsItem").show();
+		}
+	}
     </script>
     
     <!-- Placed at the end of the document so the pages load faster -->

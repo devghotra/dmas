@@ -1,0 +1,7 @@
+changes for DMAS demo
+- changed color #386F80 to #3b5998.
+- in custom.css changed #hp-slider 
+	background: url(../img/bg3.jpg) no-repeat center center;
+	background-color: white;
+	
+- custom.css line 215 - changed background #eee to #2B547E & commented /*color: #888;*/

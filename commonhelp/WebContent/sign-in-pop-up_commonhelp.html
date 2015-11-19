@@ -51,8 +51,11 @@ $("#passwordLostLink").click(function(){
 });
 
 $( "#signInForm" ).submit(function( event ) {
-	//var signInLandingPage = "application.html";
-		
+	var signInLandingPage;
+	if(sessionStorage.signInLandingPage != null)
+		signInLandingPage = sessionStorage.signInLandingPage;
+	else
+		signInLandingPage =  "index.html";
 	
 	$.ajax({
         url     : $(this).attr('action'),
@@ -65,8 +68,8 @@ $( "#signInForm" ).submit(function( event ) {
         		sessionStorage.userProfile = JSON.stringify(data.userProfile);
         		updateSignInStatus(data.userProfile);
         		$("#dialog-form").dialog( "close" );
-        		//sessionStorage.removeItem("signInLandingPage");
-        		window.location.href = "/commonhelp/application.html";
+        		sessionStorage.removeItem("signInLandingPage");
+        		window.location.href = "/commonhelp/"+signInLandingPage;
         	}else{
         		$("#signInErrorDiv").html(data.error);
         		$("#signInErrorDiv").toggleClass('show hidden');

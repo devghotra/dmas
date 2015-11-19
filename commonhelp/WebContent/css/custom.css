@@ -40,7 +40,7 @@ h1.hl small, h2.hl small, h3.hl small, h4.hl small, h5.hl small, h6.hl small {
 /* ===== Navbar ===== */
 
 .navbar-inverse {
-	background-color: #386F80; /*#515151 */;
+	background-color: #3b5998; /*#515151 */;
 	border: none;
 }
 .navbar-inverse .navbar-nav > .active > a,
@@ -106,7 +106,7 @@ h1.hl small, h2.hl small, h3.hl small, h4.hl small, h5.hl small, h6.hl small {
 #wrap,
 #hp-slider {
 	height: 480px;
-	background: url(../img/bg3.jpg) no-repeat center center;
+	background-color: #E2E2E2;
 	background-size: cover;
 	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/bg3.jpg', sizingMethod='scale');
 	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/bg3.jpg', sizingMethod='scale')";
@@ -215,11 +215,11 @@ h1.hl small, h2.hl small, h3.hl small, h4.hl small, h5.hl small, h6.hl small {
 .services li {
 	list-style-type: none;
 	float: left;
-	background: #eee;
+	background: #2B547E;
 	padding: 20px;
 	margin-right: 1px;
 	text-align: center;
-	color: #888;
+	color: white;
 	width: 227px;
 	height: 100px;
 }
@@ -951,7 +951,7 @@ a.carousel-arrow-next {
 footer {
 	margin-top: 60px;
 	padding: 20px 0;
-	background: #3E7A8C;
+	background: #3b5998;
 	color: white;
 	font-weight: 300;
 }
@@ -972,7 +972,7 @@ footer .headline h3{
 }
 .legal {
 	padding: 20px 0 10px 0;
-	background: #386F80;
+	background: #3b5998;
 	color: white;
 	font-weight: 300;
 }
@@ -1094,7 +1094,7 @@ li.account p{
 	background: #1dcaff;
 }
 .login-social li#facebook {
-	background: #3B5998;
+	background: #3b5998;
 }
 .login-social li#google {
 	background: #dd4b39;
@@ -1108,7 +1108,7 @@ li.account p{
 	color: #1dcaff;
 }
 .login-social li#facebook:hover a {
-	color: #3B5998;
+	color: #3b5998;
 }
 .login-social li#google:hover a {
 	color: #dd4b39;
@@ -1508,7 +1508,7 @@ li.account p{
 
 /* common help styles*/
 h4 {
-	background-color: #3E7A8C;
+	background-color: #3b5998;
 	padding: 5px;
 }
 

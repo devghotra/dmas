@@ -174,8 +174,8 @@ fieldset[disabled] .btn-blue.active {
 
 .btn-dark {
 	color: #ffffff;
-	background-color: #386F80; /* #515151; */
-	border-color: #386F80 /*#515151; */
+	background-color: #3b5998; /* #515151; */
+	border-color: #3b5998 /*#515151; */
 }
 .btn-dark:hover,
 .btn-dark:focus,
@@ -753,7 +753,7 @@ a.thumbnail:focus img {
 	background: #ff9900;
 }
 .social-icons ul li.facebook {
-	background: #3B5998;
+	background: #3b5998;
 }
 .social-icons ul li.twitter {
 	background: #1dcaff;

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <title>DMAS - Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    <link href="fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+  </head>
+
+  <body>
+
+  <!-- Navbar
+    ============= -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="admin.html">DMAS ADMIN PANEL</a>
+        </div>
+      </div>
+    </div>
+    
+<!-- Main body
+================== -->
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- Remove the .animated class if you don't want things to move -->
+            <h1 class="animated slideInLeft" style="text-transform: none;"><span>Update User Display Privileges</span></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="height: 350px">
+      <!-- Help Center -->
+      <form role="form" id="applicationForm" method="post" action="/commonhelp-svcs/services/medicaid/applicant/display-level">
+	      <div class="row">
+	        <!-- Profile Menu -->
+	        <div class="col-md-12">
+	          <!-- List of recent dialogs -->
+	          	<div class="row form-row">
+					<h4 class="hl bottom-15">User Display Level Summary<i class="fa fa-chevron-up toggle"></i></h4>
+					<div>
+						<table class="table table-striped table-hover " id="userDetails">
+							<thead>
+								<tr style="background: #ddd">
+									<th>User</th>
+									<th>Display Level</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="2" id="userDetailsNA">Not Applicable</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row form-row">
+					<div class="col-md-10">
+						
+					</div>
+					<div class="col-md-2">
+						<button id="nextBtn" type="submit" class="btn btn-green pull-right btn-block">Update</button>
+					</div>
+				</div>
+	        </div>
+	      </div>
+      </form>
+    </div>
+  </div>
+  
+  <div style="display:none;">
+  	<table>
+  		<tr id="userRow">
+			<td>fullName</td>
+			<td>
+				<div class="col-md-12">
+					<input type="hidden" id="userProfileList[index].userName" name="userProfileList[index].userName">
+					<label class="checkbox-inline"> 
+						<input type="checkbox" id="userProfileList[index].memberPortalAccess" name="userProfileList[index].memberPortalAccess" value=true> 
+						Member Portal
+					</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label class="checkbox-inline"> 
+						<input type="checkbox" id="userProfileList[index].providerAccess" name="userProfileList[index].providerAccess" value=true> 
+						Provider
+					</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label class="checkbox-inline"> 
+						<input type="checkbox" id="userProfileList[index].claimsAccess" name="userProfileList[index].claimsAccess" value=true> 
+						Claims
+					</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label class="checkbox-inline"> 
+						<input type="checkbox" id="userProfileList[index].pharmacyAccess" name="userProfileList[index].pharmacyAccess" value=true> 
+						Pharmacy
+					</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label class="checkbox-inline"> 
+						<input type="checkbox" id="userProfileList[index].mmisAccess" name="userProfileList[index].mmisAccess" value=true> 
+						MMIS
+					</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label class="checkbox-inline"> 
+						<input type="checkbox" id="userProfileList[index].reportsAccess" name="userProfileList[index].reportsAccess" value=true> 
+						Reports
+					</label> 
+				</div>
+			</td>
+		</tr>
+  	</table>
+  </div>
+    
+	<footer>
+		<div class="container">
+			<div class="row">
+				<!-- Contact Us 
+        =================  -->
+				<div class="col-sm-3">
+					<div class="headline">
+						<h3>Contact us</h3>
+					</div>
+					<div class="content">
+						<p>
+						 Toll-Free Helpline: 1-855-635-4370<br /> 
+						 Email: <a href="#">dmasinfo@dmas.virginia.gov</a>
+						</p>
+					</div>
+				</div>
+				<div class="col-sm-9">
+					<div class="headline">
+						<h3>Important Info</h3>
+					</div>
+					<div class="content">
+						<div class="lnk_location">
+						    <a id="ContentPlaceHolder1_footer1_HyperLink6" href="http://townhall.virginia.gov/" target="_blank" style="color:Wheat;">Public Notices - VA Regulatory Town Hall</a> |
+						    <a id="ContentPlaceHolder1_footer1_HyperLink5" class="footerlink" href="Content_atchs/atchs/privacy-note.pdf" target="_blank">Notice of Privacy Practices</a> |
+						    <a id="ContentPlaceHolder1_footer1_HyperLink1" class="footerlink" href="Content_atchs/ab/ab-foia.pdf" target="_blank">FOIA Requests</a> | 
+						    <a id="ContentPlaceHolder1_footer1_HyperLink2" class="footerlink" href="Content_atchs/atchs/web-policy.pdf" target="_blank">Web Policy</a> | 
+						    <a id="ContentPlaceHolder1_footer1_HyperLink3" class="footerlink" href="http://www.w3.org/WAI/WCAG1A-Conformance">WAI Level A Compliant</a> |
+						    <a id="ContentPlaceHolder1_footer1_HyperLink4" class="footerlink" href="Content_atchs/atchs/DMASContacts.pdf" target="_blank">Contact Us</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
+    
+    <script> 
+		$(document).ready(function(){
+			$(this).setPageEventHandlers();
+			
+			$.get( "/commonhelp-svcs/services/medicaid/applicant/registered-users", function( data ) {
+				if(data.userProfileList != null){
+					var i = 0;
+					$.each(data.userProfileList, function( index, userProfile ) {
+						$("#userDetailsNA").hide();
+						var rowHtml = $("#userRow").html();
+						rowHtml = rowHtml.replace("fullName",userProfile.firstName+" "+userProfile.lastName);
+						rowHtml = rowHtml.replace(new RegExp('index', 'g'), i);
+						$('#userDetails tr').last().after("<tr>"+rowHtml+"</tr>");
+						i++;
+					});
+	
+					js2form(document.getElementById('applicationForm'), data);
+				}
+			});
+		});
+
+
+		$.fn.formSubmissionSuccess = function(data){
+			window.location.href = "/commonhelp/admin.html";
+		};
+	</script>
+	
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/common.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/scrolltopcontrol.js"></script>
+	<script src="js/form2js.js"></script>
+	<script src="js/js2form.js"></script>
+	<script src="js/json2.js"></script>
+	<script src="js/taffy-min.js"></script>
+    
+  </body>
+</html>

@@ -144,6 +144,7 @@
 	              </label>
 	            </div>
 	            <button id="submitBtn" type="button" class="btn btn-green" disabled>Create an account</button>
+	            <input type="hidden" id="nextPage" value="sign-up-program-selection.html">
 	          </form>
 	   </div>
 	          
@@ -168,18 +169,13 @@ $("#submitBtn").click(function(){
 	var pwd = $("#password").val();
 	var rPwd = $("#passwordRepeat").val();
 
-	if(pwd == rPwd){
+	if(pwd == rPwd)
 		$("#applicationForm").submit();
-	}else{
+	else{
 		$("#errorDiv").html("Password and repeat password don't match");
 		$("#errorDiv").toggleClass('show hidden');
 	}			
 });
-
-
-function loadPage(pageUrl){
-	window.location.href = "/commonhelp/application.html";
-}
 
 $.fn.formSubmissionFailed = function(data){
 	$("#errorDiv").html(data.error);
